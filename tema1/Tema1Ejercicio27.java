@@ -1,5 +1,4 @@
-import java.util.List;
-import java.util.Stack;
+
 
 public class Tema1Ejercicio27 {
     public static void main(String[] args) {
@@ -13,8 +12,7 @@ public class Tema1Ejercicio27 {
 
                 }
             }
-            if (bucle>2){
-            } else {
+            if (bucle<=2) {
                 System.out.println(n);
                 primos++;
             }
