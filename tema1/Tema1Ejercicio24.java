@@ -8,7 +8,7 @@ public class Tema1Ejercicio24 {
         int aprobados = 0;
         int suspendidos = 0;
         for (int i=1; i<=alumnos;i++){
-            System.out.print( " Introduce la nota del alumno " + i);
+            System.out.print( " Introduce la nota del alumno " + i + "=");
             int nota = in.nextInt();
                 if (nota>=5 && nota<=10){
                     System.out.print("Esta aprobado ");
