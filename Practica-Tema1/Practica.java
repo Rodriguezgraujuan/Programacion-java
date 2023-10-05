@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class Practica {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int velocidad1;
-        int ataque1;
-        int defensa1;
+        int velocidad1 = 0;
+        int ataque1 = 0;
+        int defensa1 = 0;
         int vida1 = 0;
 
-        int velocidad2;
-        int ataque2;
-        int defensa2;
+        int velocidad2= 0;
+        int ataque2 = 0;
+        int defensa2 = 0;
         int vida2 = 0;
 
         int total1 = 501;
@@ -49,11 +49,16 @@ public class Practica {
             }
         }
         int prioridad = 0;
+        if (velocidad1 > velocidad2){
+            prioridad = 1;
+        } else {
+            prioridad = 2;
+        }
         while (vida1 > 0 && vida2 > 0){
-            if (velocidad1 > velocidad2){
-                prioridad = 1;
+            if (prioridad==1){
+
             } else {
-                prioridad = 2;
+
             }
         }
     }
