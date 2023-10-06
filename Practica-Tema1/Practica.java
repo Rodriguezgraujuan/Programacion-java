@@ -75,14 +75,14 @@ public class Practica {
         }
         System.out.println(prioridad);
         int turno = 1;
-        char condicion = 's';
-        while (vida1 > 0 && vida2 > 0 && condicion=='s'){
+        char condicion = 'S';
+        while (vida1 > 0 && vida2 > 0 && condicion=='S'){
             System.out.println("Ronda " + turno);
             if (prioridad==1) {
-                int hit = random.nextInt(0, ataque1 / 10);
+                int hit = random.nextInt(1, ataque1 / 10);
+                hit = hit - random.nextInt(0, defensa2 / 10);
 
                 if (hit>0) {
-                    hit = hit - random.nextInt(0, defensa2 / 10);
                     if (vida2 - hit < 0) {
                         break;
                     } else {
@@ -90,7 +90,7 @@ public class Practica {
                     }
                 }
 
-                hit = random.nextInt(0, ataque2 / 10);
+                hit = random.nextInt(1, ataque2 / 10);
                 hit = hit - random.nextInt(0, defensa1 / 10);
                 if (hit > 0) {
                     if (vida1 - hit < 0){
@@ -105,7 +105,7 @@ public class Practica {
                 condicion = in.next().charAt(0);
             } else if (prioridad==2){
                 System.out.println("Prioridad2");
-                int hit = random.nextInt(0, ataque2 / 10);
+                int hit = random.nextInt(1, ataque2 / 10);
                 hit = hit - random.nextInt(0, defensa1 / 10);
                 if (hit>0){
                     if (vida1-hit<0){
@@ -114,7 +114,7 @@ public class Practica {
                         vida1 = vida1 - hit;
                     }
                 }
-                hit = random.nextInt(0, ataque1 / 10);
+                hit = random.nextInt(1, ataque1 / 10);
                 hit = hit - random.nextInt(0, defensa2 / 10);
                 if (hit > 0) {
                     if (vida2-hit<0){
@@ -132,8 +132,11 @@ public class Practica {
         }
         if (vida1 >0){
             System.out.println("Jugador 1 gana");
+            System.out.println(vida1);
         } else {
             System.out.println("Jugador 2 gana");
+            System.out.println(vida2);
+
         }
     }
 }
