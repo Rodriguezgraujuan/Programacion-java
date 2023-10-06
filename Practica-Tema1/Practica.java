@@ -1,4 +1,3 @@
-import javax.print.attribute.standard.PrinterMakeAndModel;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,6 +15,7 @@ public class Practica {
         int defensa2 = 0;
         int vida2 = 0;
 
+
         int total1 = 501;
         int total2 = 501;
 
@@ -31,7 +31,7 @@ public class Practica {
             vida1 = in.nextInt();
             total1 = velocidad1 + ataque1 + defensa1 + vida1;
 
-            if (total1 > 500 && velocidad1 <=200 && ataque1 <= 200 && defensa1 <=200 && vida1 <= 200) {
+            if (total1 > 500 && velocidad1 <=200 && velocidad1 >0 && ataque1 <= 200 && ataque1 > 0 && defensa1 <=200 && defensa1>0 && vida1 <= 200 && vida1>0) {
                 System.out.println("Atributos incorrectos. Deben ser 500 en total o menos");
             }
         }
@@ -54,7 +54,7 @@ public class Practica {
             vida2 =  in.nextInt();
             total2 = velocidad2 + ataque2 + defensa2 + vida2;
 
-            if (total2 > 500 && velocidad2 <=200 && ataque2 <= 200 && defensa2 <=200 && vida2 <= 200) {
+            if (total2 > 500 && velocidad2 <=200 && velocidad2 >0 && ataque2 <= 200 && ataque2 > 0 && defensa2 <=200 && defensa2>0 && vida2 <= 200 && vida2>0) {
                 System.out.println("Atributos incorrectos. Deben ser 500 en total o menos");
             }
         }
@@ -65,7 +65,7 @@ public class Practica {
             }
            vida2 = vida2 + 100;
 
-        int prioridad = 0;
+        int prioridad;
         if (velocidad1 > velocidad2){
             prioridad = 1;
         } else if (velocidad2>velocidad1){
@@ -81,9 +81,7 @@ public class Practica {
             if (prioridad==1) {
                 int hit = random.nextInt(0, ataque1 / 10);
 
-                if (hit<0){
-
-                }else {
+                if (hit>0) {
                     hit = hit - random.nextInt(0, defensa2 / 10);
                     if (vida2 - hit < 0) {
                         break;
@@ -91,12 +89,10 @@ public class Practica {
                         vida2 = vida2 - hit;
                     }
                 }
-                hit = 0;
+
                 hit = random.nextInt(0, ataque2 / 10);
                 hit = hit - random.nextInt(0, defensa1 / 10);
-                if (hit < 0) {
-
-                } else {
+                if (hit > 0) {
                     if (vida1 - hit < 0){
                         break;
                     }else {
@@ -111,21 +107,16 @@ public class Practica {
                 System.out.println("Prioridad2");
                 int hit = random.nextInt(0, ataque2 / 10);
                 hit = hit - random.nextInt(0, defensa1 / 10);
-                if (hit<0){
-
-                }else {
+                if (hit>0){
                     if (vida1-hit<0){
                         break;
                     }else {
                         vida1 = vida1 - hit;
                     }
                 }
-                hit = 0;
                 hit = random.nextInt(0, ataque1 / 10);
                 hit = hit - random.nextInt(0, defensa2 / 10);
-                if (hit < 0) {
-
-                } else{
+                if (hit > 0) {
                     if (vida2-hit<0){
                         break;
                     } else {
