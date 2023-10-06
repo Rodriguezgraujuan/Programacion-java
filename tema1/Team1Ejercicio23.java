@@ -5,9 +5,7 @@ public class Team1Ejercicio23 {
         Scanner in = new Scanner(System.in);
         int suma= 0;
         int cantidad= 0;
-        System.out.print("Cuantos numeros quieres introducir");
-        int bucle= in.nextInt();
-            for (int i=1;i<=bucle;i++){
+            for (int i=1;i>=0;i++){
             System.out.print("Introduce un numero");
             int num = in.nextInt();
 
