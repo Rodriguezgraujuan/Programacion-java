@@ -1,5 +1,4 @@
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Practica {
     public static void main(String[] args) {
@@ -19,6 +18,8 @@ public class Practica {
         int critico2 = 0;
         int regeneracion2 = 0;
 
+        List<String> lista1 = new Stack<>();
+        List<String> lista2 = new Stack<>();
 
         int total1 = 501;
         int total2 = 501;
@@ -45,7 +46,8 @@ public class Practica {
         }
         if (ataque1 < 10) {
             ataque1 = 10;
-        } else if (defensa1 < 10) {
+        }
+        if (defensa1 < 10) {
             defensa1 = 10;
         }
         vida1 = vida1 + 100;
@@ -72,7 +74,8 @@ public class Practica {
         }
         if (ataque2 < 10) {
             ataque2 = 10;
-        } else if (defensa2 < 10) {
+        }
+        if (defensa2 < 10) {
             defensa2 = 10;
         }
         vida2 = vida2 + 100;
@@ -87,9 +90,9 @@ public class Practica {
         }
         System.out.println(prioridad);
         int turno = 1;
-        char condicion = 'S';
 
-        while (vida1 > 0 && vida2 > 0 && condicion == 'S') {
+        while (vida1 > 0 && vida2 > 0) {
+            in.next();
             System.out.println("Ronda " + turno);
 
             if (prioridad == 1) {
@@ -224,21 +227,23 @@ public class Practica {
                         }
                     }
                 }
-
-
-                if (vida1 > 0) {
-                    System.out.println("Jugador 1 gana");
-                    System.out.println(vida1);
-                } else {
-                    System.out.println("Jugador 2 gana");
-                    System.out.println(vida2);
-                }
             }
-            System.out.println("Vida del jugador 1: " + vida1 );
-            System.out.println("Vida del jugador 2: " + vida2 );
-            System.out.println("Quieres continuar? Pon S");
-            condicion = in.next().charAt(0);
+            for (int i = 0; i<vida1/10;i++){
+                lista1.add("/");
+            }
+            for (int i = 0; i<vida2/10;i++){
+                lista2.add("/");
+            }
+            System.out.println("Vida del jugador 1: " + vida1 + lista1);
+
+            System.out.println("Vida del jugador 2: " + vida2 + lista2);
             turno++;
+            System.out.println("Introduce cualquier caracter");
+        }
+        if (vida1 > 0) {
+            System.out.println("Jugador 1 gana:"+ vida1 + lista1);
+        } else {
+            System.out.println("Jugador 2 gana:" + vida2 + lista2);
         }
     }
 }
