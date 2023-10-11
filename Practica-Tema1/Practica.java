@@ -4,81 +4,97 @@ public class Practica {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Random random = new Random();
-        int velocidad1 = 0;
-        int ataque1 = 0;
-        int defensa1 = 0;
-        int vida1 = 0;
-        int critico1 = 0;
-        int regeneracion1 = 0;
+        int velocidad1 = 1;
+        int ataque1 = 1;
+        int defensa1 = 1;
+        int vida1 = 1;
+        int critico1 = 1;
+        int regeneracion1 = 1;
 
-        int velocidad2 = 0;
-        int ataque2 = 0;
-        int defensa2 = 0;
-        int vida2 = 0;
-        int critico2 = 0;
-        int regeneracion2 = 0;
+        int velocidad2 = 1;
+        int ataque2 = 1;
+        int defensa2 = 1;
+        int vida2 = 1;
+        int critico2 = 1;
+        int regeneracion2 = 1;
 
         List<String> lista1 = new Stack<>();
         List<String> lista2 = new Stack<>();
-
-        int total1 = 501;
-        int total2 = 501;
-
-        while (total1 > 500) {
-            System.out.println("Jugador 1, Introduce tus puntos de atributos. (No pases de 500)");
-            System.out.println("Velocidad:");
-            velocidad1 = in.nextInt();
-            System.out.println("Ataque:");
-            ataque1 = in.nextInt();
-            System.out.println("Defensa:");
-            defensa1 = in.nextInt();
-            System.out.println("Vida:");
-            vida1 = in.nextInt();
-            System.out.println("Critico:");
-            critico1 = in.nextInt();
-            System.out.println("Regeneracion:");
-            regeneracion1 = in.nextInt();
-            total1 = velocidad1 + ataque1 + defensa1 + vida1 + critico1 + regeneracion1;
-
-            if (total1 > 500 && velocidad1 <= 200 && velocidad1 > 0 && ataque1 <= 200 && ataque1 > 0 && defensa1 <= 200 && defensa1 > 0 && vida1 <= 200 && vida1 > 0 && critico1 <= 200 && critico1 > 0 && regeneracion1 <= 200 && regeneracion1 > 0) {
-                System.out.println("Atributos incorrectos. Deben ser 500 en total o menos");
+        boolean persok = false;
+        String personaje1 = null;
+        while (!persok) {
+            System.out.println("Jugador 1 escoge personaje: Berserker, Caballero, Samurai");
+            personaje1 = in.nextLine();
+            switch (personaje1) {
+                case "Berserker":
+                    ataque1 = 150;
+                    velocidad1 = 20;
+                    defensa1 = 50;
+                    vida1 = 150;
+                    critico1 = 60;
+                    regeneracion1 = 70;
+                    persok = true;
+                    break;
+                case "Caballero":
+                    ataque1 = 100;
+                    velocidad1 = 40;
+                    defensa1 = 200;
+                    vida1 = 100;
+                    critico1 = 20;
+                    regeneracion1 = 30;
+                    persok = true;
+                    break;
+                case "Samurai":
+                    ataque1 = 100;
+                    velocidad1 = 150;
+                    defensa1 = 30;
+                    vida1 = 70;
+                    critico1 = 80;
+                    regeneracion1 = 10;
+                    persok = true;
+                    break;
+                default:
+                    System.out.println("Personaje incorrecto");
             }
         }
-        if (ataque1 < 10) {
-            ataque1 = 10;
-        }
-        if (defensa1 < 10) {
-            defensa1 = 10;
-        }
-        vida1 = vida1 + 100;
 
-        while (total2 > 500) {
-            System.out.println("Jugador 2, Introduce tus puntos de atributos. (No pases de 500)");
-            System.out.println("Velocidad:");
-            velocidad2 = in.nextInt();
-            System.out.println("Ataque:");
-            ataque2 = in.nextInt();
-            System.out.println("Defensa:");
-            defensa2 = in.nextInt();
-            System.out.println("Vida:");
-            vida2 = in.nextInt();
-            System.out.println("Critico:");
-            critico2 = in.nextInt();
-            System.out.println("Regeneracion:");
-            regeneracion2 = in.nextInt();
-            total2 = velocidad2 + ataque2 + defensa2 + vida2 + critico2 + regeneracion2;
-
-            if (total2 > 500 && velocidad2 <= 200 && velocidad2 > 0 && ataque2 <= 200 && ataque2 > 0 && defensa2 <= 200 && defensa2 > 0 && vida2 <= 200 && vida2 > 0 && critico2 <= 200 && critico2 > 0 && regeneracion2 <= 200 && regeneracion2 > 0) {
-                System.out.println("Atributos incorrectos. Deben ser 500 en total o menos");
+        persok = false;
+        String personaje2 = null;
+        while (!persok) {
+            System.out.println("Jugador 2 escoge personaje: Berserker, Caballero, Samurai");
+            personaje2 = in.nextLine();
+            switch (personaje2) {
+                case "Berserker":
+                    ataque2 = 150;
+                    velocidad2 = 20;
+                    defensa2 = 50;
+                    vida2 = 150;
+                    critico2 = 60;
+                    regeneracion2 = 70;
+                    persok = true;
+                    break;
+                case "Caballero":
+                    ataque2 = 100;
+                    velocidad2 = 40;
+                    defensa2 = 200;
+                    vida2 = 100;
+                    critico2 = 20;
+                    regeneracion2 = 30;
+                    persok = true;
+                    break;
+                case "Samurai":
+                    ataque2 = 100;
+                    velocidad2 = 130;
+                    defensa2 = 30;
+                    vida2 = 70;
+                    critico2 = 80;
+                    regeneracion2 = 90;
+                    persok = true;
+                    break;
+                default:
+                    System.out.println("Personaje incorrecto");
             }
         }
-        if (ataque2 < 10) {
-            ataque2 = 10;
-        }
-        if (defensa2 < 10) {
-            defensa2 = 10;
-        }
-        vida2 = vida2 + 100;
 
         int prioridad;
         if (velocidad1 > velocidad2) {
@@ -91,6 +107,7 @@ public class Practica {
         System.out.println(prioridad);
         int turno = 1;
 
+        //EMPIEZA LA PARTIDA
         while (vida1 > 0 && vida2 > 0) {
             in.next();
             System.out.println("Ronda " + turno);
@@ -106,6 +123,10 @@ public class Practica {
                     if (hit > 0) {
                         if (vida2 - hit < 0) {
                             break;
+                        } else if (personaje1.equals("Berserker") && vida1 < 150 / 4 && hit == 9) {
+                            System.out.println("Jugador 1 ha activado furia, daño x3 ");
+                            hit = hit * 3;
+
                         } else {
                             if (hit > 1) {
                                 int prob1 = random.nextInt(critico1 / 10, 10);
@@ -114,12 +135,16 @@ public class Practica {
                                     hit = hit * 2;
                                 }
                             }
-                            vida2 = vida2 - hit;
-                        }
 
+                        }
+                        int esquivar = random.nextInt(velocidad2/10, 20);
+                        if (esquivar>16){
+                            hit = 0;
+                        }
+                        vida2 = vida2 - hit;
                     }
                 } else if (decision1 == 'R') {
-                    int regen = random.nextInt(1, regeneracion1 / 10);
+                    int regen = random.nextInt(1, regeneracion1 / 2);
                     if (regen > 0) {
                         if (vida1 + regen > vida1) {
                             int diferencia = vida1 + regen - vida1;
@@ -133,13 +158,16 @@ public class Practica {
 
                 System.out.println("Jugador 2: ¿Quieres atacar-A o regenerarte-R?");
                 char decision2 = in.next().charAt(0);
-
                 if (decision2 == 'A') {
                     int hit = random.nextInt(0, ataque2 / 10);
                     hit = hit * 2 - random.nextInt(0, defensa1 / 10);
                     if (hit > 0) {
                         if (vida1 - hit < 0) {
                             break;
+                        } else if (personaje2.equals("Berserker") && vida1 < 150 / 4 && hit == 9) {
+                            System.out.println("Jugador 2 ha activado furia, daño x3 ");
+                            hit = hit * 3;
+
                         } else {
                             int prob1 = random.nextInt(critico2 / 10, 10);
                             int prob2 = random.nextInt(critico2 / 10, 10);
@@ -147,9 +175,12 @@ public class Practica {
                                 hit = hit * 2;
                             }
                         }
+                        int esquivar = random.nextInt(velocidad1/10, 20);
+                        if (esquivar>16){
+                            hit = 0;
+                        }
                         vida1 = vida1 - hit;
                     }
-
                 } else if (decision2 == 'R') {
                     int regen = random.nextInt(1, regeneracion2 / 10);
                     if (regen > 0) {
@@ -167,18 +198,25 @@ public class Practica {
                 char decision2 = in.next().charAt(0);
 
                 if (decision2 == 'A') {
-                    System.out.println("Prioridad2");
                     int hit = random.nextInt(0, ataque2 / 10);
-                    hit = hit*2 - random.nextInt(0, defensa1 / 10);
+                    hit = hit * 2 - random.nextInt(0, defensa1 / 10);
                     if (hit > 0) {
                         if (vida1 - hit < 0) {
                             break;
+                        } else if (personaje2.equals("Berserker") && vida1 < 150 / 4 && hit == 9) {
+                            System.out.println("Jugador 2 ha activado furia, daño x3 ");
+                            hit = hit * 3;
+
                         } else {
                             int prob1 = random.nextInt(critico2 / 10, 10);
                             int prob2 = random.nextInt(critico2 / 10, 10);
                             if (prob1 == prob2) {
                                 hit = hit * 2;
                             }
+                        }
+                        int esquivar = random.nextInt(velocidad1/10, 20);
+                        if (esquivar>16){
+                            hit = 0;
                         }
                         vida1 = vida1 - hit;
                     }
@@ -198,12 +236,16 @@ public class Practica {
                 System.out.println("Jugador 1: ¿Quieres atacar-A o regenerarte-R?");
                 char decision1 = in.next().charAt(0);
 
-                if (decision2 == 'A') {
+                if (decision1 == 'A') {
                     int hit = random.nextInt(0, ataque1 / 10);
-                    hit = hit*2 - random.nextInt(0, defensa2 / 10);
+                    hit = hit * 2 - random.nextInt(0, defensa2 / 10);
                     if (hit > 0) {
                         if (vida2 - hit < 0) {
                             break;
+                        } else if (personaje1.equals("Berserker") && vida1 < 150 / 4 && hit == 9) {
+                            System.out.println("Jugador 1 ha activado furia, daño x3 ");
+                            hit = hit * 3;
+
                         } else {
                             if (hit > 1) {
                                 int prob1 = random.nextInt(critico1 / 10, 10);
@@ -212,36 +254,48 @@ public class Practica {
                                     hit = hit * 2;
                                 }
                             }
-                            vida2 = vida2 - hit;
                         }
-
-                    } else if (decision1 == 'R') {
-                        int regen = random.nextInt(1, regeneracion1 / 10);
-                        if (regen > 0) {
-                            if (vida1 + regen > vida1) {
-                                int diferencia = vida1 + regen - vida1;
-                                vida1 = vida1 + diferencia;
-                            } else {
-                                vida1 = vida1 + regen;
-                            }
+                        int esquivar = random.nextInt(velocidad2/10, 20);
+                        if (esquivar>16){
+                            hit = 0;
+                        }
+                        vida2 = vida2 - hit;
+                    }
+                } else if (decision1 == 'R') {
+                    int regen = random.nextInt(1, regeneracion1 / 10);
+                    if (regen > 0) {
+                        if (vida1 + regen > vida1) {
+                            int diferencia = vida1 + regen - vida1;
+                            vida1 = vida1 + diferencia;
+                        } else {
+                            vida1 = vida1 + regen;
                         }
                     }
                 }
             }
-            for (int i = 0; i<vida1/10;i++){
-                lista1.add("/");
+            int aleatoriober = random.nextInt(1,30);
+            if (personaje1.equals("Berserker") && vida1<150/5 && aleatoriober==2){
+                System.out.println("Llamada de odin");
+                vida1 = vida1 + 50;
             }
-            for (int i = 0; i<vida2/10;i++){
-                lista2.add("/");
+
+            for (int i = 0; i < vida1 / 10; i++) {
+                lista1.add("-");
+            }
+            for (int i = 0; i < vida2 / 10; i++) {
+                lista2.add("-");
             }
             System.out.println("Vida del jugador 1: " + vida1 + lista1);
 
             System.out.println("Vida del jugador 2: " + vida2 + lista2);
             turno++;
-            System.out.println("Introduce cualquier caracter");
+            lista1.clear();
+            lista2.clear();
         }
+
+        System.out.println("Introduce cualquier caracter");
         if (vida1 > 0) {
-            System.out.println("Jugador 1 gana:"+ vida1 + lista1);
+            System.out.println("Jugador 1 gana:" + vida1 + lista1);
         } else {
             System.out.println("Jugador 2 gana:" + vida2 + lista2);
         }
