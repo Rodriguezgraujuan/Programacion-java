@@ -22,6 +22,9 @@ public class Practica {
         List<String> lista2 = new Stack<>();
         boolean persok = false;
         String personaje1 = null;
+        int vida_ber = 150;
+        int vida_cab = 100;
+        int vida_sam = 85;
         while (!persok) {
             System.out.println("Jugador 1 escoge personaje: Berserker, Caballero, Samurai");
             personaje1 = in.nextLine();
@@ -29,10 +32,10 @@ public class Practica {
                 case "Berserker":
                     ataque1 = 150;
                     velocidad1 = 20;
-                    defensa1 = 50;
-                    vida1 = 150;
-                    critico1 = 60;
-                    regeneracion1 = 70;
+                    defensa1 = 65;
+                    vida1 = 135;
+                    critico1 = 30;
+                    regeneracion1 = 10;
                     persok = true;
                     break;
                 case "Caballero":
@@ -45,11 +48,11 @@ public class Practica {
                     persok = true;
                     break;
                 case "Samurai":
-                    ataque1 = 100;
+                    ataque1 = 120;
                     velocidad1 = 150;
                     defensa1 = 30;
-                    vida1 = 70;
-                    critico1 = 80;
+                    vida1 = 85;
+                    critico1 = 70;
                     regeneracion1 = 10;
                     persok = true;
                     break;
@@ -146,11 +149,17 @@ public class Practica {
                 } else if (decision1 == 'R') {
                     int regen = random.nextInt(1, regeneracion1 / 2);
                     if (regen > 0) {
-                        if (vida1 + regen > vida1) {
-                            int diferencia = vida1 + regen - vida1;
-                            vida1 = vida1 + diferencia;
+                        if (personaje1.equals("Berserker")) {
+                            if (vida1 == vida_ber){
+                            } else {
+                                vida1 = vida1 + regen;
+                                if (vida1 > vida_ber){
+                                    vida1=vida_ber;
+                                }
+                            }
+                        } else if (personaje1.equals("Caballero")){
                         } else {
-                            vida1 = vida1 + regen;
+
                         }
                     }
 
@@ -273,9 +282,9 @@ public class Practica {
                     }
                 }
             }
-            int aleatoriober = random.nextInt(1,30);
-            if (personaje1.equals("Berserker") && vida1<150/5 && aleatoriober==2){
-                System.out.println("Llamada de odin");
+            int aleat_ber = random.nextInt(1,30);
+            if (personaje1.equals("Berserker") && vida1<150/5 && aleat_ber==2){
+                System.out.println("Jugador 1 activa 'llamada de odin'");
                 vida1 = vida1 + 50;
             }
 
