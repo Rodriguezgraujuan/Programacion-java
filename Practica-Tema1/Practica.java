@@ -485,10 +485,30 @@ public class Practica {
         System.out.println(vida1);
         if (vida1 > 0) {
             System.out.println("Jugador 1 causo " + hit1 + " puntos de daño");
-            System.out.println("Jugador 1 gana:" + vida1 + vidajug1);
+            System.out.println("Jugador 1 gana:" + vida1 + vidajug1 +
+                    "  ___________\n" +
+                    "            '._==_==_=_.'\n" +
+                    "            .-\\:      /-.\n" +
+                    "           | (|:.     |) |\n" +
+                    "            '-|:.     |-'\n" +
+                    "              \\::.    /\n" +
+                    "               '::. .'\n" +
+                    "                 ) (\n" +
+                    "               _.' '._\n" +
+                    "              `\"\"\"\"\"\"\"`");
         } else {
             System.out.println("Jugador 2 causo " + hit2 + " puntos de daño");
-            System.out.println("Jugador 2 gana:" + vida2 + vidajug2);
+            System.out.println("Jugador 2 gana:" + vida2 + vidajug2 +
+                    "  ___________\n" +
+                    "            '._==_==_=_.'\n" +
+                    "            .-\\:      /-.\n" +
+                    "           | (|:.     |) |\n" +
+                    "            '-|:.     |-'\n" +
+                    "              \\::.    /\n" +
+                    "               '::. .'\n" +
+                    "                 ) (\n" +
+                    "               _.' '._\n" +
+                    "              `\"\"\"\"\"\"\"`");
         }
     }
 }
