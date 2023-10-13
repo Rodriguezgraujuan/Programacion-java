@@ -45,6 +45,20 @@ public class Practica {
                     critico1 = 30;
                     regeneracion1 = 40;
                     persok = true;
+                    System.out.println("""
+
+                                               ~.                      \s
+                                        Ya...___|__..ab.     .   . \s
+                                         Y88b  \\88b  \\88b   (     ) \s
+                                          Y88b  :88b  :88b   `.oo'  \s
+                                          :888  |888  |888  ( (`-'  \s
+                                 .---.    d88P  ;88P  ;88P   `.`.   \s
+                                / .-._)  d8P-""\"|""\"'-Y8P      `.`. \s
+                               ( (`._) .-.  .-. |.-.  .-.  .-.   ) )\s
+                                \\ `---( O )( O )( O )( O )( O )-' / \s
+                                 `.    `-'  `-'  `-'  `-'  `-'  .'   \s
+                                   `---------------------------'\
+                            """);
                     break;
                 case "Caballero":
                     ataque1 = 100;
@@ -54,6 +68,27 @@ public class Practica {
                     critico1 = 20;
                     regeneracion1 = 30;
                     persok = true;
+                    System.out.println("""
+
+
+                                               _.--.    .--._
+                                             ."  ."      ".  ".
+                                            ;  ."    /\\    ".  ;
+                                            ;  '._,-/  \\-,_.`  ;
+                                            \\  ,`  / /\\ \\  `,  /
+                                             \\/    \\/  \\/    \\/
+                                             ,=_    \\/\\/    _=,
+                                             |  "_   \\/   _"  |
+                                             |_   '"-..-"'   _|
+                                             | "-.        .-" |
+                                             |    "\\    /"    |
+                                             |      |  |      |
+                                     ___     |      |  |      |     ___
+                                 _,-",  ",   '_     |  |     _'   ,"  ,"-,_
+                               _(  \\  \\   \\"=--"-.  |  |  .-"--="/   /  /  )_
+                             ,"  \\  \\  \\   \\      "-'--'-"      /   /  /  /  ".
+                            !     \\  \\  \\   \\                  /   /  /  /     !
+                            :      \\  \\  \\   \\                /   /  /  /      :""");
                     break;
                 case "Samurai":
                     ataque1 = 120;
@@ -63,6 +98,10 @@ public class Practica {
                     critico1 = 70;
                     regeneracion1 = 50;
                     persok = true;
+                    System.out.println("""
+                            ,_._._._._._._._._|__________________________________________________________,
+                            |_|_|_|_|_|_|_|_|_|_________________________________________________________/
+                                              !""");
                     break;
                 default:
                     System.out.println("Personaje incorrecto");
@@ -83,6 +122,20 @@ public class Practica {
                     critico2 = 30;
                     regeneracion2 = 40;
                     persok = true;
+                    System.out.println("""
+
+                                               ~.                      \s
+                                        Ya...___|__..ab.     .   . \s
+                                         Y88b  \\88b  \\88b   (     ) \s
+                                          Y88b  :88b  :88b   `.oo'  \s
+                                          :888  |888  |888  ( (`-'  \s
+                                 .---.    d88P  ;88P  ;88P   `.`.   \s
+                                / .-._)  d8P-""\"|""\"'-Y8P      `.`. \s
+                               ( (`._) .-.  .-. |.-.  .-.  .-.   ) )\s
+                                \\ `---( O )( O )( O )( O )( O )-' / \s
+                                 `.    `-'  `-'  `-'  `-'  `-'  .'   \s
+                                   `---------------------------'\
+                            """);
                     break;
                 case "Caballero":
                     ataque2 = 100;
@@ -92,6 +145,27 @@ public class Practica {
                     critico2 = 20;
                     regeneracion2 = 30;
                     persok = true;
+                    System.out.println("""
+
+
+                                               _.--.    .--._
+                                             ."  ."      ".  ".
+                                            ;  ."    /\\    ".  ;
+                                            ;  '._,-/  \\-,_.`  ;
+                                            \\  ,`  / /\\ \\  `,  /
+                                             \\/    \\/  \\/    \\/
+                                             ,=_    \\/\\/    _=,
+                                             |  "_   \\/   _"  |
+                                             |_   '"-..-"'   _|
+                                             | "-.        .-" |
+                                             |    "\\    /"    |
+                                             |      |  |      |
+                                     ___     |      |  |      |     ___
+                                 _,-",  ",   '_     |  |     _'   ,"  ,"-,_
+                               _(  \\  \\   \\"=--"-.  |  |  .-"--="/   /  /  )_
+                             ,"  \\  \\  \\   \\      "-'--'-"      /   /  /  /  ".
+                            !     \\  \\  \\   \\                  /   /  /  /     !
+                            :      \\  \\  \\   \\                /   /  /  /      :""");
                     break;
                 case "Samurai":
                     ataque2 = 120;
@@ -101,6 +175,10 @@ public class Practica {
                     critico2 = 70;
                     regeneracion2 = 50;
                     persok = true;
+                    System.out.println("""
+                            ,_._._._._._._._._|__________________________________________________________,
+                            |_|_|_|_|_|_|_|_|_|_________________________________________________________/
+                                              !""");
                     break;
                 default:
                     System.out.println("Personaje incorrecto");
@@ -115,12 +193,48 @@ public class Practica {
         } else {
             prioridad = random.nextInt(1, 2);
         }
-        System.out.println(prioridad);
         int turno = 1;
 
         System.out.println("INTRODUCE CUALQUIER CARACTER PARA EMPEZAR:");
+        in.next();
+
+        System.out.println("""
+                 n                                                                 :.
+                 E%                                                                :"5
+                z  %                                                              :" `
+                K   ":                                                           z   R
+                ?     %.                                                       :^    J
+                 ".    ^s                                                     f     :~
+                  '+.    #L                                                 z"    .*
+                    '+     %L                                             z"    .~
+                      ":    '%.                                         .#     +
+                        ":    ^%.                                     .#`    +"
+                          #:    "n                                  .+`   .z"
+                            #:    ":                               z`    +"
+                              %:   `*L                           z"    z"
+                                *:   ^*L                       z*   .+"
+                                  "s   ^*L                   z#   .*"
+                                    #s   ^%L               z#   .*"
+                                      #s   ^%L           z#   .r"
+                                        #s   ^%.       u#   .r"
+                                          #i   '%.   u#   .@"
+                                            #s   ^%u#   .@"
+                                              #s x#   .*"
+                                               x#`  .@%.
+                                             x#`  .d"  "%.
+                                           xf~  .r" #s   "%.
+                                     u   x*`  .r"     #s   "%.  x.
+                                     %Mu*`  x*"         #m.  "%zX"
+                                     :R(h x*              "h..*dN.
+                                   u@NM5e#>                 7?dMRMh.
+                                 z$@M@$#"#"                 *""*@MM$hL
+                               u@@MM8*                          "*$M@Mh.
+                             z$RRM8F"                             "N8@M$bL
+                            5`RM$#                                  'R88f)R
+                            'h.$"                                     #$x*
+                """);
+
         while (vida1 > 0 && vida2 > 0) {
-            in.next();
             System.out.println("Ronda " + turno);
 
             if (prioridad == 1) {
@@ -129,7 +243,6 @@ public class Practica {
 
                 if (decision1 == 'A') {
                     hit1 = random.nextInt(0, ataque1 / 10);
-                    System.out.println(hit1);
                     hit1 = hit1 * 2 - random.nextInt(0, defensa2 / 10);
 
                     if (hit1 > 0) {
@@ -214,7 +327,6 @@ public class Practica {
                 char decision2 = in.next().charAt(0);
                 if (decision2 == 'A') {
                     hit2 = random.nextInt(0, ataque2 / 10);
-                    System.out.println(hit2);
                     hit2 = hit2 * 2 - random.nextInt(0, defensa1 / 10);
                     if (hit2 > 0) {
                         if (vida1 - hit2 < 0) {
@@ -331,7 +443,6 @@ public class Practica {
                         }
                         vida1 = vida1 - hit2;
                     }
-                    System.out.println(hit2);
                 } else if (decision2 == 'R') {
                     int regen = random.nextInt(1, regeneracion2 / 10);
                     if (regen > 0) {
@@ -481,6 +592,7 @@ public class Practica {
             hit1=0;
             hit2=0;
             System.out.println("Introduce cualquier caracter");
+            in.next();
         }
         System.out.println(vida1);
         if (vida1 > 0) {
