@@ -2,7 +2,7 @@ package Tema2;
 
 import java.util.Scanner;
 
-public class Ejercicio1_Tema2 {
+public class Ejercicio1 {
 
     public static int numberSign(int num){
         int result = 0;
