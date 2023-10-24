@@ -24,4 +24,8 @@ public class MyMath {
     public static double circleArea(double radius){
         return Math.PI* Math.pow(radius, 2);
     }
+
+    public static int prime(int number){
+
+    }
 }
