@@ -2,10 +2,7 @@ package Tema2;
 
 public class Ejercicio6 {
     public static void tabla(int num){
-        for (int i = 1; i<=10; i++){
-            System.out.println(num + " x " + i + " = " + num*i);
-        }
-
+        Ejercicio5.ShowMultiplayTable(num);
     }
 
     public static void main(String[] args) {

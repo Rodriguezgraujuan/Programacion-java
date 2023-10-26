@@ -71,7 +71,7 @@ public class Ejercicio10 {
             case 5:
                 System.out.println("Introduce un numero:");
                 int num_tabla = in.nextInt();
-                Ejercicio5.tabla(num_tabla);
+                Ejercicio5.ShowMultiplayTable(num_tabla);
                 break;
             case 6:
                 for (int tablas10 =1;tablas10<=10;tablas10++) {
@@ -81,8 +81,8 @@ public class Ejercicio10 {
             case 7:
                 int number = in.nextInt();
 
-                while (Ejercicio7.verificacion(number)==1) {
-                    if (Ejercicio7.verificacion(number) == 1) {
+                while (Ejercicio7.Oknumber(number)==1) {
+                    if (Ejercicio7.Oknumber(number) == 1) {
                         Ejercicio7.primonoprimo(number);
                     }
                     number = in.nextInt();
@@ -94,11 +94,7 @@ public class Ejercicio10 {
                 int mes = in.nextInt();
                 int year = in.nextInt();
 
-                if (Ejercicio8.verificacion_numeros(dia, mes) == 0) {
-                    System.out.println("Fecha incorrecta");
-                } else {
-                    Ejercicio8.fecha(dia, mes, Ejercicio8.bisiesto(year));
-                }
+                Ejercicio8.fecha(dia, mes, Ejercicio8.bisiesto(year));
                 break;
             case 9:
                 System.out.println("Introduce el caracter");

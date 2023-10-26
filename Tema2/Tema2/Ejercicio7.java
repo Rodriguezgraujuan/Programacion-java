@@ -3,7 +3,7 @@ package Tema2;
 import java.util.Scanner;
 
 public class Ejercicio7 {
-    public static int verificacion(int num){
+    public static int Oknumber(int num){
         int condicion = 0;
         if (num > 0){
             condicion = 1;
@@ -12,18 +12,18 @@ public class Ejercicio7 {
     }
 
     public static void primonoprimo(int num){
-        int bucle = 0;
-        for (int i = 1; i<=num;i++){
-            if (num%i==0){
-                bucle++;
+        boolean divisores = false;
+
+        for (int i = 2; i<num;i++){
+            if (num % i == 0) {
+                divisores = true;
+                break;
             }
         }
-        if (bucle==2){
-            System.out.println(num + " es primo");
-        } else if (num == 1){
-            System.out.println(num + " es primo");
-        }else {
-            System.out.println(num + " no es primo");
+        if (divisores){
+            System.out.println("No es primo");
+        } else {
+            System.out.println("Es primo");
         }
     }
 
@@ -31,8 +31,8 @@ public class Ejercicio7 {
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();
 
-        while (verificacion(num)==1) {
-            if (verificacion(num) == 1) {
+        while (Oknumber(num)==1) {
+            if (Oknumber(num) == 1) {
                 primonoprimo(num);
             }
             num = in.nextInt();

@@ -54,9 +54,10 @@ public class MyMath {
         if (number<2){
             condicion = false;
         } else {
-            for (int i = 2; i < number && condicion; i++) {
+            for (int i = 2; i < number; i++) {
                 if (number % i == 0) {
                     condicion = false;
+                    break;
                 }
             }
         }

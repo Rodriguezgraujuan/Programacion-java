@@ -21,16 +21,18 @@ public class Ejercicio4 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Elije si quieres pasar de Euros a dolares (Eu2do) o Dolares a euros (Do2eu)");
-        String desicion = in.nextLine();
+        String decision = in.nextLine();
 
-        System.out.println("Introduce la cantidad de dinero: ");
-        double dinero = in.nextDouble();
-        if (showMenu(desicion).equals("Euros")){
-            double dolares = euro2dolar(dinero);
-            System.out.println(dinero + "€ son " + dolares + "$");
+        if (showMenu(decision).equals("Euros")){
+            System.out.println("Introduce la cantidad de Euros: ");
+            double Euro = in.nextDouble();
+            double dolares = euro2dolar(Euro);
+            System.out.println(Euro + "€ son " + dolares + "$");
         } else {
-            double euros = dolar2euro(dinero);
-            System.out.println(dinero + "$ son " + euros + "€");
+            System.out.println("Introduce la cantidad de dolares: ");
+            double dolar = in.nextDouble();
+            double euros = dolar2euro(dolar);
+            System.out.println(dolar + "$ son " + euros + "€");
         }
     }
 }

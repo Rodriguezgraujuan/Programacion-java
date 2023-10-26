@@ -26,14 +26,18 @@ public class Ejercicio8 {
     }
 
     public static void fecha(int dia, int mes, int bisiesto) {
-        if (mes == 1 || mes > 2 && verificacion_numeros(dia, mes)==1) {
-            System.out.println("Fecha correcta");
-        } else if (bisiesto==1 && mes==2 && dia>=1 && dia<=29) {
-            System.out.println("Fecha correcta");
-        } else if (mes == 2 && dia>=1 && dia <=28) {
-            System.out.println("Fecha correcta");
-        } else {
+        if (verificacion_numeros(dia, mes) == 0) {
             System.out.println("Fecha incorrecta");
+        } else {
+            if (mes == 1 || mes > 2 && verificacion_numeros(dia, mes) == 1) {
+                System.out.println("Fecha correcta");
+            } else if (bisiesto == 1 && mes == 2 && dia >= 1 && dia <= 29) {
+                System.out.println("Fecha correcta");
+            } else if (mes == 2 && dia >= 1 && dia <= 28) {
+                System.out.println("Fecha correcta");
+            } else {
+                System.out.println("Fecha incorrecta");
+            }
         }
     }
 
@@ -44,10 +48,7 @@ public class Ejercicio8 {
         int mes = in.nextInt();
         int year = in.nextInt();
 
-        if (verificacion_numeros(dia, mes) == 0) {
-            System.out.println("Fecha incorrecta");
-        } else {
-            fecha(dia, mes, bisiesto(year));
-        }
+        fecha(dia, mes, bisiesto(year));
+
     }
 }
