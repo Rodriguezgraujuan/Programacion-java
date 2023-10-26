@@ -152,8 +152,4 @@ public class MyMath {
         return result;
     }
 
-    public static void main(String[] args){
-
-    }
-
 }

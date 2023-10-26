@@ -29,6 +29,7 @@ public class Ejercicio10 {
                 } else {
                     System.out.println("El signo es: -");
                 }
+                break;
             case 2:
                 System.out.println("Introduce la edad");
                 int edad = in.nextInt();
@@ -38,6 +39,7 @@ public class Ejercicio10 {
                 }else {
                     System.out.println("Eres menor");
                 }
+                break;
             case 3:
                 int radius = in.nextInt();
                 if (Ejercicio3.validRadius(radius)) {
@@ -48,6 +50,7 @@ public class Ejercicio10 {
                 } else {
                     System.out.println("Radio incorrecto");
                 }
+                break;
             case 4:
                 System.out.println("Elije si quieres pasar de Euros a dolares (Eu2do) o Dolares a euros (Do2eu)");
                 in.nextLine();
@@ -64,14 +67,17 @@ public class Ejercicio10 {
                     double euros = Ejercicio4.dolar2euro(dinero);
                     System.out.println(dinero + "$ son " + euros + "€");
                 }
+                break;
             case 5:
                 System.out.println("Introduce un numero:");
                 int num_tabla = in.nextInt();
                 Ejercicio5.tabla(num_tabla);
+                break;
             case 6:
                 for (int tablas10 =1;tablas10<=10;tablas10++) {
                     Ejercicio6.tabla(tablas10);
                 }
+                break;
             case 7:
                 int number = in.nextInt();
 
@@ -81,6 +87,7 @@ public class Ejercicio10 {
                     }
                     number = in.nextInt();
                 }
+                break;
             case 8:
                 System.out.println("Introduce dia, mes, año");
                 int dia = in.nextInt();
@@ -92,6 +99,7 @@ public class Ejercicio10 {
                 } else {
                     Ejercicio8.fecha(dia, mes, Ejercicio8.bisiesto(year));
                 }
+                break;
             case 9:
                 System.out.println("Introduce el caracter");
                 in.nextLine();
@@ -99,6 +107,7 @@ public class Ejercicio10 {
                 System.out.println("Introduce el numero de lineas");
                 int num_lineas= in.nextInt();
                 Ejercicio9.triangulo(num_lineas, caracter);
+                break;
         }
     }
 }
