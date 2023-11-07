@@ -1,6 +1,5 @@
 package Tema2;
 
-import static java.lang.Character.toChars;
 import static java.lang.Character.toUpperCase;
 
 public class Utils {
@@ -88,8 +87,9 @@ public class Utils {
 
     public static boolean isValidNIF(int numero, char letra){
         boolean goodnumber= false;
-        char letramayus= character.toUpperCase;
-        if (getNIF(numero)=letrastring){
+        letra= toUpperCase(letra);
+
+        if (getNIF(numero) == letra){
             goodnumber= true;
         }
         return goodnumber;

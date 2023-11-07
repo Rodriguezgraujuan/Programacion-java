@@ -73,10 +73,12 @@ public class MyMath {
         number = Math.abs(number);
         if (number==0){
             contador=1;
-        }
-        while (number>0){
-            number= number / 10;
-            contador++;
+        } else {
+            while (number>0){
+                number= number / 10;
+                contador++;
+            }
+
         }
         return contador;
     }
@@ -96,16 +98,7 @@ public class MyMath {
     }
 
     public static int oddFigureCount(int number){
-        int contador=0;
-        number=Math.abs(number);
-        while (number!=0){
-            if (number%2==1){
-                contador++;
-            }
-            number= number / 10;
-        }
-
-        return contador;
+        return figureCount(number) - evenFigureCount(number);
     }
 
     public static int factorial(int number){
