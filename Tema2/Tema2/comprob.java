@@ -1,11 +1,10 @@
 package Tema2;
 
-import java.util.Objects;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class comprob {
     static Random random = new Random();
+    static List<String> vidajug = new Stack<>();
 
 
     public static void Asciiart(String personage) {
@@ -152,10 +151,37 @@ public class comprob {
         int hit = random.nextInt(0, ataque / 10);
         hit = hit * 2 - random.nextInt(0, defensa / 10);
         int criticprob = random.nextInt(critico / 10, 20);
+        if (hit<0){
+            hit=0;
+        }
         if (criticprob == 14) {
             hit *= 3;
         }
         return hit;
+    }
+
+    public static void Roundcounter(int number){
+        System.out.println("Ronda: " + number);
+    }
+
+    public static int skillhp(int vida, int hit, String player){
+        if (player.equals("BERSERKER") && vida<150/5 && hit>13){
+            System.out.println("BERSERKER entra en furia");
+            vida+=30;
+        }
+        return vida;
+    }
+
+    public static int skilldmg(int vida, int hit, String player){
+
+    }
+
+    public static void displayhp(int vida){
+        vidajug.clear();
+        for (int i = 0; i < vida / 10; i++) {
+            vidajug.add("-");
+        }
+        System.out.println(vidajug);
     }
 
     public static void main(String[] args) {
@@ -199,7 +225,11 @@ public class comprob {
         int critico2 = criticpers(player2);
         int regeneracion2 = regenpers(player2);
 
+        int numerorondas=1;
+
         while (vida1 > 0 || vida2 > 0) {
+            Roundcounter(numerorondas);
+            numerorondas++;
             System.out.println("Pulsa cualquier tecla para continuar");
             in.next();
             if (priorityatackplayer(velocidad1, velocidad2)) {
@@ -220,8 +250,6 @@ public class comprob {
                 } else if (atacarregen == 'R') {
                     vida2+= random.nextInt(1, regeneracion2/10);
                 }
-                System.out.println("Vida1: " + vida1);
-                System.out.println("Vida2: " + vida2);
             } else {
                 System.out.println("Player 2: Atacar-A o Regenerarte-R");
                 char atacarregen = in.next().charAt(0);
@@ -244,8 +272,12 @@ public class comprob {
                     vida1+= random.nextInt(1, regeneracion1/10);
                 }
             }
-            System.out.println();
-            System.out.println();
+            if (!Islive(vida1)||!Islive(vida2)) {
+                System.out.println("Vida jugador 1: " + vida1);
+                displayhp(vida1);
+                System.out.println("Vida jugador 2: " + vida2);
+                displayhp(vida2);
+            }
 
         }
         if (vida1 <= 0) {
