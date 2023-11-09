@@ -1,7 +1,5 @@
 package Tema2;
 
-import static java.lang.Character.toUpperCase;
-
 public class Utils {
 
     public static double miles2kilometers(double miles) {
@@ -87,7 +85,7 @@ public class Utils {
 
     public static boolean isValidNIF(int numero, char letra){
         boolean goodnumber= false;
-        letra= toUpperCase(letra);
+        letra= Character.toUpperCase(letra);
 
         if (getNIF(numero) == letra){
             goodnumber= true;
