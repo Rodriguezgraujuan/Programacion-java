@@ -245,7 +245,7 @@ public class comprob {
                 }
             }
             System.out.println();
-            System.out.println();
+            System.out.println("hola");
 
         }
         if (vida1 <= 0) {
