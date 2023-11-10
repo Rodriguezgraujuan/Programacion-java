@@ -70,7 +70,7 @@ public class comprob {
         } else if (Objects.equals(personage, "CABALLERO")) {
             ataque = 100;
         } else if (Objects.equals(personage, "SAMURAI")) {
-            ataque = 70;
+            ataque = 120;
         }
         return ataque;
     }
@@ -78,11 +78,11 @@ public class comprob {
     public static int velocidadpers(String personage) {
         int velocidad = 0;
         if (Objects.equals(personage, "BERSERKER")) {
-            velocidad = 150;
+            velocidad = 20;
         } else if (Objects.equals(personage, "CABALLERO")) {
-            velocidad = 100;
+            velocidad = 40;
         } else if (Objects.equals(personage, "SAMURAI")) {
-            velocidad = 70;
+            velocidad = 150;
         }
         return velocidad;
     }
@@ -90,11 +90,11 @@ public class comprob {
     public static int defensapers(String personage) {
         int defensa = 0;
         if (Objects.equals(personage, "BERSERKER")) {
-            defensa = 150;
+            defensa = 65;
         } else if (Objects.equals(personage, "CABALLERO")) {
-            defensa = 100;
+            defensa = 200;
         } else if (Objects.equals(personage, "SAMURAI")) {
-            defensa = 70;
+            defensa = 30;
         }
         return defensa;
     }
@@ -102,11 +102,11 @@ public class comprob {
     public static int vidapers(String personage) {
         int vida = 0;
         if (Objects.equals(personage, "BERSERKER")) {
-            vida = 150;
+            vida = 135;
         } else if (Objects.equals(personage, "CABALLERO")) {
             vida = 100;
         } else if (Objects.equals(personage, "SAMURAI")) {
-            vida = 70;
+            vida = 85;
         }
         return vida;
     }
@@ -114,9 +114,9 @@ public class comprob {
     public static int criticpers(String personage) {
         int critic = 0;
         if (Objects.equals(personage, "BERSERKER")) {
-            critic = 150;
+            critic = 30;
         } else if (Objects.equals(personage, "CABALLERO")) {
-            critic = 100;
+            critic = 20;
         } else if (Objects.equals(personage, "SAMURAI")) {
             critic = 70;
         }
@@ -126,11 +126,11 @@ public class comprob {
     public static int regenpers(String personage) {
         int regen = 0;
         if (Objects.equals(personage, "BERSERKER")) {
-            regen = 150;
+            regen = 40;
         } else if (Objects.equals(personage, "CABALLERO")) {
-            regen = 100;
+            regen = 30;
         } else if (Objects.equals(personage, "SAMURAI")) {
-            regen = 70;
+            regen = 50;
         }
         return regen;
     }
@@ -147,12 +147,17 @@ public class comprob {
         return vida <= 0;
     }
 
-    public static int strike(int ataque, int defensa, int critico) {
+    public static int strike(int ataque, int defensa, int critico, int velocidad) {
         int hit = random.nextInt(0, ataque / 10);
         hit = hit * 2 - random.nextInt(0, defensa / 10);
         int criticprob = random.nextInt(critico / 10, 20);
         if (hit<0){
             hit=0;
+        } else{
+            int esquivar = random.nextInt(velocidad/10, 20);
+            if (esquivar>18){
+                hit = 0;
+            }
         }
         if (criticprob == 14) {
             hit *= 3;
@@ -260,7 +265,7 @@ public class comprob {
                 System.out.println("Player 1: Atacar-A o Regenerarte-R");
                 char atacarregen = in.next().charAt(0);
                 if (atacarregen == 'A') {
-                    int hit = strike(ataque1, defensa2, critico1);
+                    int hit = strike(ataque1, defensa2, critico1, velocidad2);
                     hit = skilldmg(vida1,hit,player1);
                     vida1 = skillhp(vida1, hit, player1);
                     vida2 -= hit;
@@ -276,7 +281,7 @@ public class comprob {
                 System.out.println("Player 2: Atacar-A o Regenerarte-R");
                 atacarregen = in.next().charAt(0);
                 if (atacarregen == 'A') {
-                    int hit = strike(ataque2,defensa1,critico2);
+                    int hit = strike(ataque2,defensa1,critico2, velocidad1);
                     hit = skilldmg(vida2,hit,player2);
                     vida2 = skillhp(vida2, hit, player2);
                     vida1 -= hit;
@@ -290,7 +295,7 @@ public class comprob {
                 System.out.println("Player 2: Atacar-A o Regenerarte-R");
                 char atacarregen = in.next().charAt(0);
                 if (atacarregen == 'A') {
-                    int hit = strike(ataque2,defensa1,critico2);
+                    int hit = strike(ataque2,defensa1,critico2, velocidad1);
                     hit = skilldmg(vida2,hit,player2);
                     vida2 = skillhp(vida2, hit, player2);
                     vida1 -= hit;
@@ -306,7 +311,7 @@ public class comprob {
                 System.out.println("Player 1: Atacar-A o Regenerarte-R");
                 atacarregen = in.next().charAt(0);
                 if (atacarregen == 'A') {
-                    int hit = strike(ataque1, defensa2, critico1);
+                    int hit = strike(ataque1, defensa2, critico1, velocidad2);
                     hit = skilldmg(vida1,hit,player1);
                     vida1 = skillhp(vida1, hit, player1);
                     vida2 -= hit;
