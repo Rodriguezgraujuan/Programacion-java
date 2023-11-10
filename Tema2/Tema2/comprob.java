@@ -1,12 +1,11 @@
 package Tema2;
 
-import java.util.Objects;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class comprob {
     static Random random = new Random();
-
+    static List<String> vidajug = new Stack<>();
+    static int countersamuraifort = 0;
 
     public static void Asciiart(String personage) {
         switch (personage) {
@@ -152,10 +151,61 @@ public class comprob {
         int hit = random.nextInt(0, ataque / 10);
         hit = hit * 2 - random.nextInt(0, defensa / 10);
         int criticprob = random.nextInt(critico / 10, 20);
+        if (hit<0){
+            hit=0;
+        }
         if (criticprob == 14) {
             hit *= 3;
         }
         return hit;
+    }
+
+    public static void Roundcounter(int number){
+        System.out.println("Ronda: " + number);
+    }
+
+    public static int skillhp(int vida, int hit, String player){
+        if (player.equals("BERSERKER") && vida<150/5 && hit>13){
+            System.out.println("BERSERKER entra en furia");
+            vida+=30;
+        } if (player.equals("SAMURAI") && vida<25 && countersamuraifort==1) {
+            System.out.println("Jugador 1 activa fortaleza hachiman");
+            vida += 30;
+            countersamuraifort++;
+        }
+        return vida;
+    }
+
+    public static void Mostrardmg(int hit){
+        System.out.println("Ha hecho " + hit + " puntos de daño");
+    }
+
+    public static void Mostrarregen(int regen){
+        System.out.println("Se ha curado " + regen + " puntos de vida");
+    }
+    public static int skilldmg(int vida, int hit, String player) {
+        if (player.equals("BERSERKER") && vida < 150 / 4 && hit == 9) {
+            System.out.println("Jugador 1 ha activado furia, daño x3 ");
+            hit = hit * 3;
+        } else if (player.equals("CABALLERO") && hit <= 8 && hit >= 5) {
+            System.out.println("Jugador 1 hace ataque de escudo");
+            hit = random.nextInt(10, 12);
+        } else if (player.equals("CABALLERO") && hit == 20 && vida < 50) {
+            System.out.println("Jugador 1 hace punta de espada");
+            hit = random.nextInt(random.nextInt(10, 30));
+        } else if (player.equals("SAMURAI") && hit >= 3 && hit < 9) {
+            System.out.println("Jugador 1 realiza un ataque frontal");
+            hit = random.nextInt(15, 22);
+        }
+        return hit;
+    }
+
+    public static void displayhp(int vida){
+        vidajug.clear();
+        for (int i = 0; i < vida / 10; i++) {
+            vidajug.add("-");
+        }
+        System.out.println(vidajug);
     }
 
     public static void main(String[] args) {
@@ -199,59 +249,91 @@ public class comprob {
         int critico2 = criticpers(player2);
         int regeneracion2 = regenpers(player2);
 
+        int numerorondas=1;
+
         while (vida1 > 0 || vida2 > 0) {
+            Roundcounter(numerorondas);
+            numerorondas++;
             System.out.println("Pulsa cualquier tecla para continuar");
             in.next();
             if (priorityatackplayer(velocidad1, velocidad2)) {
                 System.out.println("Player 1: Atacar-A o Regenerarte-R");
                 char atacarregen = in.next().charAt(0);
                 if (atacarregen == 'A') {
-                    vida2 -= strike(ataque1, defensa2, critico1);
+                    int hit = strike(ataque1, defensa2, critico1);
+                    hit = skilldmg(vida1,hit,player1);
+                    vida1 = skillhp(vida1, hit, player1);
+                    vida2 -= hit;
                     if (Islive(vida2)) {
                         break;
                     }
+                    Mostrardmg(hit);
                 } else if (atacarregen == 'R') {
-                    vida1+= random.nextInt(1, regeneracion1/10);
+                   int regen = random.nextInt(1, regeneracion1/10);
+                    vida1+= regen;
+                    Mostrarregen(regen);
                 }
                 System.out.println("Player 2: Atacar-A o Regenerarte-R");
                 atacarregen = in.next().charAt(0);
                 if (atacarregen == 'A') {
-                    vida1 -= strike(ataque2, defensa1, critico2);
+                    int hit = strike(ataque2,defensa1,critico2);
+                    hit = skilldmg(vida2,hit,player2);
+                    vida2 = skillhp(vida2, hit, player2);
+                    vida1 -= hit;
+                    Mostrardmg(hit);
                 } else if (atacarregen == 'R') {
-                    vida2+= random.nextInt(1, regeneracion2/10);
+                    int regen = random.nextInt(1, regeneracion2/10);
+                    vida2+= regen;
+                    Mostrarregen(regen);
                 }
-                System.out.println("Vida1: " + vida1);
-                System.out.println("Vida2: " + vida2);
             } else {
                 System.out.println("Player 2: Atacar-A o Regenerarte-R");
                 char atacarregen = in.next().charAt(0);
                 if (atacarregen == 'A') {
-                    vida1 -= strike(ataque2, defensa1, critico2);
+                    int hit = strike(ataque2,defensa1,critico2);
+                    hit = skilldmg(vida2,hit,player2);
+                    vida2 = skillhp(vida2, hit, player2);
+                    vida1 -= hit;
                     if (Islive(vida1)) {
                         break;
                     }
+                    Mostrardmg(hit);
                 } else if (atacarregen == 'R') {
-                    vida2 +=random.nextInt(1, regeneracion2/10);
+                    int regen = random.nextInt(1, regeneracion2/10);
+                    vida2+= regen;
+                    Mostrarregen(regen);
                 }
                 System.out.println("Player 1: Atacar-A o Regenerarte-R");
                 atacarregen = in.next().charAt(0);
                 if (atacarregen == 'A') {
-                    vida2 -= strike(ataque1, defensa2, critico1);
+                    int hit = strike(ataque1, defensa2, critico1);
+                    hit = skilldmg(vida1,hit,player1);
+                    vida1 = skillhp(vida1, hit, player1);
+                    vida2 -= hit;
                     if (Islive(vida2)) {
                         break;
                     }
+                    Mostrardmg(hit);
                 } else if (atacarregen == 'R') {
-                    vida1+= random.nextInt(1, regeneracion1/10);
+                    int regen = random.nextInt(1, regeneracion1/10);
+                    vida1+= regen;
+                    Mostrarregen(regen);
                 }
             }
-            System.out.println();
-            System.out.println("hola");
+            if (!Islive(vida1)||!Islive(vida2)) {
+                System.out.println("Vida jugador 1: " + vida1);
+                displayhp(vida1);
+                System.out.println("Vida jugador 2: " + vida2);
+                displayhp(vida2);
+            }
 
         }
         if (vida1 <= 0) {
             System.out.println("Jugador 2 gana:" + vida2);
+            displayhp(vida2);
         } else {
             System.out.println("Jugador 1 gana:" + vida1);
+            displayhp(vida1);
         }
         Asciiart("Trophie");
 
