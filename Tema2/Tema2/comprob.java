@@ -213,12 +213,19 @@ public class comprob {
         System.out.println(vidajug);
     }
 
+    public static int dodge(int velocidad, int hit){
+        int esquivar = random.nextInt(velocidad/10, 20);
+        if (esquivar>16){
+            hit = 0;
+        }
+        return hit;
+    }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean condition = true;
         String player1 = null;
         String player2 = null;
-        System.out.println("Introduce tu personaje jugador 1: (B) Berserker, (C) Caballero, (S) Samurai");
+        System.out.println("Introduce tu personaje jugador 1: BERSERKER, CABALLERO, SAMURAI");
         while (condition) {
             player1 = in.nextLine();
             System.out.println(player1);
@@ -236,7 +243,7 @@ public class comprob {
         int regeneracion1 = regenpers(player1);
 
 
-        System.out.println("Introduce tu personaje jugador 2: (B) Berserker, (C) Caballero, (S) Samurai");
+        System.out.println("Introduce tu personaje jugador 2: BERSERKER, CABALLERO, SAMURAI");
         condition = true;
         while (condition) {
             player2 = in.nextLine();
@@ -267,6 +274,7 @@ public class comprob {
                 if (atacarregen == 'A') {
                     int hit = strike(ataque1, defensa2, critico1, velocidad2);
                     hit = skilldmg(vida1,hit,player1);
+                    hit = dodge(velocidad2, hit);
                     vida1 = skillhp(vida1, hit, player1);
                     vida2 -= hit;
                     if (Islive(vida2)) {
@@ -283,6 +291,7 @@ public class comprob {
                 if (atacarregen == 'A') {
                     int hit = strike(ataque2,defensa1,critico2, velocidad1);
                     hit = skilldmg(vida2,hit,player2);
+                    hit = dodge(velocidad1, hit);
                     vida2 = skillhp(vida2, hit, player2);
                     vida1 -= hit;
                     Mostrardmg(hit);
@@ -297,6 +306,7 @@ public class comprob {
                 if (atacarregen == 'A') {
                     int hit = strike(ataque2,defensa1,critico2, velocidad1);
                     hit = skilldmg(vida2,hit,player2);
+                    hit = dodge(velocidad1, hit);
                     vida2 = skillhp(vida2, hit, player2);
                     vida1 -= hit;
                     if (Islive(vida1)) {
@@ -313,6 +323,7 @@ public class comprob {
                 if (atacarregen == 'A') {
                     int hit = strike(ataque1, defensa2, critico1, velocidad2);
                     hit = skilldmg(vida1,hit,player1);
+                    hit = dodge(velocidad2, hit);
                     vida1 = skillhp(vida1, hit, player1);
                     vida2 -= hit;
                     if (Islive(vida2)) {
