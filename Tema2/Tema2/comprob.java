@@ -1,11 +1,13 @@
 package Tema2;
 
-import java.util.*;
+import java.util.Objects;
+import java.util.Random;
+import java.util.Scanner;
 
 public class comprob {
     static Random random = new Random();
     static List<String> vidajug = new Stack<>();
-
+    static int countersamuraifort = 0;
 
     public static void Asciiart(String personage) {
         switch (personage) {
@@ -153,6 +155,11 @@ public class comprob {
         int criticprob = random.nextInt(critico / 10, 20);
         if (hit<0){
             hit=0;
+        } else{
+            int esquivar = random.nextInt(velocidad/10, 20);
+            if (esquivar>18){
+                hit = 0;
+            }
         }
         if (criticprob == 14) {
             hit *= 3;
@@ -168,12 +175,36 @@ public class comprob {
         if (player.equals("BERSERKER") && vida<150/5 && hit>13){
             System.out.println("BERSERKER entra en furia");
             vida+=30;
+        } if (player.equals("SAMURAI") && vida<25 && countersamuraifort==1) {
+            System.out.println("Jugador 1 activa fortaleza hachiman");
+            vida += 30;
+            countersamuraifort++;
         }
         return vida;
     }
 
-    public static int skilldmg(int vida, int hit, String player){
+    public static void Mostrardmg(int hit){
+        System.out.println("Ha hecho " + hit + " puntos de daño");
+    }
 
+    public static void Mostrarregen(int regen){
+        System.out.println("Se ha curado " + regen + " puntos de vida");
+    }
+    public static int skilldmg(int vida, int hit, String player) {
+        if (player.equals("BERSERKER") && vida < 150 / 4 && hit == 9) {
+            System.out.println("Jugador 1 ha activado furia, daño x3 ");
+            hit = hit * 3;
+        } else if (player.equals("CABALLERO") && hit <= 8 && hit >= 5) {
+            System.out.println("Jugador 1 hace ataque de escudo");
+            hit = random.nextInt(10, 12);
+        } else if (player.equals("CABALLERO") && hit == 20 && vida < 50) {
+            System.out.println("Jugador 1 hace punta de espada");
+            hit = random.nextInt(random.nextInt(10, 30));
+        } else if (player.equals("SAMURAI") && hit >= 3 && hit < 9) {
+            System.out.println("Jugador 1 realiza un ataque frontal");
+            hit = random.nextInt(15, 22);
+        }
+        return hit;
     }
 
     public static void displayhp(int vida){
@@ -184,6 +215,13 @@ public class comprob {
         System.out.println(vidajug);
     }
 
+    public static int dodge(int velocidad, int hit){
+        int esquivar = random.nextInt(velocidad/10, 20);
+        if (esquivar>16){
+            hit = 0;
+        }
+        return hit;
+    }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean condition = true;
@@ -225,11 +263,7 @@ public class comprob {
         int critico2 = criticpers(player2);
         int regeneracion2 = regenpers(player2);
 
-        int numerorondas=1;
-
         while (vida1 > 0 || vida2 > 0) {
-            Roundcounter(numerorondas);
-            numerorondas++;
             System.out.println("Pulsa cualquier tecla para continuar");
             in.next();
             if (priorityatackplayer(velocidad1, velocidad2)) {
@@ -250,6 +284,8 @@ public class comprob {
                 } else if (atacarregen == 'R') {
                     vida2+= random.nextInt(1, regeneracion2/10);
                 }
+                System.out.println("Vida1: " + vida1);
+                System.out.println("Vida2: " + vida2);
             } else {
                 System.out.println("Player 2: Atacar-A o Regenerarte-R");
                 char atacarregen = in.next().charAt(0);
@@ -272,12 +308,8 @@ public class comprob {
                     vida1+= random.nextInt(1, regeneracion1/10);
                 }
             }
-            if (!Islive(vida1)||!Islive(vida2)) {
-                System.out.println("Vida jugador 1: " + vida1);
-                displayhp(vida1);
-                System.out.println("Vida jugador 2: " + vida2);
-                displayhp(vida2);
-            }
+            System.out.println();
+            System.out.println();
 
         }
         if (vida1 <= 0) {
