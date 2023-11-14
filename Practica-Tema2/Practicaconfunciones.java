@@ -1,629 +1,356 @@
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Stack;
+
+import java.util.*;
 
 public class Practicaconfunciones {
+    static Random random = new Random();
+    static List<String> vidajug = new Stack<>();
+    static int countersamuraifort = 0;
+
+    public static void Asciiart(String personage) {
+        switch (personage) {
+            case "BERSERKER" -> System.out.println("""
+
+                                       ~.                      \s
+                                Ya...___|__..ab.     .   . \s
+                                 Y88b  \\88b  \\88b   (     ) \s
+                                  Y88b  :88b  :88b   `.oo'  \s
+                                  :888  |888  |888  ( (`-'  \s
+                         .---.    d88P  ;88P  ;88P   `.`.   \s
+                        / .-._)  d8P-""\"|""\"'-Y8P      `.`. \s
+                       ( (`._) .-.  .-. |.-.  .-.  .-.   ) )\s
+                        \\ `---( O )( O )( O )( O )( O )-' / \s
+                         `.    `-'  `-'  `-'  `-'  `-'  .'   \s
+                           `---------------------------'\
+                    """);
+            case "CABALLERO" -> System.out.println("""
+
+
+                                       _.--.    .--._
+                                     ."  ."      ".  ".
+                                    ;  ."    /\\    ".  ;
+                                    ;  '._,-/  \\-,_.`  ;
+                                    \\  ,`  / /\\ \\  `,  /
+                                     \\/    \\/  \\/    \\/
+                                     ,=_    \\/\\/    _=,
+                                     |  "_   \\/   _"  |
+                                     |_   '"-..-"'   _|
+                                     | "-.        .-" |
+                                     |    "\\    /"    |
+                                     |      |  |      |
+                             ___     |      |  |      |     ___
+                         _,-",  ",   '_     |  |     _'   ,"  ,"-,_
+                       _(  \\  \\   \\"=--"-.  |  |  .-"--="/   /  /  )_
+                     ,"  \\  \\  \\   \\      "-'--'-"      /   /  /  /  ".
+                    !     \\  \\  \\   \\                  /   /  /  /     !
+                    :      \\  \\  \\   \\                /   /  /  /      :""");
+            case "SAMURAI" -> System.out.println("""
+                    ,_._._._._._._._._|__________________________________________________________,
+                    |_|_|_|_|_|_|_|_|_|_________________________________________________________/
+                                      !""");
+            case "Trophie" -> System.out.println("""
+                      ___________
+                                '._==_==_=_.'
+                                .-\\:      /-.
+                               | (|:.     |) |
+                                '-|:.     |-'
+                                  \\::.    /
+                                   '::. .'
+                                     ) (\s
+                                   _.' '._
+                                  `""\"""\""`\
+                    """);
+        }
+    }
+
+    public static int ataquepers(String personage) {
+        int ataque = 0;
+        if (Objects.equals(personage, "BERSERKER")) {
+            ataque = 150;
+        } else if (Objects.equals(personage, "CABALLERO")) {
+            ataque = 100;
+        } else if (Objects.equals(personage, "SAMURAI")) {
+            ataque = 120;
+        }
+        return ataque;
+    }
+
+    public static int velocidadpers(String personage) {
+        int velocidad = 0;
+        if (Objects.equals(personage, "BERSERKER")) {
+            velocidad = 20;
+        } else if (Objects.equals(personage, "CABALLERO")) {
+            velocidad = 40;
+        } else if (Objects.equals(personage, "SAMURAI")) {
+            velocidad = 150;
+        }
+        return velocidad;
+    }
+
+    public static int defensapers(String personage) {
+        int defensa = 0;
+        if (Objects.equals(personage, "BERSERKER")) {
+            defensa = 65;
+        } else if (Objects.equals(personage, "CABALLERO")) {
+            defensa = 200;
+        } else if (Objects.equals(personage, "SAMURAI")) {
+            defensa = 30;
+        }
+        return defensa;
+    }
+
+    public static int vidapers(String personage) {
+        int vida = 0;
+        if (Objects.equals(personage, "BERSERKER")) {
+            vida = 135;
+        } else if (Objects.equals(personage, "CABALLERO")) {
+            vida = 100;
+        } else if (Objects.equals(personage, "SAMURAI")) {
+            vida = 85;
+        }
+        return vida;
+    }
+
+    public static int criticpers(String personage) {
+        int critic = 0;
+        if (Objects.equals(personage, "BERSERKER")) {
+            critic = 30;
+        } else if (Objects.equals(personage, "CABALLERO")) {
+            critic = 20;
+        } else if (Objects.equals(personage, "SAMURAI")) {
+            critic = 70;
+        }
+        return critic;
+    }
+
+    public static int regenpers(String personage) {
+        int regen = 0;
+        if (Objects.equals(personage, "BERSERKER")) {
+            regen = 40;
+        } else if (Objects.equals(personage, "CABALLERO")) {
+            regen = 30;
+        } else if (Objects.equals(personage, "SAMURAI")) {
+            regen = 50;
+        }
+        return regen;
+    }
+
+    public static boolean playerOk(String player) {
+        return !player.equals("BERSERKER") && !player.equals("CABALLERO") && !player.equals("SAMURAI");
+    }
+
+    public static boolean priorityatackplayer(int velocidad1, int velocidad2) {
+        return velocidad1 > velocidad2;
+    }
+
+    public static boolean Islive(int vida) {
+        return vida <= 0;
+    }
+
+    public static int strike(int ataque, int defensa, int critico, int velocidad) {
+        int hit = random.nextInt(0, ataque / 10);
+        hit = hit * 2 - random.nextInt(0, defensa / 10);
+        int criticprob = random.nextInt(critico / 10, 20);
+        if (hit<0){
+            hit=0;
+        } else{
+            int esquivar = random.nextInt(velocidad/10, 20);
+            if (esquivar>18){
+                hit = 0;
+            }
+        }
+        if (criticprob == 14) {
+            hit *= 3;
+        }
+        return hit;
+    }
+
+    public static void Roundcounter(int number){
+        System.out.println("Ronda: " + number);
+    }
+
+    public static int skillhp(int vida, int hit, String player){
+        if (player.equals("BERSERKER") && vida<150/5 && hit>13){
+            System.out.println("BERSERKER entra en furia");
+            vida+=30;
+        } if (player.equals("SAMURAI") && vida<25 && countersamuraifort==1) {
+            System.out.println("Jugador 1 activa fortaleza hachiman");
+            vida += 30;
+            countersamuraifort++;
+        }
+        return vida;
+    }
+
+    public static void Mostrardmg(int hit){
+        System.out.println("Ha hecho " + hit + " puntos de daño");
+    }
+
+    public static void Mostrarregen(int regen){
+        System.out.println("Se ha curado " + regen + " puntos de vida");
+    }
+    public static int skilldmg(int vida, int hit, String player) {
+        if (player.equals("BERSERKER") && vida < 150 / 4 && hit == 9) {
+            System.out.println("Jugador 1 ha activado furia, daño x3 ");
+            hit = hit * 3;
+        } else if (player.equals("CABALLERO") && hit <= 8 && hit >= 5) {
+            System.out.println("Jugador 1 hace ataque de escudo");
+            hit = random.nextInt(10, 12);
+        } else if (player.equals("CABALLERO") && hit == 20 && vida < 50) {
+            System.out.println("Jugador 1 hace punta de espada");
+            hit = random.nextInt(random.nextInt(10, 30));
+        } else if (player.equals("SAMURAI") && hit >= 3 && hit < 9) {
+            System.out.println("Jugador 1 realiza un ataque frontal");
+            hit = random.nextInt(15, 22);
+        }
+        return hit;
+    }
+
+    public static void displayhp(int vida){
+        vidajug.clear();
+        for (int i = 0; i < vida / 10; i++) {
+            vidajug.add("-");
+        }
+        System.out.println(vidajug);
+    }
+
+    public static int dodge(int velocidad, int hit){
+        int esquivar = random.nextInt(velocidad/10, 20);
+        if (esquivar>16){
+            hit = 0;
+        }
+        return hit;
+    }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Random random = new Random();
-        int velocidad1 = 1;
-        int ataque1 = 1;
-        int defensa1 = 1;
-        int vida1 = 1;
-        int critico1 = 1;
-        int regeneracion1 = 1;
-
-        int velocidad2 = 1;
-        int ataque2 = 1;
-        int defensa2 = 1;
-        int vida2 = 1;
-        int critico2 = 1;
-        int regeneracion2 = 1;
-
-        int hit1 = 0;
-        int hit2 = 0;
-        int jug1_esqui = 0;
-        int jug2_esqui = 0;
-        int sangrado = 0;
-
-        List<String> vidajug1 = new Stack<>();
-        List<String> vidajug2 = new Stack<>();
-
-        boolean persok = false;
-        String personaje1 = null;
-        int vida_ber = 135;
-        int vida_cab = 100;
-        int vida_sam = 85;
-
-        while (!persok) {
-            System.out.println("Jugador 1 escoge personaje: Berserker, Caballero, Samurai");
-            personaje1 = in.nextLine();
-            switch (personaje1) {
-                case "Berserker":
-                    ataque1 = 150;
-                    velocidad1 = 20;
-                    defensa1 = 65;
-                    vida1 = 135;
-                    critico1 = 30;
-                    regeneracion1 = 40;
-                    persok = true;
-                    System.out.println("""
-
-                                               ~.                      \s
-                                        Ya...___|__..ab.     .   . \s
-                                         Y88b  \\88b  \\88b   (     ) \s
-                                          Y88b  :88b  :88b   `.oo'  \s
-                                          :888  |888  |888  ( (`-'  \s
-                                 .---.    d88P  ;88P  ;88P   `.`.   \s
-                                / .-._)  d8P-""\"|""\"'-Y8P      `.`. \s
-                               ( (`._) .-.  .-. |.-.  .-.  .-.   ) )\s
-                                \\ `---( O )( O )( O )( O )( O )-' / \s
-                                 `.    `-'  `-'  `-'  `-'  `-'  .'   \s
-                                   `---------------------------'\
-                            """);
-                    break;
-                case "Caballero":
-                    ataque1 = 100;
-                    velocidad1 = 40;
-                    defensa1 = 200;
-                    vida1 = 100;
-                    critico1 = 20;
-                    regeneracion1 = 30;
-                    persok = true;
-                    System.out.println("""
+        boolean condition = true;
+        String player1 = null;
+        String player2 = null;
+        System.out.println("Introduce tu personaje jugador 1: BERSERKER, CABALLERO, SAMURAI");
+        while (condition) {
+            player1 = in.nextLine();
+            System.out.println(player1);
+            Asciiart(player1);
+            condition = playerOk(player1);
+            if (condition) {
+                System.out.println("Nombre erroneo");
+            }
+        }
+        int ataque1 = ataquepers(player1);
+        int velocidad1 = velocidadpers(player1);
+        int defensa1 = defensapers(player1);
+        int vida1 = vidapers(player1);
+        int critico1 = criticpers(player1);
+        int regeneracion1 = regenpers(player1);
 
 
-                                               _.--.    .--._
-                                             ."  ."      ".  ".
-                                            ;  ."    /\\    ".  ;
-                                            ;  '._,-/  \\-,_.`  ;
-                                            \\  ,`  / /\\ \\  `,  /
-                                             \\/    \\/  \\/    \\/
-                                             ,=_    \\/\\/    _=,
-                                             |  "_   \\/   _"  |
-                                             |_   '"-..-"'   _|
-                                             | "-.        .-" |
-                                             |    "\\    /"    |
-                                             |      |  |      |
-                                     ___     |      |  |      |     ___
-                                 _,-",  ",   '_     |  |     _'   ,"  ,"-,_
-                               _(  \\  \\   \\"=--"-.  |  |  .-"--="/   /  /  )_
-                             ,"  \\  \\  \\   \\      "-'--'-"      /   /  /  /  ".
-                            !     \\  \\  \\   \\                  /   /  /  /     !
-                            :      \\  \\  \\   \\                /   /  /  /      :""");
-                    break;
-                case "Samurai":
-                    ataque1 = 120;
-                    velocidad1 = 150;
-                    defensa1 = 30;
-                    vida1 = 85;
-                    critico1 = 70;
-                    regeneracion1 = 50;
-                    persok = true;
-                    System.out.println("""
-                            ,_._._._._._._._._|__________________________________________________________,
-                            |_|_|_|_|_|_|_|_|_|_________________________________________________________/
-                                              !""");
-                    break;
-                default:
-                    System.out.println("Personaje incorrecto");
+        System.out.println("Introduce tu personaje jugador 2: BERSERKER, CABALLERO, SAMURAI");
+        condition = true;
+        while (condition) {
+            player2 = in.nextLine();
+            Asciiart(player2);
+            condition = playerOk(player2);
+            if (condition) {
+                System.out.println("Nombre erroneo");
             }
         }
 
-        persok = false;
-        String personaje2 = null;
-        while (!persok) {
-            System.out.println("Jugador 2 escoge personaje: Berserker, Caballero, Samurai");
-            personaje2 = in.nextLine();
-            switch (personaje2) {
-                case "Berserker":
-                    ataque2 = 150;
-                    velocidad2 = 20;
-                    defensa2 = 65;
-                    vida2 = 135;
-                    critico2 = 30;
-                    regeneracion2 = 40;
-                    persok = true;
-                    System.out.println("""
+        int ataque2 = ataquepers(player2);
+        int velocidad2 = velocidadpers(player2);
+        int defensa2 = defensapers(player2);
+        int vida2 = vidapers(player2);
+        int critico2 = criticpers(player2);
+        int regeneracion2 = regenpers(player2);
 
-                                               ~.                      \s
-                                        Ya...___|__..ab.     .   . \s
-                                         Y88b  \\88b  \\88b   (     ) \s
-                                          Y88b  :88b  :88b   `.oo'  \s
-                                          :888  |888  |888  ( (`-'  \s
-                                 .---.    d88P  ;88P  ;88P   `.`.   \s
-                                / .-._)  d8P-""\"|""\"'-Y8P      `.`. \s
-                               ( (`._) .-.  .-. |.-.  .-.  .-.   ) )\s
-                                \\ `---( O )( O )( O )( O )( O )-' / \s
-                                 `.    `-'  `-'  `-'  `-'  `-'  .'   \s
-                                   `---------------------------'\
-                            """);
-                    break;
-                case "Caballero":
-                    ataque2 = 100;
-                    velocidad2 = 40;
-                    defensa2 = 200;
-                    vida2 = 100;
-                    critico2 = 20;
-                    regeneracion2 = 30;
-                    persok = true;
-                    System.out.println("""
+        int numerorondas=1;
 
-
-                                               _.--.    .--._
-                                             ."  ."      ".  ".
-                                            ;  ."    /\\    ".  ;
-                                            ;  '._,-/  \\-,_.`  ;
-                                            \\  ,`  / /\\ \\  `,  /
-                                             \\/    \\/  \\/    \\/
-                                             ,=_    \\/\\/    _=,
-                                             |  "_   \\/   _"  |
-                                             |_   '"-..-"'   _|
-                                             | "-.        .-" |
-                                             |    "\\    /"    |
-                                             |      |  |      |
-                                     ___     |      |  |      |     ___
-                                 _,-",  ",   '_     |  |     _'   ,"  ,"-,_
-                               _(  \\  \\   \\"=--"-.  |  |  .-"--="/   /  /  )_
-                             ,"  \\  \\  \\   \\      "-'--'-"      /   /  /  /  ".
-                            !     \\  \\  \\   \\                  /   /  /  /     !
-                            :      \\  \\  \\   \\                /   /  /  /      :""");
-                    break;
-                case "Samurai":
-                    ataque2 = 120;
-                    velocidad2 = 150;
-                    defensa2 = 30;
-                    vida2 = 85;
-                    critico2 = 70;
-                    regeneracion2 = 50;
-                    persok = true;
-                    System.out.println("""
-                            ,_._._._._._._._._|__________________________________________________________,
-                            |_|_|_|_|_|_|_|_|_|_________________________________________________________/
-                                              !""");
-                    break;
-                default:
-                    System.out.println("Personaje incorrecto");
-            }
-        }
-
-        int prioridad;
-        if (velocidad1 > velocidad2) {
-            prioridad = 1;
-        } else if (velocidad2 > velocidad1) {
-            prioridad = 2;
-        } else {
-            prioridad = random.nextInt(1, 2);
-        }
-        int turno = 1;
-
-        System.out.println("INTRODUCE CUALQUIER CARACTER PARA EMPEZAR:");
-        in.next();
-
-        System.out.println("""
-                 n                                                                 :.
-                 E%                                                                :"5
-                z  %                                                              :" `
-                K   ":                                                           z   R
-                ?     %.                                                       :^    J
-                 ".    ^s                                                     f     :~
-                  '+.    #L                                                 z"    .*
-                    '+     %L                                             z"    .~
-                      ":    '%.                                         .#     +
-                        ":    ^%.                                     .#`    +"
-                          #:    "n                                  .+`   .z"
-                            #:    ":                               z`    +"
-                              %:   `*L                           z"    z"
-                                *:   ^*L                       z*   .+"
-                                  "s   ^*L                   z#   .*"
-                                    #s   ^%L               z#   .*"
-                                      #s   ^%L           z#   .r"
-                                        #s   ^%.       u#   .r"
-                                          #i   '%.   u#   .@"
-                                            #s   ^%u#   .@"
-                                              #s x#   .*"
-                                               x#`  .@%.
-                                             x#`  .d"  "%.
-                                           xf~  .r" #s   "%.
-                                     u   x*`  .r"     #s   "%.  x.
-                                     %Mu*`  x*"         #m.  "%zX"
-                                     :R(h x*              "h..*dN.
-                                   u@NM5e#>                 7?dMRMh.
-                                 z$@M@$#"#"                 *""*@MM$hL
-                               u@@MM8*                          "*$M@Mh.
-                             z$RRM8F"                             "N8@M$bL
-                            5`RM$#                                  'R88f)R
-                            'h.$"                                     #$x*
-                """);
-
-        while (vida1 > 0 && vida2 > 0) {
-            System.out.println("Ronda " + turno);
-
-            if (prioridad == 1) {
-                System.out.println("Jugador 1: ¿Quieres atacar-A o regenerarte-R?");
-                char decision1 = in.next().charAt(0);
-
-                if (decision1 == 'A') {
-                    hit1 = random.nextInt(0, ataque1 / 10);
-                    hit1 = hit1 * 2 - random.nextInt(0, defensa2 / 10);
-
-                    if (hit1 > 0) {
-                        if (vida2 - hit1 < 0) {
-                            break;
-                        } else if (personaje1.equals("Berserker") && vida1 < 150 / 4 && hit1 == 9) {
-                            System.out.println("Jugador 1 ha activado furia, daño x3 ");
-                            hit1 = hit1 * 3;
-
-                        } else if (personaje1.equals("Caballero") && hit1 <=8 && hit1 >=5) {
-                            System.out.println("Jugador 1 hace ataque de escudo");
-                            hit1 = random.nextInt(10,12);
-
-                        } else if (personaje1.equals("Caballero") && hit1==20 && vida1<50) {
-                            System.out.println("Jugador 1 hace punta de espada, realizara 1 ataque con posibilidad de sangrado");
-                            hit1 = random.nextInt(random.nextInt(10,30));
-                            sangrado = 5;
-                        } else if (personaje1.equals("Samurai") && hit1 >=3 && hit1 <9) {
-                            System.out.println("Jugador 1 realiza un ataque frontal");
-                            hit1 = random.nextInt(15,22);
-
-                        } else if (personaje1.equals("Samurai") && vida1<25) {
-                            System.out.println("Jugador 1 activa fortaleza hachiman");
-                            hit1 = random.nextInt(15, 20);
-                            defensa1 = 80;
-
-                        } else {
-                            if (hit1 > 1) {
-                                int prob1 = random.nextInt(critico1 / 10, 10);
-                                int prob2 = random.nextInt(critico1 / 10, 10);
-                                if (prob1 == prob2) {
-                                    hit1 = hit1 * 2;
-                                }
-                            }
-
-                        }
-                        int esquivar = random.nextInt(velocidad2/10, 20);
-                        if (esquivar>16){
-                            hit1 = 0;
-                            jug1_esqui = 1;
-                        }
-                        if (sangrado>0){
-                            vida2 = vida2 - hit1 - 2;
-                            sangrado--;
-                        } else {
-                            vida2 = vida2 - hit1;
-                        }
-                    }
-                } else if (decision1 == 'R') {
-                    int regen = random.nextInt(1, regeneracion1 / 2);
-                    if (regen > 0) {
-                        if (personaje1.equals("Berserker")) {
-                            if (vida1 != vida_ber){
-                                vida1 = vida1 + regen;
-                                if (vida1 > vida_ber){
-                                    vida1=vida_ber;
-                                }
-                            }
-                        } else if (personaje1.equals("Caballero")){
-                            if (vida1 != vida_cab){
-                                vida1 = vida1 + regen;
-                                if (vida1>vida_cab){
-                                    vida1 = vida_cab;
-                                }
-                            }
-                        } else {
-                            if (vida1 != vida_sam){
-                                vida1 = vida1 + regen;
-                                if (vida1>vida_sam){
-                                    vida1 = vida_sam;
-                                }
-                            }
-                        }
-                    }
-
-                }
-                if (vida2<0){
-                    vida2=0;
-                    break;
-                }
-                System.out.println("Jugador 2: ¿Quieres atacar-A o regenerarte-R?");
-                char decision2 = in.next().charAt(0);
-                if (decision2 == 'A') {
-                    hit2 = random.nextInt(0, ataque2 / 10);
-                    hit2 = hit2 * 2 - random.nextInt(0, defensa1 / 10);
-                    if (hit2 > 0) {
-                        if (vida1 - hit2 < 0) {
-                            break;
-                        } else if (personaje2.equals("Berserker") && vida2 < 150 / 4 && hit2 == 9) {
-                            System.out.println("Jugador 2 ha activado furia, daño x3 ");
-                            hit2 = hit2 * 3;
-
-                        } else if (personaje2.equals("Caballero") && hit2 <=8 && hit2 >=5) {
-                            System.out.println("Jugador 2 hace ataque de escudo");
-                            hit2 = random.nextInt(10,12);
-
-                        } else if (personaje2.equals("Caballero") && hit2==20 && vida2<50) {
-                            System.out.println("Jugador 2 hace punta de espada, realizara 1 ataque con posibilidad de sangrado");
-                            hit2 = random.nextInt(random.nextInt(10,30));
-                            sangrado = 5;
-                        } else if (personaje2.equals("Samurai") && hit2 >=3 && hit2 <9) {
-                            System.out.println("Jugador 2 realiza un ataque frontal");
-                            hit2 = random.nextInt(15,22);
-
-                        } else if (personaje2.equals("Samurai") && vida2<25) {
-                            System.out.println("Jugador 2 activa fortaleza hachiman");
-                            hit2 = random.nextInt(15, 20);
-                            defensa2 = 80;
-
-                        } else {
-                            int prob1 = random.nextInt(critico2 / 10, 10);
-                            int prob2 = random.nextInt(critico2 / 10, 10);
-                            if (prob1 == prob2) {
-                                hit2 = hit2 * 2;
-                            }
-                        }
-                        int esquivar = random.nextInt(velocidad1/10, 20);
-                        if (esquivar>16){
-                            hit2 = 0;
-                            jug2_esqui = 1;
-                        }
-                        vida1 = vida1 - hit2;
-                    }
-                } else if (decision2 == 'R') {
-                    int regen = random.nextInt(1, regeneracion2 / 10);
-                    if (regen > 0) {
-                        if (personaje2.equals("Berserker")) {
-                            if (vida2 != vida_ber){
-                                vida2 = vida2 + regen;
-                                if (vida2 > vida_ber){
-                                    vida2=vida_ber;
-                                }
-                            }
-                        } else if (personaje2.equals("Caballero")){
-                            if (vida2 != vida_cab){
-                                vida2 = vida2 + regen;
-                                if (vida2>vida_cab){
-                                    vida2 = vida_cab;
-                                }
-                            }
-                        } else {
-                            if (vida2 != vida_sam){
-                                vida2 = vida2 + regen;
-                                if (vida2>vida_sam){
-                                    vida2 = vida_sam;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (vida1<0){
-                    vida1=0;
-                    break;
-                }
-            } else if (prioridad == 2) {
-                System.out.println("Jugador 2: ¿Quieres atacar-A o regenerarte-R?");
-                char decision2 = in.next().charAt(0);
-
-                if (decision2 == 'A') {
-                    hit2 = random.nextInt(0, ataque2 / 10);
-                    hit2 = hit2 * 2 - random.nextInt(0, defensa1 / 10);
-                    if (hit2 > 0) {
-                        if (vida1 - hit2 < 0) {
-                            break;
-                        } else if (personaje2.equals("Berserker") && vida2 < 150 / 4 && hit2 == 9) {
-                            System.out.println("Jugador 2 ha activado furia, daño x3 ");
-                            hit2 = hit2 * 3;
-
-                        } else if (personaje2.equals("Caballero") && hit2 <=8 && hit2 >=5) {
-                            System.out.println("Jugador 2 hace ataque de escudo");
-                            hit2 = random.nextInt(10,12);
-
-                        } else if (personaje2.equals("Caballero") && hit2==20 && vida2<50) {
-                            System.out.println("Jugador 2 hace punta de espada, realizara 1 ataque con posibilidad de sangrado");
-                            hit2 = random.nextInt(random.nextInt(10,30));
-                            sangrado = 5;
-                        } else if (personaje2.equals("Samurai") && hit2 >=3 && hit2 <9) {
-                            System.out.println("Jugador 2 realiza un ataque frontal");
-                            hit2 = random.nextInt(15,22);
-
-                        } else if (personaje2.equals("Samurai") && vida2<25) {
-                            System.out.println("Jugador 2 activa fortaleza hachiman");
-                            hit2 = random.nextInt(15, 20);
-                            defensa2 = 80;
-
-                        } else {
-                            int prob1 = random.nextInt(critico2 / 10, 10);
-                            int prob2 = random.nextInt(critico2 / 10, 10);
-                            if (prob1 == prob2) {
-                                System.out.println("Jugador 2 da golpe critico");
-                                hit2 = hit2 * 2;
-                            }
-                        }
-                        int esquivar = random.nextInt(velocidad1/10, 20);
-                        if (esquivar>16){
-                            hit2 = 0;
-                            jug1_esqui = 1;
-                        }
-                        vida1 = vida1 - hit2;
-                    }
-                } else if (decision2 == 'R') {
-                    int regen = random.nextInt(1, regeneracion2 / 10);
-                    if (regen > 0) {
-                        if (personaje2.equals("Berserker")) {
-                            if (vida2 != vida_ber){
-                                vida2 = vida2 + regen;
-                                if (vida2 > vida_ber){
-                                    vida2=vida_ber;
-                                }
-                            }
-                        } else if (personaje2.equals("Caballero")){
-                            if (vida2 != vida_cab){
-                                vida2 = vida2 + regen;
-                                if (vida2>vida_cab){
-                                    vida2 = vida_cab;
-                                }
-                            }
-                        } else {
-                            if (vida2 != vida_sam){
-                                vida2 = vida2 + regen;
-                                if (vida2>vida_sam){
-                                    vida2 = vida_sam;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (vida1<0){
-                    vida1=0;
-                    break;
-                }
-                System.out.println("Jugador 1: ¿Quieres atacar-A o regenerarte-R?");
-                char decision1 = in.next().charAt(0);
-
-                if (decision1 == 'A') {
-                    hit1 = random.nextInt(0, ataque1 / 10);
-                    hit1 = hit1 * 2 - random.nextInt(0, defensa2 / 10);
-                    if (hit1 > 0) {
-                        if (vida2 - hit1 < 0) {
-                            break;
-                        } else if (personaje1.equals("Berserker") && vida1 < 150 / 4 && hit1 == 9) {
-                            System.out.println("Jugador 1 ha activado furia, daño x3 ");
-                            hit1 = hit1 * 3;
-
-                        } else if (personaje1.equals("Caballero") && hit1 <=8 && hit1 >=5) {
-                            System.out.println("Jugador 1 hace ataque de escudo");
-                            hit1 = random.nextInt(10,12);
-
-                        } else if (personaje1.equals("Caballero") && hit1==20 && vida1<50) {
-                            System.out.println("Jugador 1 hace punta de espada, realizara 1 ataque con posibilidad de sangrado");
-                            hit1 = random.nextInt(random.nextInt(10,30));
-                            sangrado = 5;
-                        } else if (personaje1.equals("Samurai") && hit1 >=3 && hit1 <9) {
-                            System.out.println("Jugador 1 realiza un ataque frontal");
-                            hit1 = random.nextInt(15,22);
-
-                        } else if (personaje1.equals("Samurai") && vida1<25) {
-                            System.out.println("Jugador 1 activa fortaleza hachiman");
-                            hit1 = random.nextInt(15, 20);
-                            defensa1 = 80;
-
-                        } else {
-                            if (hit1 > 1) {
-                                int prob1 = random.nextInt(critico1 / 10, 10);
-                                int prob2 = random.nextInt(critico1 / 10, 10);
-                                if (prob1 == prob2) {
-                                    hit1 = hit1 * 2;
-                                }
-                            }
-                        }
-                        int esquivar = random.nextInt(velocidad2/10, 20);
-                        if (esquivar>16){
-                            hit1 = 0;
-                        }
-                        vida2 = vida2 - hit1;
-                    }
-                } else if (decision1 == 'R') {
-                    int regen = random.nextInt(1, regeneracion1 / 10);
-                    if (regen > 0) {
-                        if (personaje1.equals("Berserker")) {
-                            if (vida1 != vida_ber){
-                                vida1 = vida1 + regen;
-                                if (vida1 > vida_ber){
-                                    vida1=vida_ber;
-                                }
-                            }
-                        } else if (personaje1.equals("Caballero")){
-                            if (vida1 != vida_cab){
-                                vida1 = vida1 + regen;
-                                if (vida1>vida_cab){
-                                    vida1 = vida_cab;
-                                }
-                            }
-                        } else {
-                            if (vida1 != vida_sam){
-                                vida1 = vida1 + regen;
-                                if (vida1>vida_sam){
-                                    vida1 = vida_sam;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (vida2<0){
-                vida2=0;
-                break;
-            }
-            int aleat_ber = random.nextInt(1,10);
-            if (personaje1.equals("Berserker") && vida1<150/5 && aleat_ber==2){
-                System.out.println("Jugador 1 activa 'llamada de odin'");
-                vida1 = vida1 + 50;
-            } else if (personaje2.equals("Berserker") && vida2<150/5 && aleat_ber==2) {
-                System.out.println("Jugador 2 activa 'llamada de odin'");
-                vida2 = vida2 + 50;
-            }
-            vidajug1.clear();
-            vidajug2.clear();
-            for (int i = 0; i < vida1 / 10; i++) {
-                vidajug1.add("-");
-            }
-            for (int i = 0; i < vida2 / 10; i++) {
-                vidajug2.add("-");
-            }
-            if (hit1<0){
-                hit1=0;
-            }
-            if (hit2<0){
-                hit2=0;
-            }
-
-            if (jug1_esqui == 1){
-                System.out.println("Jugador 1 ha esquivado el ataque");
-                jug1_esqui = 0;
-            }
-            System.out.println("El jugador 1 causo " + hit1 + " puntos de daño.");
-            if (jug2_esqui == 1) {
-                System.out.println("Jugador 2 ha esquivado el ataque");
-                jug2_esqui = 0;
-            }
-            System.out.println("El jugador 2 causo " + hit2 + " puntos de daño.");
-
-            System.out.println("Vida del jugador 1: " + vida1 + vidajug1);
-            System.out.println("Vida del jugador 2: " + vida2 + vidajug2);
-            turno++;
-
-            hit1=0;
-            hit2=0;
-            System.out.println("Introduce cualquier caracter");
+        while (vida1 > 0 || vida2 > 0) {
+            Roundcounter(numerorondas);
+            numerorondas++;
+            System.out.println("Pulsa cualquier tecla para continuar");
             in.next();
+            if (priorityatackplayer(velocidad1, velocidad2)) {
+                System.out.println("Player 1: Atacar-A o Regenerarte-R");
+                char atacarregen = Character.toUpperCase(in.next().charAt(0));
+                if (atacarregen == 'A') {
+                    int hit = strike(ataque1, defensa2, critico1, velocidad2);
+                    hit = skilldmg(vida1,hit,player1);
+                    hit = dodge(velocidad2, hit);
+                    vida1 = skillhp(vida1, hit, player1);
+                    vida2 -= hit;
+                    if (Islive(vida2)) {
+                        break;
+                    }
+                    Mostrardmg(hit);
+                } else if (atacarregen == 'R') {
+                    int regen = random.nextInt(1, regeneracion1/10);
+                    vida1+= regen;
+                    Mostrarregen(regen);
+                }
+                System.out.println("Player 2: Atacar-A o Regenerarte-R");
+                atacarregen = Character.toUpperCase(in.next().charAt(0));
+                if (atacarregen == 'A') {
+                    int hit = strike(ataque2,defensa1,critico2, velocidad1);
+                    hit = skilldmg(vida2,hit,player2);
+                    hit = dodge(velocidad1, hit);
+                    vida2 = skillhp(vida2, hit, player2);
+                    vida1 -= hit;
+                    Mostrardmg(hit);
+                } else if (atacarregen == 'R') {
+                    int regen = random.nextInt(1, regeneracion2/10);
+                    vida2+= regen;
+                    Mostrarregen(regen);
+                }
+            } else {
+                System.out.println("Player 2: Atacar-A o Regenerarte-R");
+                char atacarregen = Character.toUpperCase(in.next().charAt(0));
+                if (atacarregen == 'A') {
+                    int hit = strike(ataque2,defensa1,critico2, velocidad1);
+                    hit = skilldmg(vida2,hit,player2);
+                    hit = dodge(velocidad1, hit);
+                    vida2 = skillhp(vida2, hit, player2);
+                    vida1 -= hit;
+                    if (Islive(vida1)) {
+                        break;
+                    }
+                    Mostrardmg(hit);
+                } else if (atacarregen == 'R') {
+                    int regen = random.nextInt(1, regeneracion2/10);
+                    vida2+= regen;
+                    Mostrarregen(regen);
+                }
+                System.out.println("Player 1: Atacar-A o Regenerarte-R");
+                atacarregen = Character.toUpperCase(in.next().charAt(0));
+                if (atacarregen == 'A') {
+                    int hit = strike(ataque1, defensa2, critico1, velocidad2);
+                    hit = skilldmg(vida1,hit,player1);
+                    hit = dodge(velocidad2, hit);
+                    vida1 = skillhp(vida1, hit, player1);
+                    vida2 -= hit;
+                    if (Islive(vida2)) {
+                        break;
+                    }
+                    Mostrardmg(hit);
+                } else if (atacarregen == 'R') {
+                    int regen = random.nextInt(1, regeneracion1/10);
+                    vida1+= regen;
+                    Mostrarregen(regen);
+                }
+            }
+            if (!Islive(vida1)||!Islive(vida2)) {
+                System.out.println("Vida jugador 1: " + vida1);
+                displayhp(vida1);
+                System.out.println("Vida jugador 2: " + vida2);
+                displayhp(vida2);
+            }
+
         }
-        System.out.println(vida1);
-        if (vida1 > 0) {
-            System.out.println("Jugador 1 causo " + hit1 + " puntos de daño");
-            System.out.println("Jugador 1 gana:" + vida1 + vidajug1 +
-                    "  ___________\n" +
-                    "            '._==_==_=_.'\n" +
-                    "            .-\\:      /-.\n" +
-                    "           | (|:.     |) |\n" +
-                    "            '-|:.     |-'\n" +
-                    "              \\::.    /\n" +
-                    "               '::. .'\n" +
-                    "                 ) ( \n" +
-                    "               _.' '._\n" +
-                    "              `\"\"\"\"\"\"\"`");
+        if (vida1 <= 0) {
+            System.out.println("Jugador 2 gana:" + vida2);
+            displayhp(vida2);
         } else {
-            System.out.println("Jugador 2 causo " + hit2 + " puntos de daño");
-            System.out.println("Jugador 2 gana:" + vida2 + vidajug2 +
-                    "  ___________\n" +
-                    "            '._==_==_=_.'\n" +
-                    "            .-\\:      /-.\n" +
-                    "           | (|:.     |) |\n" +
-                    "            '-|:.     |-'\n" +
-                    "              \\::.    /\n" +
-                    "               '::. .'\n" +
-                    "                 ) (\n" +
-                    "               _.' '._\n" +
-                    "              `\"\"\"\"\"\"\"`");
+            System.out.println("Jugador 1 gana:" + vida1);
+            displayhp(vida1);
         }
+        Asciiart("Trophie");
+
     }
 }

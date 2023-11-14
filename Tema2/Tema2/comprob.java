@@ -1,8 +1,6 @@
 package Tema2;
 
-import java.util.Objects;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class comprob {
     static Random random = new Random();
@@ -155,11 +153,6 @@ public class comprob {
         int criticprob = random.nextInt(critico / 10, 20);
         if (hit<0){
             hit=0;
-        } else{
-            int esquivar = random.nextInt(velocidad/10, 20);
-            if (esquivar>18){
-                hit = 0;
-            }
         }
         if (criticprob == 14) {
             hit *= 3;
@@ -314,8 +307,10 @@ public class comprob {
         }
         if (vida1 <= 0) {
             System.out.println("Jugador 2 gana:" + vida2);
+            displayhp(vida2);
         } else {
             System.out.println("Jugador 1 gana:" + vida1);
+            displayhp(vida1);
         }
         Asciiart("Trophie");
 
