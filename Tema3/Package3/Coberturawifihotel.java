@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Coberturawifihotel {
 
     public static boolean habitacioncheck(int habitacion){
-        return habitacion < 0 || habitacion > 19;
+        return habitacion >= 0 && habitacion <= 19;
     }
 
     public static int[] cobertura(int[] hotelhabitacion, int potencia, int habitacion){
@@ -15,10 +15,10 @@ public class Coberturawifihotel {
         int habitacion2=habitacion+1;
         potencia--;
         for (int i = 0; i<potencia; potencia--){
-            if (!habitacioncheck(habitacion1)) {
+            if (habitacioncheck(habitacion1)) {
                 hotelhabitacion[habitacion1] = potencia;
             }
-            if (!habitacioncheck(habitacion2)) {
+            if (habitacioncheck(habitacion2)) {
                 hotelhabitacion[habitacion2] = potencia;
             }
                 habitacion1--;
