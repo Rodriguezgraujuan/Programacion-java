@@ -1,19 +1,26 @@
 package Tema2;
 
-public class comprob {
-    static int[] grade = new int [10];
+import java.util.Arrays;
 
-    public static void arrayprin (){
-        for (int j : grade) {
-            System.out.println(j);
-        }
-    }
+public class comprob {
+
+
    public static void main(String[] args) {
-        grade = new int[]{0,2,4,6,8,10,12,14,16,18};
-        int num = 0;
-        for (int i=1; i<10; i++){
-            grade[i] = num += 3;
-        }
-        arrayprin();
-    }
+       int[][] matrizOriginal = {
+               {1, 2, 3},
+               {4, 5, 6},
+               {7, 8, 9}
+       };
+
+       int[][] matrizNueva = new int[4][4];
+
+       for (int i = 0; i < matrizOriginal.length; i++) {
+           for (int j = 0; j < matrizOriginal[i].length; j++) {
+               matrizNueva[i][j] = matrizOriginal[i][j];
+           }
+       }
+       int[][] matriz2 = new int[][]{{1,2,3,4},{4,5,6,7},{7,8,9,10}};
+       System.out.println(Arrays.deepToString(matrizOriginal));
+       System.out.println(Arrays.deepToString(matrizNueva));
+   }
 }
