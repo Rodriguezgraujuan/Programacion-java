@@ -7,7 +7,14 @@ public class MyArray {
 
     static Scanner in = new Scanner(System.in);
 
-    public static int[] creararray(int cantidadnum) {
+    public static int datoslista(){
+        System.out.println("Cuantos datos tendra la lista:");
+        return in.nextInt();
+
+    }
+
+    public static int[] creararray() {
+        int cantidadnum=datoslista();
         System.out.println("Introduce los numeros:");
         int[] array = new int[cantidadnum];
         for (int i = 0; i < cantidadnum; i++) {
@@ -156,49 +163,34 @@ public class MyArray {
         int[] Marray;
         int[] Marrayvect1;
         int[] Marrayvect2;
-        int num;
         switch (eleccion){
             case 'a':
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marray= creararray(num);
+                Marray= creararray();
                 printarray(Marray);
                 break;
             case 'b':
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marray= creararray(num);
+                Marray= creararray();
                 System.out.println(maxArray(Marray));
                 break;
             case 'c':
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marray= creararray(num);
+                Marray= creararray();
                 System.out.println(minArray(Marray));
                 break;
             case 'd':
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marray= creararray(num);
+                Marray= creararray();
                 System.out.println(medarray(Marray));
                 break;
             case 'e':
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marray= creararray(num);
+                Marray= creararray();
                 System.out.println("Que numero quieres comprobar");
                 int numero= in.nextInt();
                 System.out.println(existenumarray(Marray, numero));
                 break;
             case 'f':
                 System.out.println("Primera array");
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marrayvect1= creararray(num);
+                Marrayvect1= creararray();
                 System.out.println("Segunda array");
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marrayvect2= creararray(num);
+                Marrayvect2= creararray();
                 if (Marrayvect1.length==Marrayvect2.length) {
                     int[] a = sumvectores(Marrayvect1, Marrayvect2);
                     System.out.println(Arrays.toString(a));
@@ -206,13 +198,9 @@ public class MyArray {
                 break;
             case 'g':
                 System.out.println("Primera array");
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marrayvect1= creararray(num);
+                Marrayvect1= creararray();
                 System.out.println("Segunda array");
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marrayvect2= creararray(num);
+                Marrayvect2= creararray();
                 if (Marrayvect1.length==Marrayvect2.length) {
                     int[] b = restvectores(Marrayvect1, Marrayvect2);
                     System.out.println(Arrays.toString(b));
@@ -220,36 +208,26 @@ public class MyArray {
                 break;
             case 'h':
                 System.out.println("Primera array");
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marrayvect1= creararray(num);
+                Marrayvect1= creararray();
                 System.out.println("Segunda array");
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marrayvect2= creararray(num);
+                Marrayvect2= creararray();
                 if (Marrayvect1.length==Marrayvect2.length) {
                     System.out.println(prodvectores(Marrayvect1, Marrayvect2));
                 }
                 break;
             case 'i':
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marray= creararray(num);
+                Marray= creararray();
                 System.out.println(Arrays.toString(Marray));
                 System.out.println(Arrays.toString(invertirarray(Marray)));
                 break;
             case 'j':
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marray= creararray(num);
+                Marray= creararray();
                 System.out.println(Arrays.toString(Marray));
                 procedinvertarray(Marray);
                 System.out.println(Arrays.toString(Marray));
                 break;
             case 'k':
-                System.out.println("Cuantos datos tendra la lista:");
-                num = in.nextInt();
-                Marray= creararray(num);
+                Marray= creararray();
                 System.out.println(capicua(Marray));
         }
     }
