@@ -28,17 +28,20 @@ public class Buscaminas {
                 minas[num]="*";
             }
         }
-        System.out.println(Arrays.toString(minas));
         return minas;
     }
 
-    public static String[] cercamina(String[] minas){
+    public static void cercamina(String[] minas){
+        String[] minasvisible = new String[20];
+        for (int j = 0 ; j<20;j++){
+            minasvisible[j]="0";
+        }
         boolean condition = true;
          int contador = 0;
         while (condition){
             System.out.println("Indica un numero del 1-20");
+            System.out.println(Arrays.toString(minasvisible));
             int num = in.nextInt()-1;
-            System.out.println(Arrays.toString(minas));
             if (minas[num].equals("1")||minas[num].equals("2")){
                 System.out.println("Numero ya elegido");
             }else {
@@ -47,23 +50,27 @@ public class Buscaminas {
                     System.out.println("Has perdido");
                     condition = false;
                 } else if (num>0 && num<19 && minas[num + 1].equals("*") && minas[num - 1].equals("*")) {
-                    minas[num] = "2";
+                    minasvisible[num] = "2";
                 } else if (num!=19&&minas[num + 1].equals("*")) {
-                    minas[num] = "1";
+                    minasvisible[num] = "1";
                 } else if (num!=0&&minas[num - 1].equals("*")) {
-                    minas[num] = "1";
+                    minasvisible[num] = "1";
+                } else if (minas[num].equals("0")){
+                    minasvisible[num]="null";
                 }
             }
+
+
             if (contador==14){
                 condition=false;
+                System.out.println("Has ganado");
             }
         }
-        return minas;
     }
 
     public static void main(String[] args) {
         String[] minas = new String[20];
         aletminas(minas);
-        System.out.println(Arrays.toString(cercamina(minas)));
+        cercamina(minas);
     }
 }
