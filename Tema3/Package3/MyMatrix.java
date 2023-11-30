@@ -1,5 +1,6 @@
 package Package3;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MyMatrix {
@@ -157,7 +158,6 @@ public class MyMatrix {
         boolean condition = true;
         int columnas = 0;
         int filas = 0;
-        /*
         while (condition) {
             filas = filaspedir();
             columnas = columnaspedir();
@@ -211,7 +211,6 @@ public class MyMatrix {
 
         System.out.println("Matriz unidad");
         condition=true;
-        */
         while (condition) {
             filas = filaspedir();
             columnas = columnaspedir();
