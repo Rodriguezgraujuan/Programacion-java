@@ -59,6 +59,15 @@ public class Coberturahotelesmatriz {
         while (condition){
             if (habitacion3==4) {
                 condition=false;
+            } else if (piso==0&&habitacion==0) {
+                if (potencia-2>0) {
+                    hotel[piso + 1][habitacion + 1] = potencia - 2;
+                    if (potencia-4>0) {
+                        hotel[piso + 2][habitacion + 1] = potencia - 4;
+                        hotel[piso + 1][habitacion + 2] = potencia - 4;
+                    }
+                }
+                condition=false;
             } else {
                 if (potencia5 - 2<0) {
                     potencia5 =0;
@@ -91,13 +100,15 @@ public class Coberturahotelesmatriz {
                 } else {
                     potencia5-=2;
                 }
-                hotel[piso3 + 1][habitacion3 - 1] = potencia5;
-                if (hotel[piso3 + 1][habitacion3] == 1 || hotel[piso3 + 1][habitacion3] == 0 || potencia5 == 0) {
-                    hotel[piso3 + 1][habitacion3 - 1] = 0;
+                if (piso3<11&&piso>0) {
+                    hotel[piso3 + 1][habitacion3 - 1] = potencia5;
+                    if (hotel[piso3 + 1][habitacion3] == 1 || hotel[piso3 + 1][habitacion3] == 0 || potencia5 == 0) {
+                        hotel[piso3 + 1][habitacion3 - 1] = 0;
+                            piso3 = piso + 1;
+                            habitacion3--;
+                            potencia5 = hotel[piso + 1][habitacion - 1];
 
-                    piso3 =piso-1;
-                    habitacion3--;
-                    potencia5 = hotel[piso+1][habitacion+1];
+                    }
                 }
                 piso3++;
             }
@@ -116,12 +127,12 @@ public class Coberturahotelesmatriz {
                 } else {
                     potencia5-=2;
                 }
-                if (piso>0) {
+                if (piso3>0) {
                     hotel[piso3 - 1][habitacion3 - 1] = potencia5;
-                }
+
                 if (hotel[piso3 - 1][habitacion3] == 1 || hotel[piso3 + 1][habitacion3] == 0 || potencia5 == 0) {
                     hotel[piso3 - 1][habitacion3 - 1] = 0;
-
+                }
                     piso3 =piso+1;
                     habitacion3--;
                     potencia5 = hotel[piso-1][habitacion-1];
@@ -138,12 +149,13 @@ public class Coberturahotelesmatriz {
             if (habitacion3==4||piso==0) {
                 condition=false;
             } else {
-                if (potencia5 - 2<0) {
-                    potencia5 =0;
+                if (potencia5 - 2 < 0) {
+                    potencia5 = 0;
                 } else {
-                    potencia5-=2;
+                    potencia5 -= 2;
                 }
-                    hotel[piso3 - 1][habitacion3 + 1] = potencia5;
+                if (piso3>0&&piso3<11) {
+                hotel[piso3 - 1][habitacion3 + 1] = potencia5;
                     if (hotel[piso3 - 1][habitacion3] == 1 || hotel[piso3 + 1][habitacion3] == 0 || potencia5 == 0) {
                         hotel[piso3 - 1][habitacion3 + 1] = 0;
 
@@ -151,7 +163,7 @@ public class Coberturahotelesmatriz {
                         habitacion3++;
                         potencia5 = hotel[piso - 1][habitacion + 1];
                     }
-
+                }
                 piso3--;
             }
         }
