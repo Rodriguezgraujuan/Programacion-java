@@ -47,13 +47,18 @@ public class Coberturahotelesmatriz {
         }
     }
     public static void main(String[] args) {
+
         System.out.println("Introduce el piso");
         int piso = in.nextInt();
         System.out.println("Introduce la habitación");
         int habitacion = in.nextInt();
         System.out.println("Introduce la potencia");
         int potencia = in.nextInt();
-        coberturahabitacion(piso, habitacion, potencia);
-        printcuadradomatriz();
+        if (piso >= 0 && piso < 12 && habitacion >= 0 && habitacion < 5 && potencia > 0) {
+            coberturahabitacion(piso, habitacion, potencia);
+            printcuadradomatriz();
+        } else {
+            System.out.println("Numero incorrecto");
+        }
     }
 }
