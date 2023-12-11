@@ -8,9 +8,11 @@ public class HundirLaFlota {
 
     public static void main(String[] args) {
         char[][] tablero= new char[1][1];
+        char[][] tablerovisible= new char[10][10];
         int seleccion = menuModoJuego();
         if (seleccion>0&&seleccion<4){
             tablero=crearTablero(10,10);
+            tablerovisible=crearTablero(10,10);
         } else {
             System.out.println("Introduce las filas y las columnas del tablero");
             int filas = in.nextInt();
@@ -20,11 +22,21 @@ public class HundirLaFlota {
         int[] cantidadBarcosTotales=cantidadBarcos(seleccion);
         insertarBarcos(tablero, tablero.length, tablero[1].length, cantidadBarcosTotales[0], cantidadBarcosTotales[1], cantidadBarcosTotales[2], cantidadBarcosTotales[3]);
         int disparo=0;
-        while (cantidadBarcosTotales[4]>disparo){
-            mostrarTableroCompleto(tablero);
+        boolean haybarcos = true;
+        while (cantidadBarcosTotales[4]>disparo||haybarcos){
+            mostrarTableroVisible(tablerovisible);
             int[] vectordisparo=pideCoordenadasDisparo(tablero);
-            realizaDisparo(tablero, vectordisparo);
+            realizaDisparo(tablero, tablerovisible,vectordisparo);
             disparo++;
+            if (!quedanBarcos(tablero)){
+                haybarcos=false;
+            }
+        }
+        mostrarTableroCompleto(tablero);
+        if (quedanBarcos(tablero)){
+            System.out.println("Has perdido");
+        } else {
+            System.out.println("Haws ganado");
         }
 
 
@@ -213,7 +225,7 @@ public class HundirLaFlota {
 
     public static int[] pideCoordenadasDisparo(char[][] tablero){
         int[] vectorDisparo = new int[2];
-        System.out.println("Introduce las coordenadas (fila: 0-9, columna: A-J)");
+        System.out.println("Introduce las coordenadas (columna: 0-9, fila: A-J)");
         vectorDisparo[0]= in.nextInt();
         in.nextLine();
         String letra= in.nextLine();
@@ -222,17 +234,18 @@ public class HundirLaFlota {
         return vectorDisparo;
     }
 
-    public static void realizaDisparo(char[][] tablero, int[] posicionesDisparo){
-        int fila = posicionesDisparo[0];
-        int columna = posicionesDisparo[1];
-        if (tablero[fila][columna]=='L'&&tablero[fila][columna]=='B'&&tablero[fila][columna]=='Z'&&tablero[fila][columna]=='P'){
-            tablero[fila][columna]='X';
+    public static void realizaDisparo(char[][] tablero, char[][] tablerovisible,int[] posicionesDisparo){
+        int fila = posicionesDisparo[1];
+        int columna = posicionesDisparo[0];
+        if (tablero[fila][columna]=='L'||tablero[fila][columna]=='B'||tablero[fila][columna]=='Z'||tablero[fila][columna]=='P'){
+            tablerovisible[fila][columna]='X';
         } else {
-            tablero[fila][columna]='A';
+            tablerovisible[fila][columna]='A';
         }
     }
 
     public static int filaStringToInt(String s){
+        s=s.toUpperCase();
         return switch (s) {
             case "A" -> 0;
             case "B" -> 1;
