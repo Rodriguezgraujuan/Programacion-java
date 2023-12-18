@@ -25,8 +25,6 @@ public class HundirLaFlota {
         int disparo = 0;
         boolean haybarcos = true;
         while (cantidadBarcosTotales[4] > disparo && haybarcos) {
-            mostrarTableroCompleto(tablero);
-            System.out.println("AA");
             mostrarTableroVisible(tablerovisible);
             int[] vectordisparo = pideCoordenadasDisparo(tablero);
             realizaDisparo(tablero, tablerovisible, vectordisparo);
