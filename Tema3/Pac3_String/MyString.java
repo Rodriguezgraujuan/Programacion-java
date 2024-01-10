@@ -38,15 +38,19 @@ public class MyString {
 
     public static int cadenarepetida(){
         String string1="AB";
-        String string2="Abra una caba de pinos";
+        String string2="Abraunacabadepinos";
         string2 = string2.toUpperCase();
         int contadorbucle=0;
+        int numeroposicionletra=0;
         int vecesrepetidas=0;
 
         while (contadorbucle<string2.length()-1){
-            char letra=string2.charAt(contadorbucle);
-            if (string1.charAt(0)==letra){
-                if (string1.equals(string2.substring(contadorbucle, string1.length()))){
+            String letrastring1=String.valueOf(string1.charAt(0));
+            String letrastring2= String.valueOf(string2.charAt(contadorbucle));
+            if (letrastring1.equals(letrastring2)){
+                numeroposicionletra=contadorbucle+2;
+                String string2acortado = string2.substring(contadorbucle, numeroposicionletra);
+                if (string1.equals(string2acortado)){
                     vecesrepetidas++;
                 }
             }
@@ -56,10 +60,19 @@ public class MyString {
         return vecesrepetidas;
     }
 
+    public static String numerotelefono(){
+        String numerotelefono="34622264846";
+        String pais= "(+"+numerotelefono.substring(0,2)+")";
+        String numerosprimeros= numerotelefono.substring(2,5);
+        String numerosfinales= numerotelefono.substring(5,11);
+        return pais+"-"+numerosprimeros+"-"+numerosfinales;
+    }
+
     public static void main(String[] args) {
         System.out.println(funcioninvertidamayus());
         System.out.println("Tiene " + numerovocales() + " vocales");
         System.out.println(palabramayorlongitud());
         System.out.println(cadenarepetida());
+        System.out.println(numerotelefono());
     }
 }
