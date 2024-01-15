@@ -6,16 +6,33 @@ public class Lingo {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String palabraOculta = null;
-        System.out.println("Introduce la palabra");
-        String palabra = in.nextLine();
+        String palabra = null;
+        boolean conditionpalabra=true;
+        while (conditionpalabra) {
+            System.out.println("Introduce la palabra");
+            palabra = in.nextLine();
+            if (palabra.length()==5){
+                conditionpalabra=false;
+            }else{
+                System.out.println("Debe ser una palabra de 5 letras");
+            }
+        }
         boolean condition=true;
+        boolean conditionpalabrabuscar=false;
         while (condition) {
             System.out.println("Intento:");
             String palabraBuscar = in.nextLine();
-            palabraOculta = construirPalabraOculta(palabra, palabraBuscar);
-            System.out.println("Pista: " + palabraOculta);
-            if (!aciertono(palabraOculta)){
-                condition=false;
+            if (palabraBuscar.length()==5){
+                conditionpalabrabuscar=true;
+            }
+            if (conditionpalabrabuscar) {
+                palabraOculta = construirPalabraOculta(palabra, palabraBuscar);
+                System.out.println("Pista: " + palabraOculta);
+                if (!aciertono(palabraOculta)) {
+                    condition = false;
+                }
+            }else {
+                System.out.println("Debe ser de 5 letras");
             }
         }
     }
