@@ -1,5 +1,7 @@
 package Pac3_String;
 
+import java.util.Scanner;
+
 public class MyString {
 
     public static String funcioninvertidamayus(String cadenaoriginal){
@@ -56,6 +58,11 @@ public class MyString {
         return vecesrepetidas;
     }
 
+    public static int numeropalabras(String cadena){
+        String[] cadenaseparada=cadena.split(" ");
+        return cadenaseparada.length;
+    }
+
     public static String numerotelefono(String numerotelefono){
         if (numerotelefono.length()==11) {
             numerotelefono=String.format("(+%s)-%s-%s", numerotelefono.substring(0, 2), numerotelefono.substring(2, 5), numerotelefono.substring(5, 11));
@@ -91,11 +98,47 @@ public class MyString {
      }
 
     public static void main(String[] args) {
-        System.out.println(funcioninvertidamayus("Alberto"));
-        System.out.println("Tiene " + numerovocales("Alberto") + " vocales");
-        System.out.println(palabramayorlongitud("Alberto Pepe Amapolavoladora"));
-        System.out.println(cadenarepetida("AB", "Abraunacabadepinos"));
-        System.out.println(numerotelefono("34622264846"));
-        histograma("Me comi una salchipapa");
+        Scanner in =new Scanner(System.in);
+        System.out.println("Seleciona un ejercicio a-1, b-2, c-3, d-4, e-5, f-6, g-7");
+        int opcion= in.nextInt();
+        switch (opcion) {
+            case 1:
+                System.out.println("Introduce la cadena que quieres invertir");
+                String palabraparainvertir=in.nextLine();
+                System.out.println(funcioninvertidamayus(palabraparainvertir));
+                break;
+            case 2:
+                System.out.println("Introduce la cadena de las que quieras saber las vocales");
+                String palabraparavocales=in.nextLine();
+                System.out.println("Tiene " + numerovocales(palabraparavocales) + " vocales");
+                break;
+            case 3:
+                System.out.println("Introduce la cadena para saber la de mayor longitud");
+                String cadenamayorlongitud=in.nextLine();
+                System.out.println(palabramayorlongitud(cadenamayorlongitud));
+                break;
+            case 4:
+                System.out.println("Introduce la primera cadena");
+                String cadena1= in.nextLine();
+                System.out.println("Introduce la segunda cadena");
+                String cadema2= in.nextLine();
+                System.out.println(cadenarepetida(cadena1, cadema2));
+                break;
+            case 5:
+                System.out.println("Introduce una cadena para contar sus palabras");
+                String cadena= in.nextLine();
+                System.out.println(numeropalabras(cadena));
+                break;
+            case 6:
+                System.out.println("Introduce el numero de telefono con el prefijo de 2 numeros");
+                String telefono=in.nextLine();
+                System.out.println(numerotelefono(telefono));
+                break;
+            case 7:
+                System.out.println("Introduce una cadena para hacer el histograma");
+                String cadenaparahistograma=in.nextLine();
+                histograma(cadenaparahistograma);
+                break;
+        }
     }
 }
