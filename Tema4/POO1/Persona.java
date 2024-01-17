@@ -16,10 +16,9 @@ public class Persona {
         this.apellidos=apellidos;
         this.edad=edad;
     }
-
     private static boolean checkNumerosDni(String Dni){
         boolean condition=false;
-        String numeros= Dni.substring(0,8);
+        String numeros= Dni.substring(0,7);
         for (int i=0;i<numeros.length();i++){
             if (numeros.charAt(i)<=9){
                 condition=true;
@@ -45,11 +44,13 @@ public class Persona {
 
     public static boolean checkDNI(String Dni){
         boolean condition=false;
-        if (checkNumerosDni(Dni)&&checkLetraDni(Dni)) {
-            int numeros= Integer.parseInt(Dni.substring(0,7));
-            char letra = Utils.getNIF(numeros);
-            if (letra==Dni.charAt(8)){
-                condition=true;
+        if (Dni.length()==9) {
+            if (checkNumerosDni(Dni) && checkLetraDni(Dni)) {
+                int numeros = Integer.parseInt(Dni.substring(0, 7));
+                char letra = Utils.getNIF(numeros);
+                if (letra == Dni.charAt(8)) {
+                    condition = true;
+                }
             }
         }
         return condition;
@@ -67,17 +68,17 @@ public class Persona {
         return this.Dni;
     }
     public String getNombre(){
-        return this.Dni;
+        return this.nombre;
     }
     public String getApellidos(){
-        return this.Dni;
+        return this.apellidos;
     }
 
-    private boolean isAdult(){
+    public boolean isAdult(){
         return this.edad >= adultAge;
     }
 
-    private boolean isRetired(){
+    public boolean isRetired(){
         return this.edad>=retiredAge;
     }
 
