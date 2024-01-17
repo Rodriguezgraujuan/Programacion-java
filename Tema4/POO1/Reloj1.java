@@ -1,4 +1,4 @@
-package Personas;
+package POO1;
 
 import java.util.Scanner;
 
