@@ -53,10 +53,17 @@ public class HangmanGame {
         return palabra.matches("[a-z]");
     }
 
+    public static void borrarconsola(){
+        for (int i = 0;i<30;i++){
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Introduce la palabra:");
         String palabra=in.nextLine();
+        borrarconsola();
         palabra=palabra.toLowerCase();
         boolean condition= true;
         int intentos = 0;
