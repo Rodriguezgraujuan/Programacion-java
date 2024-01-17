@@ -6,7 +6,7 @@ public class Reloj1 {
     public static void main(String[] args) {
         Scanner in=new Scanner(System.in);
         Reloj reloj=new Reloj();
-        System.out.println("12 o 24");
+        System.out.println("12 o 24 horas");
         int modo= in.nextInt();
         System.out.println("Hora, minutos y segundos");
         int hora= in.nextInt();

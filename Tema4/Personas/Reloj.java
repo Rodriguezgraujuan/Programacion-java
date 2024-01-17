@@ -17,6 +17,9 @@ public class Reloj {
     }
 
     public void setHoraMinuteSecond(int horas, int minutos, int segundos, int modo){
+        if (modo==12||modo==24){
+            this.modo=modo;
+        }
         if (modo==24) {
             if (horas >= 0 && horas <= 23) {
                 this.horas = horas;
