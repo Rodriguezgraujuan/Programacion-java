@@ -11,11 +11,12 @@ public class Persona1 {
         String nombre1= in.nextLine();
         String apellidos1= in.nextLine();
         int edad1= in.nextInt();
+        in.nextLine();
 
         System.out.println("Introduce el DNI, nombre, apellidos y edad de la persona2");
-        String Dni2= in.next();
-        String nombre2= in.next();
-        String apellidos2= in.next();
+        String Dni2= in.nextLine();
+        String nombre2= in.nextLine();
+        String apellidos2= in.nextLine();
         int edad2= in.nextInt();
 
         Persona persona1=new Persona(Dni1, nombre1, apellidos1, edad1);
