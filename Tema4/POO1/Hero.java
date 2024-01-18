@@ -50,6 +50,9 @@ public class Hero {
        }
        vidaHeroeEnemigo-=golpe-defensaEnemigo;
        experience+=addExp;
+       if (vidaHeroeEnemigo<0){
+           vidaHeroeEnemigo=0;
+       }
        return vidaHeroeEnemigo;
     }
 
