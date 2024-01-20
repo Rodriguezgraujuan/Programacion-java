@@ -32,16 +32,35 @@ public class HordasVsHero {
         int partidafin=0;
         while (partidafin<3){
             int enemigoAlea= random.nextInt(1,3);
-            Hero arrayEnimigos[]=new Hero[enemigoAlea];
+            Hero arrayEnomigos[]=new Hero[enemigoAlea];
             for (int i=0; i<enemigoAlea;i++){
-                arrayEnimigos[i]=new Hero("Enemigo "+i, personaje.getRandomHp(), personaje.getRandomAttack(), personaje.getRandomDefense());
+                arrayEnomigos[i]=new Hero("Enemigo "+i, personaje.getRandomHp(), personaje.getRandomAttack(), personaje.getRandomDefense());
             }
             boolean enemigosMuertos=false;
+            System.out.println("Empieza la Ronda "+ partidafin);
+            in.next();
             while (!enemigosMuertos){
-                if (arrayEnimigos[0].health>0){
-                    personaje.attack(arrayEnimigos[0].health, arrayEnimigos[0].defense);
-                    if (arrayEnimigos[0].health>0){
-                        arrayEnimigos[0].attack(personaje.health,personaje.defense);
+                if (personaje.health<=0) {
+                    partidafin = 3;
+                    enemigosMuertos = true;
+                }else {
+                    if (arrayEnomigos[0].health > 0) {
+                        arrayEnomigos[0].health = personaje.attack(arrayEnomigos[0].health, arrayEnomigos[0].defense);
+                        if (arrayEnomigos[0].health > 0) {
+                            personaje.health = arrayEnomigos[0].attack(personaje.health, personaje.defense);
+                        }
+                    } else if (enemigoAlea > 1 && arrayEnomigos[1].health > 0) {
+                        arrayEnomigos[1].health = personaje.attack(arrayEnomigos[1].health, arrayEnomigos[1].defense);
+                        if (arrayEnomigos[1].health > 0) {
+                            personaje.health = arrayEnomigos[1].attack(personaje.health, personaje.defense);
+                        }
+                    } else if (enemigoAlea > 2 && arrayEnomigos[2].health > 0) {
+                        arrayEnomigos[2].health = personaje.attack(arrayEnomigos[2].health, arrayEnomigos[2].defense);
+                        if (arrayEnomigos[2].health > 0) {
+                            personaje.health = arrayEnomigos[2].attack(personaje.health, personaje.defense);
+                        }
+                    } else {
+                        enemigosMuertos = true;
                     }
                 }
             }

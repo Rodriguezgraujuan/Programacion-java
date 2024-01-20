@@ -79,4 +79,8 @@ public class Hero {
     public int getRandomDefense() {
         return random.nextInt(1, 5);
     }
+
+    public boolean probHuir(){
+        return random.nextInt(0,10)==1;
+    }
 }
