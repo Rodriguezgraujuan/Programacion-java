@@ -3,6 +3,8 @@ package POO1;
 import java.util.Random;
 
 public class Hero {
+
+    public Random random=new Random();
     public String name;
     public int level=0;
     public int health;
@@ -64,5 +66,17 @@ public class Hero {
             level++;
             experience-=resetExp;
         }
+    }
+
+    public int getRandomHp(){
+        return random.nextInt(5,15);
+    }
+
+    public int getRandomAttack(){
+        return random.nextInt(5,10);
+    }
+
+    public int getRandomDefense() {
+        return random.nextInt(1, 5);
     }
 }
