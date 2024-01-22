@@ -17,6 +17,7 @@ public class Hero {
     private final int resetExp=50;
     public int attack;
     public int defense;
+    public int descanso=100;
 
     public Hero(String nombre, int vida, int ataque, int defensa){
         name=nombre;
@@ -68,19 +69,44 @@ public class Hero {
         }
     }
 
-    public int getRandomHp(){
-        return random.nextInt(5,15);
+    public int getRandomHp(int max){
+        return random.nextInt(1,max);
     }
 
-    public int getRandomAttack(){
-        return random.nextInt(5,10);
+    public int getRandomAttack(int max){
+        return random.nextInt(1,max);
     }
 
-    public int getRandomDefense() {
-        return random.nextInt(1, 5);
+    public int getRandomDefense(int max) {
+        return random.nextInt(1, max);
     }
 
     public boolean probHuir(){
         return random.nextInt(0,10)==1;
     }
+
+    public int probDescansar(){
+        boolean descansarono=random.nextInt(0,10)==1;
+        if (descansarono){
+            System.out.println("Has descansado, te curas 100 de vida");
+            health+=descanso;
+        }
+        if (health>maxHealth){
+            health=maxHealth;
+        }
+        return health;
+    }
+
+    public int probBuscarPocion(){
+        boolean encontradono=random.nextInt(0,10)==1;
+        if (encontradono){
+            System.out.println("Has encontrado una poción, te curas 10 de vida");
+            health+=recoverPotionHp;
+        }
+        if (health>maxHealth){
+            health=maxHealth;
+        }
+        return health;
+    }
+
 }

@@ -34,7 +34,7 @@ public class HordasVsHero {
             int enemigoAlea= random.nextInt(1,3);
             Hero arrayEnomigos[]=new Hero[enemigoAlea];
             for (int i=0; i<enemigoAlea;i++){
-                arrayEnomigos[i]=new Hero("Enemigo "+i, personaje.getRandomHp(), personaje.getRandomAttack(), personaje.getRandomDefense());
+                arrayEnomigos[i]=new Hero("Enemigo "+i, personaje.getRandomHp(personaje.health/3), personaje.getRandomAttack(personaje.attack+10), personaje.getRandomDefense(personaje.health/2));
             }
             boolean enemigosMuertos=false;
             System.out.println("Empieza la Ronda "+ partidafin);
@@ -45,17 +45,23 @@ public class HordasVsHero {
                     enemigosMuertos = true;
                 }else {
                     if (arrayEnomigos[0].health > 0) {
-                        arrayEnomigos[0].health = personaje.attack(arrayEnomigos[0].health, arrayEnomigos[0].defense);
+                        if (!arrayEnomigos[0].probHuir()) {
+                            arrayEnomigos[0].health = personaje.attack(arrayEnomigos[0].health, arrayEnomigos[0].defense);
+                        }
                         if (arrayEnomigos[0].health > 0) {
                             personaje.health = arrayEnomigos[0].attack(personaje.health, personaje.defense);
                         }
                     } else if (enemigoAlea > 1 && arrayEnomigos[1].health > 0) {
-                        arrayEnomigos[1].health = personaje.attack(arrayEnomigos[1].health, arrayEnomigos[1].defense);
+                        if (!arrayEnomigos[1].probHuir()) {
+                            arrayEnomigos[1].health = personaje.attack(arrayEnomigos[1].health, arrayEnomigos[1].defense);
+                        }
                         if (arrayEnomigos[1].health > 0) {
                             personaje.health = arrayEnomigos[1].attack(personaje.health, personaje.defense);
                         }
                     } else if (enemigoAlea > 2 && arrayEnomigos[2].health > 0) {
-                        arrayEnomigos[2].health = personaje.attack(arrayEnomigos[2].health, arrayEnomigos[2].defense);
+                        if (!arrayEnomigos[2].probHuir()) {
+                            arrayEnomigos[2].health = personaje.attack(arrayEnomigos[2].health, arrayEnomigos[2].defense);
+                        }
                         if (arrayEnomigos[2].health > 0) {
                             personaje.health = arrayEnomigos[2].attack(personaje.health, personaje.defense);
                         }
@@ -68,6 +74,11 @@ public class HordasVsHero {
                 partidafin++;
             }
 
+            /*
+            Aqui tenemos las probabilidades de recuperar vida.
+             */
+            personaje.health= personaje.probBuscarPocion();
+            personaje.health= personaje.probDescansar();
         }
 
     }
