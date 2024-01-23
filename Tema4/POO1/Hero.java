@@ -5,18 +5,18 @@ import java.util.Random;
 public class Hero {
 
     public Random random = new Random();
-    public String name;
-    public int level = 0;
-    public int health;
+    private String name;
+    private int level = 0;
+    private int health;
+    private int experience;
+    private int attack;
+    private int defense;
     private final int hpUpdate = 5;
     private final int recoverPotionHp = 10;
     private final int restauraHp = 50;
     private final int maxHealth = 150;
-    public int experience;
     private final int addExp = 10;
     private final int resetExp = 50;
-    public int attack;
-    public int defense;
     public int descanso = 100;
 
     public Hero(String nombre, int vida, int ataque, int defensa) {
@@ -41,22 +41,60 @@ public class Hero {
         }
     }
 
+    public void setHealth(int health) {
+        if (health<=0){
+            health=0;
+        } else if (health>maxHealth){
+            health=maxHealth;
+        }
+        this.health=health;
+    }
+
+    public void setAttack(int attack) {
+        if (attack<=1){
+            attack=30;
+        } else if (attack>200){
+            attack=30;
+        }
+        this.attack=attack;
+    }
+
+    public void setDefense(int defense) {
+        if (defense<=0){
+            defense=20;
+        } else if (defense>200) {
+            defense=20;
+        }
+        this.defense=defense;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
     public String toString() {
         return "El personaje " + name + " Vida: " + health + " Nivel: " + level + " Ataque: " + attack + " Defensa: " + defense;
     }
-
-    public int attack(int vidaHeroeEnemigo, int defensaEnemigo) {
+    public void attack(Hero otroHeroe) {
         Random random = new Random();
         int golpe = random.nextInt(1, attack);
-        if (golpe - defensaEnemigo < 0) {
-            golpe = defensaEnemigo;
+        if (golpe - otroHeroe.getDefense() < 0) {
+            golpe = otroHeroe.getDefense();
         }
-        vidaHeroeEnemigo -= golpe - defensaEnemigo;
+        otroHeroe.setHealth(otroHeroe.getHealth() - (golpe - otroHeroe.defense));
         experience += addExp;
-        if (vidaHeroeEnemigo < 0) {
-            vidaHeroeEnemigo = 0;
+        if (otroHeroe.getHealth() < 0) {
+            otroHeroe.setHealth(0);
         }
-        return vidaHeroeEnemigo;
+
     }
 
     public void levelUp() {
@@ -86,7 +124,7 @@ public class Hero {
     }
 
     public int probDescansar() {
-        boolean descansarono =  random.nextInt(0, 1000) == 1;
+        boolean descansarono = random.nextInt(0, 1000) == 1;
         if (descansarono) {
             System.out.println("Has descansado, te curas 100 de vida");
             health += descanso;

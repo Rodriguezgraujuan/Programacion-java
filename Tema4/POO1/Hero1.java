@@ -49,7 +49,7 @@ public class Hero1 {
         Hero hero2= new Hero(nombre2,vida2,ataque2,defensa2);
 
         System.out.println("Heroe 1 ataca al Heroe 2");
-        hero1.attack(hero2.health, hero2.defense);
+        hero1.attack(hero2);
         System.out.println("Heroe 2 se regenera con 2 pociones");
         for (int i=0;i<2;i++){
             hero2.drinkPotion();
@@ -59,8 +59,8 @@ public class Hero1 {
 
         System.out.println("El heroe 2 ataca al 1 continuamente");
         for (int j=0; j<5;j++){
-            hero1.health=hero2.attack(hero1.health, hero1.defense);
-            System.out.println(hero1.health);
+            hero2.attack(hero1);
+            System.out.println(hero1.getHealth());
         }
 
         System.out.println("El heroe 1 restaura 50 puntos de salud");
@@ -69,7 +69,7 @@ public class Hero1 {
         System.out.println("El heroe 2 sube de nivel y gana al heroe 1");
         hero2.levelUp();
         for (int k=0;k<5;k++){
-            hero2.attack(hero1.health, hero1.defense);
+            hero2.attack(hero1);
         }
         System.out.println(hero2);
         System.out.println("El heroe dos gana");
