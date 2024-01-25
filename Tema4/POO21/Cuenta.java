@@ -4,23 +4,27 @@ public class Cuenta {
     private int numeroCuenta;
     private int saldoDisp;
 
-    public void setSaldoDips(int ganarPagar) {
-        if (ganarPagar > 0) {
-            this.saldoDisp += ganarPagar;
-        } else {
-            this.saldoDisp -= ganarPagar;
-        }
+    public Cuenta(int numeroCuenta){
+        this.numeroCuenta=numeroCuenta;
+    }
+
+    public void setSaldoDipsAbono(int abono) {
+        this.saldoDisp+= abono;
+    }
+
+    public void setSaldoDispRecibo(int recibo){
+        this.saldoDisp-=recibo;
     }
 
     public void setNumeroCuenta(int numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public void getSaldoDisp() {
-        System.out.println("El dinero de la cuenta es: " + saldoDisp);
+    public int getSaldoDisp() {
+        return saldoDisp;
     }
 
-    public void  getNumeroCuenta(){
-        System.out.println("El numero de cuenta es: " + numeroCuenta);
+    public int getNumeroCuenta(){
+    return numeroCuenta;
     }
 }
