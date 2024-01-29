@@ -26,7 +26,7 @@ public class Persona {
         this.dni = dni;
     }
 
-    public void addCuenta(Cuenta cuenta){
+    public void addCuenta(Cuenta cuenta, int saldo){
         if (cuentasBancarias == null){
             cuentasBancarias=new Cuenta[1];
             cuentasBancarias[0]=cuenta;
@@ -37,21 +37,31 @@ public class Persona {
         } else {
             System.out.println("Ya tienes 3 cuentas");
         }
+        cuenta.setSaldoDipsAbono(saldo);
     }
 
     public void personasMorosa() {
-        for (int i=0;i<cuentasBancarias.length;i++){
-            int numeroCuenta= cuentasBancarias[i].getSaldoDisp();
-            if (cuentasBancarias[i].getSaldoDisp()<0){
-                System.out.println("Es moroso");
-                break;
-            } else {
-                System.out.println("No es moroso");
+        if (!(cuentasBancarias==null)) {
+            for (int i = 0; i < cuentasBancarias.length; i++) {
+                int numeroCuenta = cuentasBancarias[i].getSaldoDisp();
+                if (cuentasBancarias[i].getSaldoDisp() < 0) {
+                    System.out.println("Es moroso");
+                    break;
+                } else {
+                    System.out.println("No es moroso");
+                }
             }
+        } else {
+            System.out.println("No tienes cuentas");
         }
     }
     @Override
     public String toString() {
-        return dni + "\n"+ Arrays.toString(cuentasBancarias);
+        System.out.println("Tus datos son: \n");
+        for (int i =0;i<getCuentasBancarias().length;i++){
+            System.out.println(getCuentasBancarias()[i].getNumeroCuenta());
+            System.out.println(getCuentasBancarias()[i].getSaldoDisp());
+        }
+        return dni;
     }
 }
