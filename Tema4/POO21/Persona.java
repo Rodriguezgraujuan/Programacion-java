@@ -27,7 +27,11 @@ public class Persona {
     }
 
     public void addCuenta(Cuenta cuenta){
-        if (cuentasBancarias.length<maxCuentas){
+        if (cuentasBancarias == null){
+            cuentasBancarias=new Cuenta[1];
+            cuentasBancarias[0]=cuenta;
+        }else if (cuentasBancarias.length<maxCuentas){
+            cuentasBancarias=new Cuenta[cuentasBancarias.length+1];
             int posicion=cuentasBancarias.length;
             cuentasBancarias[posicion]= cuenta;
         } else {
@@ -40,6 +44,7 @@ public class Persona {
             int numeroCuenta= cuentasBancarias[i].getSaldoDisp();
             if (cuentasBancarias[i].getSaldoDisp()<0){
                 System.out.println("Es moroso");
+                break;
             } else {
                 System.out.println("No es moroso");
             }
