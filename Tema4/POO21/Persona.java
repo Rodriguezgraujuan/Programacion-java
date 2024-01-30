@@ -1,7 +1,5 @@
 package POO21;
 
-import java.util.Arrays;
-
 public class Persona {
     private String dni;
     private Cuenta[] cuentasBancarias;
@@ -33,7 +31,7 @@ public class Persona {
         }else if (cuentasBancarias.length<maxCuentas){
             cuentasBancarias=new Cuenta[cuentasBancarias.length+1];
             int posicion=cuentasBancarias.length;
-            cuentasBancarias[posicion]= cuenta;
+            cuentasBancarias[posicion-1]= cuenta;
         } else {
             System.out.println("Ya tienes 3 cuentas");
         }
