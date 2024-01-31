@@ -5,8 +5,8 @@ public class CuentaBancaria {
     private String titular;
     private int saldo=0;
     private int[] historialMovimientos;
-    private int avisarHacienda=3000;
-    private int saldoNegativo=-50;
+    private final int avisarHacienda=3000;
+    private final int saldoNegativo=-50;
 
     public CuentaBancaria(String iban, String titular) {
         iban = iban.toUpperCase();
@@ -20,6 +20,14 @@ public class CuentaBancaria {
             System.out.println("IBAN incorrecto");
         }
         this.titular = titular;
+    }
+
+    public String getIban() {
+        return iban;
+    }
+
+    public int getSaldo() {
+        return saldo;
     }
 
     public int ingreso(int ingreso) {
@@ -48,4 +56,8 @@ public class CuentaBancaria {
         historialMovimientos[posicion] = operacion;
     }
 
+    @Override
+    public String toString() {
+        return getIban()+ getIban()+ getSaldo();
+    }
 }
