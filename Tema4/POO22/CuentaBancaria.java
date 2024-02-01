@@ -4,7 +4,7 @@ public class CuentaBancaria {
     private String iban; //ES1234567891113151719122
     private String titular;
     private int saldo=0;
-    private int[] historialMovimientos;
+    private int[] historialMovimientos=new int[]{0};
     private final int avisarHacienda=3000;
     private final int saldoNegativo=-50;
 
@@ -30,34 +30,52 @@ public class CuentaBancaria {
         return saldo;
     }
 
+    public String getTitular() {
+        return titular;
+    }
+
+    public int[] getHistorialMovimientos() {
+        return historialMovimientos;
+    }
+
     public int ingreso(int ingreso) {
         if (ingreso > 0) {
             saldo += ingreso;
             setHistorialMovimientos(ingreso);
         }
+        aviso(ingreso);
         return saldo;
     }
 
     public int retirada(int dineroRetirar) {
-        if (dineroRetirar > 0) {
+        if (dineroRetirar > 0 && (saldo-=dineroRetirar)>-50) {
             saldo -= dineroRetirar;
             setHistorialMovimientos(-dineroRetirar);
+        } else {
+            System.out.println("No se puede realizar tu operación, el saldo seria menor de -50");
         }
+        aviso(dineroRetirar);
         return saldo;
     }
 
-    private void setHistorialMovimientos(int operacion) {
+    private void setHistorialMovimientos(int proceso) {
         int posicion = historialMovimientos.length - 1;
-        if (operacion>avisarHacienda){
+        int[] historialMovimientosCopi=historialMovimientos.clone();
+        historialMovimientos=new int[historialMovimientosCopi.length+1];
+        System.arraycopy(historialMovimientosCopi, 0, historialMovimientos, 0, historialMovimientosCopi.length);
+        historialMovimientos[posicion] = proceso;
+    }
+
+    private void aviso(int proceso){
+        if (proceso > avisarHacienda) {
             System.out.println("AVISO: Notificar a hacienda");
-        } else if (operacion<saldoNegativo){
+        } else if (getSaldo() < saldoNegativo) {
             System.out.println("AVISO: Saldo negativo");
         }
-        historialMovimientos[posicion] = operacion;
     }
 
     @Override
     public String toString() {
-        return getIban()+ getIban()+ getSaldo();
+        return "El iban es: "+getIban()+ "\n El tituales es:"+ getTitular()+"\n El saldo es:"+ getSaldo();
     }
 }
