@@ -4,7 +4,7 @@ public class CuentaBancaria {
     private String iban; //ES1234567891113151719122
     private String titular;
     private int saldo=0;
-    private int[] historialMovimientos=new int[]{0};
+    private int[] historialMovimientos=new int[]{};
     private final int avisarHacienda=3000;
     private final int saldoNegativo=-50;
 
@@ -48,8 +48,8 @@ public class CuentaBancaria {
     }
 
     public int retirada(int dineroRetirar) {
-        if (dineroRetirar > 0 && (saldo-=dineroRetirar)>-50) {
-            saldo -= dineroRetirar;
+        if (dineroRetirar > 0 && (getSaldo()-dineroRetirar)>-50) {
+            saldo = saldo-dineroRetirar;
             setHistorialMovimientos(-dineroRetirar);
         } else {
             System.out.println("No se puede realizar tu operación, el saldo seria menor de -50");
@@ -58,16 +58,20 @@ public class CuentaBancaria {
         return saldo;
     }
 
-    private void setHistorialMovimientos(int proceso) {
-        int posicion = historialMovimientos.length - 1;
-        int[] historialMovimientosCopi=historialMovimientos.clone();
-        historialMovimientos=new int[historialMovimientosCopi.length+1];
-        System.arraycopy(historialMovimientosCopi, 0, historialMovimientos, 0, historialMovimientosCopi.length);
-        historialMovimientos[posicion] = proceso;
+    private void setHistorialMovimientos(int operacion) {
+        if (getHistorialMovimientos().length<100) {
+            int posicion = historialMovimientos.length;
+            int[] historialMovimientosCopi = historialMovimientos.clone();
+            historialMovimientos = new int[historialMovimientosCopi.length + 1];
+            System.arraycopy(historialMovimientosCopi, 0, historialMovimientos, 0, historialMovimientosCopi.length);
+            historialMovimientos[posicion] = operacion;
+        } else {
+            System.out.println("Historial lleno, no se pueden realizar mas operaciones");
+        }
     }
 
-    private void aviso(int proceso){
-        if (proceso > avisarHacienda) {
+    private void aviso(int operacion){
+        if (operacion > avisarHacienda) {
             System.out.println("AVISO: Notificar a hacienda");
         } else if (getSaldo() < saldoNegativo) {
             System.out.println("AVISO: Saldo negativo");
