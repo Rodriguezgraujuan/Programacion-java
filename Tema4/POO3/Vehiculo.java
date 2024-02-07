@@ -3,7 +3,13 @@ package POO3;
 public class Vehiculo {
     private String motor;
     private String color;
-    private String ruedas;
+    private int ruedas;
+
+    public Vehiculo(String motor, String color, int ruedas){
+        this.motor=motor;
+        this.color=color;
+        this.ruedas=ruedas;
+    }
 
     public void setColor(String color) {
         this.color= color;
@@ -13,13 +19,13 @@ public class Vehiculo {
         this.motor = motor;
     }
 
-    public void setRuedas(String ruedas) {
+    public void setRuedas(int ruedas) {
         this.ruedas = ruedas;
     }
     public String getMotor() {
         return motor;
     }
-    public String getRuedas() {
+    public int getRuedas() {
         return ruedas;
     }
 
