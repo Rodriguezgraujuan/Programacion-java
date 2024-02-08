@@ -1,6 +1,6 @@
 package POO3Ej4;
 
-public abstract class Ficha {
+public class Ficha {
 
 
      private final int numero;
@@ -18,5 +18,7 @@ public abstract class Ficha {
           return titulo;
      }
 
-     public abstract void prestamo();
+     public void prestamo(){
+          System.out.println("Tienes 20 dias para devolverlo");
+     }
 }

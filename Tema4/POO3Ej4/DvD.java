@@ -2,9 +2,9 @@ package POO3Ej4;
 
 public class DvD extends Ficha {
 
-    private String Director;
-    private int anyo;
-    private tipo tipoDVD;
+    private final String Director;
+    private final int anyo;
+    private final tipo tipoDVD;
 
     public enum tipo {
         ANIMACION, ACCION, DOCUMENTAL, CIENCIA_FICCION;
@@ -15,9 +15,5 @@ public class DvD extends Ficha {
         this.Director = Director;
         this.anyo = anyo;
         this.tipoDVD = tipoDVD;
-    }
-    @Override
-    public void prestamo() {
-        System.out.println("Tiene 20 dias para devolver el DVD");
     }
 }
