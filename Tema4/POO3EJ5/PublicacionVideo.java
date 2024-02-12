@@ -1,6 +1,8 @@
 package POO3EJ5;
 
-public class PublicacionVideo implements IPublicacion, IAbrirPublicacion{
+import POO3EJ6.IPublicacionconreaccion;
+
+public class PublicacionVideo implements IPublicacion, IAbrirPublicacion, IPublicacionconreaccion {
     private final String Video;
 
     public PublicacionVideo(String video){
@@ -14,6 +16,11 @@ public class PublicacionVideo implements IPublicacion, IAbrirPublicacion{
     @Override
     public void publicar() {
         System.out.println("Publicando video"+getVideo());
+    }
+
+    @Override
+    public void comentar() {
+        System.out.println("Comentando video"+getVideo());
     }
 
     @Override

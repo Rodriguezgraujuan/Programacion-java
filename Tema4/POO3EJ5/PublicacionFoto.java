@@ -1,6 +1,8 @@
 package POO3EJ5;
 
-public class PublicacionFoto implements IPublicacion, IAbrirPublicacion{
+import POO3EJ6.IPublicacionconreaccion;
+
+public class PublicacionFoto implements IPublicacion, IAbrirPublicacion, IPublicacionconreaccion {
     private final String link;
 
     public PublicacionFoto(String link){
@@ -14,6 +16,11 @@ public class PublicacionFoto implements IPublicacion, IAbrirPublicacion{
     @Override
     public void publicar() {
         System.out.println("Publicando foto"+getlink());
+    }
+
+    @Override
+    public void comentar() {
+        System.out.println("Comentando foto"+getlink());
     }
 
     @Override

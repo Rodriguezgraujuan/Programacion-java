@@ -1,5 +1,7 @@
 package POO3EJ5;
 
+import POO3EJ6.IPublicacionconreaccion;
+
 public class PublicacionTexto implements IPublicacion{
     private final String texto;
 
