@@ -7,14 +7,14 @@ public class Ataque_Magico implements IAtaque{
     }
 
     @Override
-    public void coste() {
-        int costoEsfuerzoFisico = 15;
-        System.out.println("Coste del Ataque Físico: " + costoEsfuerzoFisico + " de esfuerzo físico");
+    public int[] coste() {
+        System.out.println("Coste del Ataque Físico: " + 15 + " de esfuerzo físico");
+        return 15;
     }
 
     @Override
-    public void dmgInfligido() {
-        int dmgFisico = 37;
-        System.out.println("Daño infligido por el Ataque Físico: " + dmgFisico);
+    public int[] dmgInfligido() {
+        System.out.println("Daño infligido por el Ataque Físico: " + 37);
+        return 37;
     }
 }
