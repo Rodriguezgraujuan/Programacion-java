@@ -7,15 +7,17 @@ public class Ataque_Espadazo implements IAtaqueAvanzado {
     }
 
     @Override
-    public void coste() {
-        int costeEsfuerzoFisico = 20;
-        System.out.println("Coste del ataque Espadazo: " + costeEsfuerzoFisico + " de esfuerzo físico");
+    public int[] coste() {
+        int[] costeEsfuerzoFisico = new int[]{20};
+        System.out.println("Coste del ataque Espadazo: " + costeEsfuerzoFisico[0] + " de esfuerzo físico");
+        return costeEsfuerzoFisico;
     }
 
     @Override
-    public void dmgInfligido() {
-        int dañoFisico = 30;
-        System.out.println("Daño infligido por el Espadazo: Daño físico: " + dañoFisico);
+    public int[] dmgInfligido() {
+        int[] dmgFisico = new int[]{30};
+        System.out.println("Daño infligido por el Espadazo: Daño físico: " + dmgFisico[0]);
+        return dmgFisico;
     }
 
 }
