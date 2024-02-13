@@ -19,6 +19,6 @@ public class Ciclomotores extends Vehiculo{
     }
 
     public boolean necesitaCarnet(){
-        return cilindrada<=CILINDRADA_MAXIMA;
+        return cilindrada>CILINDRADA_MAXIMA;
     }
 }

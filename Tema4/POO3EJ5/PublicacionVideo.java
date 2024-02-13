@@ -27,4 +27,8 @@ public class PublicacionVideo implements IPublicacion, IAbrirPublicacion, IPubli
     public void compartir() {
         System.out.println("Compartiendo video"+getVideo());
     }
+
+    @Override
+    public void reaccion() {
+    }
 }

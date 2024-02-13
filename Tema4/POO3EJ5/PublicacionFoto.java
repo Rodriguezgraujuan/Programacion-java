@@ -27,4 +27,9 @@ public class PublicacionFoto implements IPublicacion, IAbrirPublicacion, IPublic
     public void compartir() {
         System.out.println("Compartiendo foto"+getlink());
     }
+
+    @Override
+    public void reaccion() {
+
+    }
 }

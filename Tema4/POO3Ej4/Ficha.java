@@ -1,6 +1,6 @@
 package POO3Ej4;
 
-public class Ficha {
+public abstract class Ficha {
 
 
      private final int numero;
