@@ -14,6 +14,11 @@ public class Vehiculo {
         this.ruedas=ruedas;
     }
 
+    public Vehiculo(int hora, String matricula){
+        this.hora=hora;
+        this.matricula=matricula;
+    }
+
     public void setColor(String color) {
         this.color= color;
     }
