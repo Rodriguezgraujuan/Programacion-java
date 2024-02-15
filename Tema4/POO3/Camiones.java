@@ -40,4 +40,9 @@ public class Camiones extends Vehiculo {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
+
+    @Override
+    public String toString() {
+        return "Soy un Camion";
+    }
 }

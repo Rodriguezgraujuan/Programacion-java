@@ -21,4 +21,9 @@ public class Ciclomotores extends Vehiculo{
     public boolean necesitaCarnet(){
         return cilindrada>CILINDRADA_MAXIMA;
     }
+
+    @Override
+    public String toString() {
+        return "Soy un Ciclomotor";
+    }
 }
