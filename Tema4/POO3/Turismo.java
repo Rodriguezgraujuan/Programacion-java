@@ -6,6 +6,9 @@ public class Turismo extends Vehiculo{
 
     private tipoCoche tipo;
 
+    private int hora;
+    private String matricula;
+
     public Turismo(String motor, String color, int ruedas, int numPlaza, tipoCoche tipo) {
         super(motor, color, ruedas);
         this.numPlaza=numPlaza;
@@ -30,5 +33,13 @@ public class Turismo extends Vehiculo{
 
     public void setTipo(tipoCoche tipo) {
         this.tipo=tipo;
+    }
+
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }

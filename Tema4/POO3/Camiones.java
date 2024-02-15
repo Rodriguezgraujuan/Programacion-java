@@ -9,6 +9,9 @@ public class Camiones extends Vehiculo {
         SI,NO;
     }
 
+    private int hora;
+    private String matricula;
+
     public Camiones(String motor, String color, int ruedas, int MMA, PeligrosoNo peligrosoNo) {
         super(motor, color, ruedas);
         this.MMA=MMA;
@@ -29,5 +32,12 @@ public class Camiones extends Vehiculo {
 
     public void setPeligrosoNo(PeligrosoNo peligrosoNo) {
         this.peligrosoNo = peligrosoNo;
+    }
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }

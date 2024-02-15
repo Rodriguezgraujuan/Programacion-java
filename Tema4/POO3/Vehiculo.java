@@ -5,6 +5,9 @@ public class Vehiculo {
     private String color;
     private int ruedas;
 
+    private int hora;
+    private String matricula;
+
     public Vehiculo(String motor, String color, int ruedas){
         this.motor=motor;
         this.color=color;
@@ -31,5 +34,12 @@ public class Vehiculo {
 
     public String getColor() {
         return color;
+    }
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }
