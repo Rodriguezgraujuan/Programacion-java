@@ -21,20 +21,62 @@ public class Main {
                 """);
     }
 
-    public static Ficha selectionItem(){
-        System.out.println("Que item quiere añadir:" +
-                "1. DVD" +
-                "2. Revista" +
-                "3. Libro");
+    public static Ficha addItem(){
+        System.out.println("""
+                Que item quiere añadir:\s
+                1. DVD\s
+                2. Revista\s
+                3. Libro\s
+                """);
         Ficha item = null;
         int option= in.nextInt();
+        System.out.println("Ingrese el titulo:");
+        in.nextLine();
+        String titulo = in.nextLine();
         switch (option){
-            case 1->item = new DvD(2,"","",5, DvD.tipo.ACCION);
-            case 2->item = new Revistas(8,"",2,2);
-            case 3->item = new Libros(8,"","","");
+            case 1->item = new DvD(2,titulo,"",5, DvD.tipo.ACCION);
+            case 2->item = new Revistas(8,titulo,2,2);
+            case 3->item = new Libros(8,titulo,"","");
             default -> System.out.println("Numero incorrecto");
         }
         return item;
+    }
+
+    public static void buscarItem(ArrayList<Ficha> biblioteca) {
+        System.out.println("Introduce el titulo");
+        in.nextLine();
+        boolean condition = false;
+        String titulo = in.nextLine();
+        for (int i = 0; i < biblioteca.size(); i++) {
+            if (biblioteca.get(i).getTitulo().equals(titulo)) {
+                System.out.println(biblioteca.get(i));
+                condition = true;
+                i = biblioteca.size() + 1;
+            }
+        }
+        if (!condition){
+            System.out.println("No hay ninguna reviste, libro o DVD con ese titulo");
+        }
+    }
+
+    public static ArrayList<Ficha> eliminarItem(ArrayList<Ficha> biblioteca){
+        System.out.println("Introduce el titulo");
+        in.nextLine();
+        String titulo= in.nextLine();
+        for (int i = 0; i<biblioteca.size();i++){
+            if (biblioteca.get(i).getTitulo().equals(titulo)){
+                biblioteca.remove(i);
+            }else {
+                System.out.println("No hay ninguna reviste, libro o DVD con ese titulo");
+            }
+        }
+        return biblioteca;
+    }
+
+    public static void mostrarBiblioteca(ArrayList<Ficha> biblioteca){
+        for (Ficha ficha : biblioteca) {
+            System.out.println(ficha);
+        }
     }
     public static void main(String[] args) {
         boolean conditon = true;
@@ -44,16 +86,16 @@ public class Main {
             int option= in.nextInt();
             switch (option){
                 case 1:
-                    biblioteca.add(selectionItem());
+                    biblioteca.add(addItem());
                     break;
                 case 2:
-
+                    buscarItem(biblioteca);
                     break;
                 case 3:
-
+                    eliminarItem(biblioteca);
                     break;
                 case 4:
-
+                    mostrarBiblioteca(biblioteca);
                     break;
                 case 5:
                     conditon=false;
