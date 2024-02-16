@@ -12,8 +12,16 @@ public class Libros extends Ficha{
         this.editorial=editorial;
     }
 
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getEditorial() {
+        return editorial;
+    }
+
     @Override
     public String toString() {
-        return "Libro";
+        return "Libro " + "Autor: "+getAutor()+ " Editorial: " +getEditorial() + " Titulo: "+getTitulo()+ " Numero: "+getNumero();
     }
 }

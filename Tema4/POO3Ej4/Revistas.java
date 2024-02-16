@@ -11,8 +11,16 @@ public class Revistas extends Ficha {
         this.numeroPublicacion = numeroPublicacion;
     }
 
+    public int getAnyopublicado() {
+        return anyopublicado;
+    }
+
+    public int getNumeroPublicacion() {
+        return numeroPublicacion;
+    }
+
     @Override
     public String toString() {
-        return "Revista";
+        return "Revista " + "Numero: " + getNumero()+ " Titulo: " + getTitulo()+ " Anyo publicacion: " + getAnyopublicado()+ " Numero publicacion: " + getNumeroPublicacion();
     }
 }

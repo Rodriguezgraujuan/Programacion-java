@@ -17,8 +17,20 @@ public class DvD extends Ficha {
         this.tipoDVD = tipoDVD;
     }
 
+    public int getAnyo() {
+        return anyo;
+    }
+
+    public String getDirector() {
+        return Director;
+    }
+
+    public tipo getTipoDVD() {
+        return tipoDVD;
+    }
+
     @Override
     public String toString() {
-        return "DVD";
+        return "DVD " + "Titulo: "+getTitulo() + " Numero: "+getNumero() + " Anyo: "+getAnyo()+ " Director:" +getDirector()+ " Tipo: "+getTipoDVD();
     }
 }
