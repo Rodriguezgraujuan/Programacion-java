@@ -1,10 +1,16 @@
 package POO4.Ej5;
 
 public class Ataque {
-    private int danyoFisico;
-    private int danyoMagico;
+    private final int danyoDefault=0;
+    private int danyoFisico=danyoDefault;
+    private int danyoMagico=danyoDefault;
+    private tipoAtaque tipo;
 
-    private enum tipoAtaque{
+    public Ataque(tipoAtaque tipo){
+        this.tipo=tipo;
+    }
+
+    public enum tipoAtaque{
         Cuerpo, Distancia
     }
 
@@ -22,5 +28,9 @@ public class Ataque {
 
     public int getDanyoMagico() {
         return danyoMagico;
+    }
+
+    public tipoAtaque getTipo() {
+        return tipo;
     }
 }
