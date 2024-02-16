@@ -10,4 +10,9 @@ public class Revistas extends Ficha {
         this.anyopublicado = anyopublicado;
         this.numeroPublicacion = numeroPublicacion;
     }
+
+    @Override
+    public String toString() {
+        return "Revista";
+    }
 }

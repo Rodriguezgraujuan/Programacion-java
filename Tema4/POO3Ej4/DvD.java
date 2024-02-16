@@ -16,4 +16,9 @@ public class DvD extends Ficha {
         this.anyo = anyo;
         this.tipoDVD = tipoDVD;
     }
+
+    @Override
+    public String toString() {
+        return "DVD";
+    }
 }

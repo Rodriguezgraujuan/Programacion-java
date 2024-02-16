@@ -11,4 +11,9 @@ public class Libros extends Ficha{
         this.autor=autor;
         this.editorial=editorial;
     }
+
+    @Override
+    public String toString() {
+        return "Libro";
+    }
 }
