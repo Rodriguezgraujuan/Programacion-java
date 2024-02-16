@@ -34,9 +34,9 @@ public class Main {
         in.nextLine();
         String titulo = in.nextLine();
         switch (option){
-            case 1->item = new DvD(2,titulo,"",5, DvD.tipo.ACCION);
+            case 1->item = new DvD(2,titulo,"Pepe",5, DvD.tipo.ACCION);
             case 2->item = new Revistas(8,titulo,2,2);
-            case 3->item = new Libros(8,titulo,"","");
+            case 3->item = new Libros(8,titulo,"Pepe","Pepe");
             default -> System.out.println("Numero incorrecto");
         }
         return item;
