@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Bardo implements Combatiente{
 
-    private final int MaxHEALTH=333;
+    private final int MaxHEALTH=50;
     private int health=MaxHEALTH;
     private static final Random random=new Random();
 
@@ -18,26 +18,24 @@ public class Bardo implements Combatiente{
 
     @Override
     public Ataque atacar() {
-        Ataque ataque = null;
-        if (random.nextInt(0, 100) == 1) {
+        Ataque ataque;
             int danyo = random.nextInt(10, 50);
             if (criticRate()) {
-                danyo *= 3;
+                danyo *= 2;
             }
-            if (random.nextInt(0, 100) > 50) {
+            if (random.nextInt(1, 100) > 50) {
                 ataque = new Ataque(Ataque.tipoAtaque.Cuerpo);
                 ataque.setDanyoFisico(danyo);
             } else {
                 ataque = new Ataque(Ataque.tipoAtaque.Distancia);
                 ataque.setDanyoMagico(danyo);
             }
-        }
         return ataque;
     }
 
     @Override
     public void defender(Ataque ataque) {
-        int danyo=(ataque.getDanyoFisico()- ataque.getDanyoMagico())*2;
+        int danyo=(ataque.getDanyoFisico()+ ataque.getDanyoMagico())*2;
         setHealth(getHealth()-danyo);
     }
 

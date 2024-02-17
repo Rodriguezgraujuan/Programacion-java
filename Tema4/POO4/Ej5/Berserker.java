@@ -18,8 +18,8 @@ public class Berserker implements Combatiente {
     public Ataque atacar() {
 
         Ataque ataque = new Ataque(Ataque.tipoAtaque.Cuerpo);
-        if (random.nextInt(0, 100) == 1) {
-            ataque.setDanyoFisico(random.nextInt(10, 170 - getHealth()));
+        if (random.nextInt(1, 100) == 1) {
+            ataque.setDanyoFisico(random.nextInt(40, 230 - getHealth()));
         }
         return ataque;
     }

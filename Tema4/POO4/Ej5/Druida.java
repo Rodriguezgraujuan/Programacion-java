@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Druida implements Combatiente {
     private static final Random random = new Random();
-    private final int MaxMANA = 150;
+    private final int MaxMANA = 100;
     private int mana = MaxMANA;
 
     public Druida() {
@@ -44,11 +44,7 @@ public class Druida implements Combatiente {
 
     public boolean escudo(){
         int num= random.nextInt(1,10);
-        boolean condition=false;
-        if (num<=2){
-            System.out.println("Escudo activo, mago protegido del daño");
-            condition=true;
-        }
+        boolean condition= num <= 1;
         return condition;
     }
 }
