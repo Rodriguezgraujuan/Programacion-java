@@ -47,4 +47,9 @@ public class Bardo implements Combatiente{
     private boolean criticRate(){
         return random.nextInt(0,100)<10;
     }
+
+    @Override
+    public String toString() {
+        return "Bardo, fishum fishum";
+    }
 }

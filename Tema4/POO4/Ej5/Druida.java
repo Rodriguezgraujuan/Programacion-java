@@ -47,4 +47,9 @@ public class Druida implements Combatiente {
         boolean condition= num <= 1;
         return condition;
     }
+
+    @Override
+    public String toString() {
+        return "Druida, wingardium leviosa";
+    }
 }

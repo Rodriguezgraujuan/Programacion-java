@@ -42,5 +42,8 @@ public class Berserker implements Combatiente {
         return getHealth() > 0;
     }
 
-
+    @Override
+    public String toString() {
+        return "Berserker, AAAAAAAAAAAH";
+    }
 }
