@@ -5,9 +5,7 @@ import POO4.Ej5.Berserker;
 import POO4.Ej5.Combatiente;
 import POO4.Ej5.Druida;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -32,9 +30,8 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Combatiente> battleRoyal = new ArrayList<>();
         arrayAleatorio(battleRoyal);
-        boolean condition=true;
 
-        while (condition){
+        while (battleRoyal.size() > 1){
             int randomAttacker = random.nextInt(0,battleRoyal.size());
             int randomDefender = random.nextInt(0, battleRoyal.size());
             if (!(randomAttacker==randomDefender)) {
@@ -45,9 +42,6 @@ public class Main {
                 if (!defensor.estaVivo()) {
                     battleRoyal.remove(randomDefender);
                 }
-            }
-            if (battleRoyal.size()==1){
-                condition=false;
             }
         }
         System.out.println("Ha ganado el " + battleRoyal.get(0));
