@@ -1,8 +1,10 @@
 package POO4.Practica;
 
+import POO4.Ej5.Ataque;
+
 public interface Personaje {
 
-    Heroe atacarHeroe(Heroe heroe);
+    Ataque atacarHeroe();
 
     String darObjeto();
 
