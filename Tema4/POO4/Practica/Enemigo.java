@@ -8,6 +8,8 @@ public class Enemigo implements Personaje{
 
     private final int VIDA_DEFAULT=100;
     private int vida=VIDA_DEFAULT;
+    
+    private final Random random=new Random();
 
     @Override
     public Ataque atacarHeroe() {
@@ -17,9 +19,38 @@ public class Enemigo implements Personaje{
         return ataque;
     }
 
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public void recibirDanyo(Ataque ataque){
+        int danyoAtaque=ataque.getDanyoFisico()+ataque.getDanyoMagico();
+        setVida(getVida()-danyoAtaque);
+    }
+
+
+    private void seleccionObjeto(Recompensa botin){
+        int randomNum= random.nextInt(1,7);
+        switch (randomNum){
+            case 1-> botin.setTipoRecompensa(Recompensa.TipoRecompensa.ARMADURA);
+            case 2-> botin.setTipoRecompensa(Recompensa.TipoRecompensa.ARCO);
+            case 3-> botin.setTipoRecompensa(Recompensa.TipoRecompensa.BASTONMAGO);
+            case 4-> botin.setTipoRecompensa(Recompensa.TipoRecompensa.BOTAS);
+            case 5->botin.setTipoRecompensa(Recompensa.TipoRecompensa.CAPA);
+            case 6->botin.setTipoRecompensa(Recompensa.TipoRecompensa.CASCO);
+            case 7->botin.setTipoRecompensa(Recompensa.TipoRecompensa.ESPADA);
+        }
+    }
     @Override
-    public String darObjeto() {
-        return null;
+    public Recompensa darObjeto(){
+        Recompensa botin=new Recompensa();
+        seleccionObjeto(botin);
+        botin.setNivelRecompensa(random.nextInt(1,3));
+        return botin;
     }
 
     @Override

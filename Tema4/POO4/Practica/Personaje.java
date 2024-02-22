@@ -6,7 +6,7 @@ public interface Personaje {
 
     Ataque atacarHeroe();
 
-    String darObjeto();
+    Recompensa darObjeto();
 
     void hablar();
 

@@ -3,6 +3,7 @@ package POO4.Practica;
 import POO4.Ej5.Ataque;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Heroe {
 
@@ -15,7 +16,9 @@ public class Heroe {
     private int defensa=DEFENSA_DEFAULT;
     private int carisma;
     private int agilidad=AGILIDAD_DEFAULT;
-    private String posicion;
+    private String posicion_x;
+    private String posicion_y;
+
 
     private ArrayList<String> inventario;
 
@@ -36,8 +39,11 @@ public class Heroe {
         return carisma;
     }
 
-    public String getPosicion() {
-        return posicion;
+    public String getPosicion_x() {
+        return posicion_x;
+    }
+    public String getPosicion_y() {
+        return posicion_y;
     }
 
     public void setCarisma(int carisma) {
@@ -56,8 +62,18 @@ public class Heroe {
         this.vida = vida;
     }
 
-    public void setPosicion(String posicion) {
-        this.posicion = posicion;
+    public void setPosicion_x(String posicion) {
+        this.posicion_x = posicion;
+    }
+    public void setPosicion_y(String posicion) {
+        this.posicion_y = posicion;
+    }
+
+    public Ataque atacarEnemigo(){
+        Random random=new Random();
+        Ataque ataque=new Ataque(Ataque.tipoAtaque.Cuerpo);
+        ataque.setDanyoFisico(random.nextInt(50,100));
+        return ataque;
     }
 
     public void recibirDanyo(Ataque ataque){
