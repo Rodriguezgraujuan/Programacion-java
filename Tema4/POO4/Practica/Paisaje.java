@@ -19,4 +19,8 @@ public class Paisaje {
         this.tipo=tipo;
     }
 
+    @Override
+    public String toString() {
+        return "Estas en " + getTipo();
+    }
 }

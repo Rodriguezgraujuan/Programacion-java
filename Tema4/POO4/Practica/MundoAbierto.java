@@ -1,5 +1,7 @@
 package POO4.Practica;
 
+import POO1.Hero;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -27,17 +29,27 @@ public class MundoAbierto {
         }
         return paisaje;
     }
-    public static void crearMundo(Casilla[][] mundoAbierto){
+    public static void crearMundo(Casilla[][] mundo){
         for (int i=0;i<10;i++){
             for (int k=0;k<10;k++){
                 Paisaje paisaje=paisajeRandom();
-                mundoAbierto[i][k]=new Casilla(paisaje,i,k);
+                mundo[i][k]=new Casilla(paisaje,i,k);
             }
         }
     }
+
+    public static void printMundo(Casilla[][] mundo){
+        for (int i = 0; i<10; i++){
+            System.out.println(Arrays.deepToString(mundo[i]));
+        }
+    }
+
+    public static void moverPersonaje(Heroe heroe, Casilla[][] mundo){
+    }
+
     public static void main(String[] args) {
-        Casilla[][] mundoAbierto=new Casilla[10][10];
-        crearMundo(mundoAbierto);
-        System.out.println(Arrays.deepToString(mundoAbierto));
+        Casilla[][] mundo=new Casilla[10][10];
+        crearMundo(mundo);
+        printMundo(mundo);
     }
 }
