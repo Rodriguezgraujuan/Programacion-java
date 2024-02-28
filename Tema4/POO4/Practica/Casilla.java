@@ -1,5 +1,7 @@
 package POO4.Practica;
 
+import java.util.Random;
+
 import static POO4.Practica.Paisaje.tipoPaisaje.*;
 
 public class Casilla {
@@ -60,17 +62,16 @@ public class Casilla {
             case Jungla -> "J";
             case Glaciar -> "G";
             case Desierto -> "D";
-            case Pantano -> "P";
+            case Pantano -> "PA";
             case Bosque -> "B";
             case Ciudad -> "C";
-            case Pueblo -> "P";
+            case Pueblo -> "PU";
             case Pradera -> "PR";
             case MontanyaNevada -> "MN";
             case Rio -> "R";
             default -> "M";
         };
     }
-
     @Override
     public String toString() {
         return getLetraPaisaje();

@@ -16,8 +16,8 @@ public class Heroe {
     private int defensa=DEFENSA_DEFAULT;
     private int carisma;
     private int agilidad=AGILIDAD_DEFAULT;
-    private int posicion_x;
-    private int posicion_y;
+    private int posicion_x=0;
+    private int posicion_y=0;
 
 
     private ArrayList<String> inventario;
@@ -103,9 +103,9 @@ public class Heroe {
             System.out.println("Fuera del mapa");
         }else {
             switch (rumbo){
-                case "N"->this.posicion_y+=1;
+                case "N"->this.posicion_y-=1;
                 case "E"->this.posicion_x-=1;
-                case "S"->this.posicion_y-=1;
+                case "S"->this.posicion_y+=1;
                 case "O"->this.posicion_x+=1;
             }
         }
