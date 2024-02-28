@@ -1,7 +1,5 @@
 package POO4.Practica;
 
-import POO1.Hero;
-
 import java.util.Arrays;
 import java.util.Random;
 
@@ -44,12 +42,13 @@ public class MundoAbierto {
         }
     }
 
-    public static void moverPersonaje(Heroe heroe, Casilla[][] mundo){
+    public static void moverHeroe(Heroe heroe, Casilla[][] mundo){
     }
 
     public static void main(String[] args) {
         Casilla[][] mundo=new Casilla[10][10];
         crearMundo(mundo);
+
         printMundo(mundo);
     }
 }

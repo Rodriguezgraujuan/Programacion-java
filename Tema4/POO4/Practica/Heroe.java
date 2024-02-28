@@ -16,8 +16,8 @@ public class Heroe {
     private int defensa=DEFENSA_DEFAULT;
     private int carisma;
     private int agilidad=AGILIDAD_DEFAULT;
-    private String posicion_x;
-    private String posicion_y;
+    private int posicion_x;
+    private int posicion_y;
 
 
     private ArrayList<String> inventario;
@@ -39,10 +39,10 @@ public class Heroe {
         return carisma;
     }
 
-    public String getPosicion_x() {
+    public int getPosicion_x() {
         return posicion_x;
     }
-    public String getPosicion_y() {
+    public int getPosicion_y() {
         return posicion_y;
     }
 
@@ -62,10 +62,10 @@ public class Heroe {
         this.vida = vida;
     }
 
-    public void setPosicion_x(String posicion) {
+    public void setPosicion_x(int posicion) {
         this.posicion_x = posicion;
     }
-    public void setPosicion_y(String posicion) {
+    public void setPosicion_y(int posicion) {
         this.posicion_y = posicion;
     }
 
@@ -95,6 +95,19 @@ public class Heroe {
     public void mostrarInventario(){
         for (int i=0;i<getInventario().size();i++){
             System.out.println(i+". "+inventario.get(i));
+        }
+    }
+
+    public void moverPersonaje(String rumbo){
+        if (rumbo.equals("N")&&posicion_y==0||rumbo.equals("E")&&posicion_x==0||rumbo.equals("S")&&posicion_y==9||rumbo.equals("O")&&posicion_x==9){
+            System.out.println("Fuera del mapa");
+        }else {
+            switch (rumbo){
+                case "N"->this.posicion_y+=1;
+                case "E"->this.posicion_x-=1;
+                case "S"->this.posicion_y-=1;
+                case "O"->this.posicion_x+=1;
+            }
         }
     }
 

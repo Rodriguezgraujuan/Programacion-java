@@ -1,5 +1,7 @@
 package POO4.Practica;
 
+import static POO4.Practica.Paisaje.tipoPaisaje.*;
+
 public class Casilla {
 
     private int posicion_x;
@@ -48,5 +50,29 @@ public class Casilla {
 
     public Tesoro getTesoro() {
         return tesoro;
+    }
+
+    private String getLetraPaisaje(){
+        Paisaje.tipoPaisaje paisajeCuadricula= getPaisaje().getTipo();
+            return switch (paisajeCuadricula) {
+            case Acantilado -> "A";
+            case Savana -> "S";
+            case Jungla -> "J";
+            case Glaciar -> "G";
+            case Desierto -> "D";
+            case Pantano -> "P";
+            case Bosque -> "B";
+            case Ciudad -> "C";
+            case Pueblo -> "P";
+            case Pradera -> "PR";
+            case MontanyaNevada -> "MN";
+            case Rio -> "R";
+            default -> "M";
+        };
+    }
+
+    @Override
+    public String toString() {
+        return getLetraPaisaje();
     }
 }
