@@ -4,15 +4,14 @@ import POO4.Ej5.Ataque;
 
 import java.util.Random;
 
-public class Enemigo implements Personaje{
+public class Enemigo implements IPersonaje {
 
     private final int VIDA_DEFAULT=100;
     private int vida=VIDA_DEFAULT;
     
     private final Random random=new Random();
 
-    @Override
-    public Ataque atacarHeroe() {
+    private Ataque atacarHeroe() {
         Random random=new Random();
         Ataque ataque = new Ataque(Ataque.tipoAtaque.Cuerpo);
         ataque.setDanyoFisico(random.nextInt(0,20));
@@ -57,9 +56,9 @@ public class Enemigo implements Personaje{
     public void hablar() {
         System.out.println("Voy a hacerme un trono con tus huesos");
     }
-
     @Override
-    public Heroe curar(Heroe heroe) {
-        return heroe;
+    public void hacerAlgoHeroe(Heroe heroe) {
+        System.out.println("Enemigo pega al heroe");
+        heroe.recibirDanyo(atacarHeroe());
     }
 }

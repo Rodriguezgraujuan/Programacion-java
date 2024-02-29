@@ -15,9 +15,6 @@ public class Paisaje {
     public tipoPaisaje getTipo() {
         return tipo;
     }
-    public void setTipo(tipoPaisaje tipo){
-        this.tipo=tipo;
-    }
 
     @Override
     public String toString() {

@@ -4,7 +4,7 @@ import POO4.Ej5.Ataque;
 
 import java.util.Random;
 
-public class Aliado implements Personaje{
+public class Aliado implements IPersonaje {
 
     private final int VIDA_DEFAULT=100;
     private int vida=VIDA_DEFAULT;
@@ -17,12 +17,6 @@ public class Aliado implements Personaje{
 
     public void setVida(int vida) {
         this.vida = vida;
-    }
-    @Override
-    public Ataque atacarHeroe() {
-        Ataque ataque = new Ataque(Ataque.tipoAtaque.Cuerpo);
-        ataque.setDanyoFisico(random.nextInt(0,20));
-        return ataque;
     }
 
     public void recibirDanyo(Ataque ataque){
@@ -56,9 +50,8 @@ public class Aliado implements Personaje{
         return botin;
     }
 
-    @Override
-    public Heroe curar(Heroe heroe) {
-        heroe.setVida(getVida()+10);
-        return heroe;
+    public void hacerAlgoHeroe(Heroe heroe) {
+        System.out.println("Aliado cura al heroe");
+        heroe.setVida(heroe.getVida()+10);
     }
 }

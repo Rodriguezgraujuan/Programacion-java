@@ -20,7 +20,7 @@ public class Heroe {
     private int posicion_y=0;
 
 
-    private ArrayList<String> inventario;
+    private ArrayList<Recompensa> inventario=new ArrayList<>();
 
 
     public int getAgilidad() {
@@ -69,6 +69,17 @@ public class Heroe {
         this.posicion_y = posicion;
     }
 
+    public void printInventario(){
+        if (!getInventario().isEmpty()) {
+            for (int i = 0; i < getInventario().size(); i++) {
+                System.out.println(i + 1);
+                System.out.print(getInventario().get(i));
+            }
+        }else {
+            System.out.println("Inventario vacio");
+        }
+    }
+
     public Ataque atacarEnemigo(){
         Random random=new Random();
         Ataque ataque=new Ataque(Ataque.tipoAtaque.Cuerpo);
@@ -84,11 +95,11 @@ public class Heroe {
         setVida(getVida()-danyoAtaque);
     }
 
-    public void anyadirObjetoInventario(String objeto){
-        inventario.add(objeto);
+    public void anyadirObjetoInventario(Recompensa item){
+        inventario.add(item);
     }
 
-    private ArrayList<String> getInventario() {
+    private ArrayList<Recompensa> getInventario() {
         return inventario;
     }
 

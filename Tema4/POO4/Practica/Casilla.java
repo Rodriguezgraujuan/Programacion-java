@@ -1,16 +1,12 @@
 package POO4.Practica;
 
-import java.util.Random;
-
-import static POO4.Practica.Paisaje.tipoPaisaje.*;
-
 public class Casilla {
 
     private int posicion_x;
     private int posicion_y;
     private Paisaje paisaje;
     private Heroe heroe;
-    private Personaje personaje;
+    private IPersonaje personaje;
     private Tesoro tesoro;
 
     public Casilla(Paisaje paisaje, int posicion_x, int posicion_y){
@@ -27,7 +23,7 @@ public class Casilla {
         this.heroe = heroe;
     }
 
-    public void setPersonaje(Personaje personaje) {
+    public void setPersonaje(IPersonaje personaje) {
         this.personaje = personaje;
     }
 
@@ -35,7 +31,7 @@ public class Casilla {
         return heroe;
     }
 
-    public Personaje getPersonaje() {
+    public IPersonaje getPersonaje() {
         return personaje;
     }
 
