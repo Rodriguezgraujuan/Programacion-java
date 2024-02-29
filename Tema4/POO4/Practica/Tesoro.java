@@ -26,9 +26,4 @@ public class Tesoro extends Recompensa{
         botin.setNivelRecompensa(random.nextInt(1,3));
         return botin;
     }
-
-    @Override
-    public String toString() {
-        return "Tipo: "+getTipoRecompensa()+ "\nNivel: " + getNivelRecompensa();
-    }
 }

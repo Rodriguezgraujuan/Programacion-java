@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Enemigo implements IPersonaje {
 
-    private final int VIDA_DEFAULT=100;
+    private final int VIDA_DEFAULT=80;
     private int vida=VIDA_DEFAULT;
     
     private final Random random=new Random();

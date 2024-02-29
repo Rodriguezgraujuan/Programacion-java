@@ -19,6 +19,14 @@ public class Heroe {
     private int posicion_x=0;
     private int posicion_y=0;
 
+    private int cascoLvl;
+    private int armaduraLvl;
+    private int botasLvl;
+    private int capaLvl;
+    private int espadaLvl;
+    private int arcoLvl;
+    private int bastonLvl;
+
 
     private ArrayList<Recompensa> inventario=new ArrayList<>();
 
@@ -69,11 +77,31 @@ public class Heroe {
         this.posicion_y = posicion;
     }
 
+    public int getArmaduraLvl() {
+        return armaduraLvl;
+    }
+
+    public int getBotasLvl() {
+        return botasLvl;
+    }
+
+    public int getCapaLvl() {
+        return capaLvl;
+    }
+
+    public int getCascoLvl() {
+        return cascoLvl;
+    }
+
+    public int getVIDA_DEFAULT() {
+        return VIDA_DEFAULT;
+    }
+
     public void printInventario(){
         if (!getInventario().isEmpty()) {
             for (int i = 0; i < getInventario().size(); i++) {
-                System.out.println(i + 1);
-                System.out.print(getInventario().get(i));
+                System.out.print(i + 1 + ". ");
+                System.out.println(getInventario().get(i));
             }
         }else {
             System.out.println("Inventario vacio");
@@ -103,12 +131,6 @@ public class Heroe {
         return inventario;
     }
 
-    public void mostrarInventario(){
-        for (int i=0;i<getInventario().size();i++){
-            System.out.println(i+". "+inventario.get(i));
-        }
-    }
-
     public void moverPersonaje(String rumbo){
         if (rumbo.equals("N")&&posicion_y==0||rumbo.equals("E")&&posicion_x==0||rumbo.equals("S")&&posicion_y==9||rumbo.equals("O")&&posicion_x==9){
             System.out.println("Fuera del mapa");
@@ -122,4 +144,106 @@ public class Heroe {
         }
     }
 
+    public void equiparEquipamiento(){
+        this.cascoLvl=equiparMejorCasco();
+        this.armaduraLvl=equiparMejorArmadura();
+        this.botasLvl=equiparMejorBotas();
+        this.capaLvl=equiparMejorCapa();
+        this.espadaLvl=equiparMejorEspada();
+        this.arcoLvl=equiparMejorArco();
+        this.bastonLvl=equiparMejorBaston();
+        setVida(getVIDA_DEFAULT()+(getCascoLvl()*10)+(getArmaduraLvl()*10)+(getBotasLvl()*10));
+    }
+
+    private int equiparMejorCasco(){
+        int nivelActualMejor=0;
+        for (int i=0; i<getInventario().size();i++){
+            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.CASCO)){
+                if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
+                    nivelActualMejor=getInventario().get(i).getNivelRecompensa();
+                }
+            }
+        }
+        return nivelActualMejor;
+    }
+
+    private int equiparMejorArmadura(){
+        int nivelActualMejor=0;
+        for (int i=0; i<getInventario().size();i++){
+            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.ARMADURA)){
+                if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
+                    nivelActualMejor=getInventario().get(i).getNivelRecompensa();
+                }
+            }
+        }
+        return nivelActualMejor;
+
+    }
+    private int equiparMejorBotas(){
+        int nivelActualMejor=0;
+        for (int i=0; i<getInventario().size();i++){
+            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.BOTAS)){
+                if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
+                    nivelActualMejor=getInventario().get(i).getNivelRecompensa();
+                }
+            }
+        }
+        return nivelActualMejor;
+
+    }
+    private int equiparMejorCapa(){
+        int nivelActualMejor=0;
+        for (int i=0; i<getInventario().size();i++){
+            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.CAPA)){
+                if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
+                    nivelActualMejor=getInventario().get(i).getNivelRecompensa();
+                }
+            }
+        }
+        return nivelActualMejor;
+
+    }
+    private int equiparMejorEspada(){
+        int nivelActualMejor=0;
+        for (int i=0; i<getInventario().size();i++){
+            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.ESPADA)){
+                if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
+                    nivelActualMejor=getInventario().get(i).getNivelRecompensa();
+                }
+            }
+        }
+        return nivelActualMejor;
+
+    }
+
+    private int equiparMejorArco(){
+        int nivelActualMejor=0;
+        for (int i=0; i<getInventario().size();i++){
+            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.ARCO)){
+                if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
+                    nivelActualMejor=getInventario().get(i).getNivelRecompensa();
+                }
+            }
+        }
+        return nivelActualMejor;
+
+    }
+
+    private int equiparMejorBaston(){
+        int nivelActualMejor=0;
+        for (int i=0; i<getInventario().size();i++){
+            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.BASTONMAGO)){
+                if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
+                    nivelActualMejor=getInventario().get(i).getNivelRecompensa();
+                }
+            }
+        }
+        return nivelActualMejor;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Vida: " + getVida()+ "\nDefensa: " + getDefensa()+ "\nCarisma: " + getCarisma()+ "\nAgilidad: " + getAgilidad();
+    }
 }

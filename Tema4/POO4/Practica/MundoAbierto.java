@@ -71,9 +71,10 @@ public class MundoAbierto {
 
     public static void menu() {
         System.out.println("""
-                1. Mover heroe
-                2. Investigar Bioma
-                3. Revisar inventario
+                1. Mover al heroe
+                2. Investigar el Bioma
+                3. Revisar el inventario
+                4. Mostrar la informacion del Heroe
                 """);
     }
 
@@ -100,14 +101,23 @@ public class MundoAbierto {
                 case 2:
                     if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje() != null) {
                         mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().hacerAlgoHeroe(heroe);
+                        mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().recibirDanyo(heroe.atacarEnemigo());
+                        if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().vida<0){
+                            System.out.println("Enemigo derrotado");
+                            heroe.anyadirObjetoInventario(mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().darObjeto());
+                        }
                     }
                     if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getTesoro() != null) {
-                        System.out.println("Tesorito pal cuerpo");
+                        System.out.println("Has encontrado un tesoro");
                         heroe.anyadirObjetoInventario(mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getTesoro().darObjeto());
                     }
                     break;
                 case 3:
                     heroe.printInventario();
+                    heroe.equiparEquipamiento();
+                    break;
+                case 4:
+                    System.out.println(heroe);
             }
         }
     }

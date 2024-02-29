@@ -3,6 +3,8 @@ package POO4.Practica;
 public class Recompensa {
     private int nivelRecompensa;
     private TipoRecompensa tipoRecompensa;
+
+    private String nombreRecompensa;
     public enum TipoRecompensa{
         ESPADA, ARMADURA, CASCO, BOTAS, CAPA, ARCO, BASTONMAGO
     }
@@ -25,4 +27,8 @@ public class Recompensa {
     public TipoRecompensa getTipoRecompensa() {
         return tipoRecompensa;
     }
+    public String toString() {
+        return "Tipo: "+getTipoRecompensa()+ "  Nivel: " + getNivelRecompensa();
+    }
+
 }
