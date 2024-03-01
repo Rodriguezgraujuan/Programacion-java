@@ -19,11 +19,11 @@ public class Tesoro extends Recompensa{
         }
     }
 
-    public Recompensa darObjeto(){
-        Random random=new Random();
-        Recompensa botin=new Recompensa();
+    public Recompensa darObjeto() {
+        Random random = new Random();
+        Recompensa botin = new Recompensa();
         seleccionObjeto(botin);
-        botin.setNivelRecompensa(random.nextInt(1,3));
+        botin.setNivelRecompensa(random.nextInt(1, 3));
         return botin;
     }
 }

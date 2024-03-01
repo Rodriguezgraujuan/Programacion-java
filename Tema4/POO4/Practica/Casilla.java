@@ -9,21 +9,23 @@ public class Casilla {
     private IPersonaje personaje;
     private Tesoro tesoro;
 
-    private boolean usada=false;
+    private boolean usada = false;
 
-    public Casilla(Paisaje paisaje, int posicion_x, int posicion_y){
-        this.paisaje=paisaje;
-        this.posicion_x=posicion_x;
-        this.posicion_y=posicion_y;
+    public Casilla(Paisaje paisaje, int posicion_x, int posicion_y) {
+        this.paisaje = paisaje;
+        this.posicion_x = posicion_x;
+        this.posicion_y = posicion_y;
     }
 
     public void setTesoro(Tesoro tesoro) {
         this.tesoro = tesoro;
     }
+
     public void setUsada(boolean usada) {
         this.usada = usada;
     }
-    public boolean getUsada(){
+
+    public boolean getUsada() {
         return usada;
     }
 
@@ -34,6 +36,7 @@ public class Casilla {
     public IPersonaje getPersonaje() {
         return personaje;
     }
+
     public Paisaje getPaisaje() {
         return paisaje;
     }
@@ -42,9 +45,9 @@ public class Casilla {
         return tesoro;
     }
 
-    private String getLetraPaisaje(){
-        Paisaje.tipoPaisaje paisajeCuadricula= getPaisaje().getTipo();
-            return switch (paisajeCuadricula) {
+    private String getLetraPaisaje() {
+        Paisaje.tipoPaisaje paisajeCuadricula = getPaisaje().getTipo();
+        return switch (paisajeCuadricula) {
             case Acantilado -> "A";
             case Savana -> "S";
             case Jungla -> "J";
@@ -60,6 +63,7 @@ public class Casilla {
             default -> "M";
         };
     }
+
     @Override
     public String toString() {
         return getLetraPaisaje();

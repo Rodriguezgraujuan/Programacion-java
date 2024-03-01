@@ -131,11 +131,11 @@ public class MundoAbierto {
                     System.out.println("Donde quieres moverte? N, O, S, E");
                     String direccion = in.nextLine();
                     direccion = direccion.toUpperCase();
-                    if (direccion.equals("N")||direccion.equals("O")||direccion.equals("S")||direccion.equals("E")) {
+                    if (direccion.equals("N") || direccion.equals("O") || direccion.equals("S") || direccion.equals("E")) {
                         printMundo(mundo);
                         heroe.moverPersonaje(direccion);
                         printCasilla(mundo, heroe);
-                    }else {
+                    } else {
                         System.out.println("Letra incorrecta");
                     }
                     break;

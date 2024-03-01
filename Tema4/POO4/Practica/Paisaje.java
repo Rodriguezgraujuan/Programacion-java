@@ -4,12 +4,12 @@ public class Paisaje {
 
     private final tipoPaisaje tipo;
 
-    public enum tipoPaisaje{
+    public enum tipoPaisaje {
         Montanya, MontanyaNevada, Rio, Pradera, Pueblo, Ciudad, Bosque, Pantano, Desierto, Glaciar, Acantilado, Savana, Jungla
     }
 
-    public Paisaje(tipoPaisaje tipo){
-        this.tipo=tipo;
+    public Paisaje(tipoPaisaje tipo) {
+        this.tipo = tipo;
     }
 
     public tipoPaisaje getTipo() {

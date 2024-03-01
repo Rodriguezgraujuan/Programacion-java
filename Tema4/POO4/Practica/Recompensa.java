@@ -5,11 +5,12 @@ public class Recompensa {
     private TipoRecompensa tipoRecompensa;
 
     private String nombreRecompensa;
-    public enum TipoRecompensa{
+
+    public enum TipoRecompensa {
         ESPADA, ARMADURA, CASCO, BOTAS, CAPA, ARCO, BASTONMAGO
     }
 
-    public Recompensa(){
+    public Recompensa() {
     }
 
     public void setNivelRecompensa(int nivelRecompensa) {
@@ -27,8 +28,9 @@ public class Recompensa {
     public TipoRecompensa getTipoRecompensa() {
         return tipoRecompensa;
     }
+
     public String toString() {
-        return "Tipo: "+getTipoRecompensa()+ "  Nivel: " + getNivelRecompensa();
+        return "Tipo: " + getTipoRecompensa() + "  Nivel: " + getNivelRecompensa();
     }
 
 }
