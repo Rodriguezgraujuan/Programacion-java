@@ -2,7 +2,7 @@ package POO4.Practica;
 
 public class Paisaje {
 
-    private tipoPaisaje tipo;
+    private final tipoPaisaje tipo;
 
     public enum tipoPaisaje{
         Montanya, MontanyaNevada, Rio, Pradera, Pueblo, Ciudad, Bosque, Pantano, Desierto, Glaciar, Acantilado, Savana, Jungla

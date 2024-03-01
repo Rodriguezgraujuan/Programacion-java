@@ -26,7 +26,7 @@ public class Aliado implements IPersonaje {
 
     @Override
     public void hablar() {
-        System.out.println("Hola compañero, toma este objeto:");
+        System.out.println("Bebe esta pocion y sanaras:");
     }
 
     private void seleccionObjeto(Recompensa botin){
@@ -51,8 +51,8 @@ public class Aliado implements IPersonaje {
     }
 
     public String hacerAlgoHeroe(Heroe heroe) {
-        System.out.println("Aliado cura al heroe");
-        heroe.setVida(heroe.getVida()+10);
+        hablar();
+        heroe.setVida(heroe.getVida()+heroe.getCarisma()+10);
         return "Aliado";
     }
 }

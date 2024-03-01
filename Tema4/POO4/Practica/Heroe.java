@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class Heroe {
 
+    private final Random random = new Random();
+
 
     private final int VIDA_DEFAULT=100;
     private final int DEFENSA_DEFAULT=5;
@@ -30,7 +32,10 @@ public class Heroe {
     private int bastonLvl;
 
 
-    private ArrayList<Recompensa> inventario=new ArrayList<>();
+    private int enemigosDerrotados;
+
+
+    private final ArrayList<Recompensa> inventario=new ArrayList<>();
 
 
     public int getAgilidad() {
@@ -58,6 +63,14 @@ public class Heroe {
 
     public int getMAX_VIDA() {
         return MAX_VIDA;
+    }
+
+    public int getEnemigosDerrotados() {
+        return enemigosDerrotados;
+    }
+
+    public void setEnemigosDerrotados(int enemigosDerrotados) {
+        this.enemigosDerrotados = enemigosDerrotados;
     }
 
     public void setMAX_VIDA(int MAX_VIDA) {
@@ -109,6 +122,18 @@ public class Heroe {
         return VIDA_DEFAULT;
     }
 
+    public int getArcoLvl() {
+        return arcoLvl;
+    }
+
+    public int getEspadaLvl() {
+        return espadaLvl;
+    }
+
+    public int getBastonLvl() {
+        return bastonLvl;
+    }
+
     public void printInventario(){
         if (!getInventario().isEmpty()) {
             for (int i = 0; i < getInventario().size(); i++) {
@@ -120,20 +145,38 @@ public class Heroe {
         }
     }
 
-    public Ataque atacarEnemigo(){
+    public Ataque atacarEnemigoCuerpo(char arma){
         Random random=new Random();
         Ataque ataque=new Ataque(Ataque.tipoAtaque.Cuerpo);
-        ataque.setDanyoFisico(random.nextInt(50,100));
+        if (arma=='E') {
+            ataque.setDanyoFisico(random.nextInt(70,110));
+        }else {
+            ataque.setDanyoFisico(random.nextInt(50, 100));
+        }
+        return ataque;
+    }
+
+    public Ataque atacarEnemigoDistancia(char arma){
+        Random random=new Random();
+        Ataque ataque=new Ataque(Ataque.tipoAtaque.Distancia);
+        if (arma=='A') {
+            ataque.setDanyoFisico(random.nextInt(60, 100));
+        }else {
+            ataque.setDanyoFisico(random.nextInt(1,15));
+            ataque.setDanyoMagico(random.nextInt(80, 90));
+        }
         return ataque;
     }
 
     public void recibirDanyo(Ataque ataque){
-        int danyoAtaque=ataque.getDanyoFisico()+ ataque.getDanyoMagico();
-        danyoAtaque-=getDefensa();
-        if (ataque.getTipo().equals(Ataque.tipoAtaque.Distancia)){
-            danyoAtaque*=2;
+        if (random.nextInt(0,100)>getAgilidad()) {
+            int danyoAtaque = ataque.getDanyoFisico() + ataque.getDanyoMagico();
+            danyoAtaque -= getDefensa();
+            if (ataque.getTipo().equals(Ataque.tipoAtaque.Distancia)) {
+                danyoAtaque *= 2;
+            }
+            setVida(getVida() - danyoAtaque);
         }
-        setVida(getVida()-danyoAtaque);
     }
 
     public void anyadirObjetoInventario(Recompensa item){
@@ -145,14 +188,14 @@ public class Heroe {
     }
 
     public void moverPersonaje(String rumbo){
-        if (rumbo.equals("N")&&posicion_y==0||rumbo.equals("E")&&posicion_x==0||rumbo.equals("S")&&posicion_y==9||rumbo.equals("O")&&posicion_x==9){
+        if (rumbo.equals("N")&&getPosicion_y()==0||rumbo.equals("E")&&getPosicion_x()==0||rumbo.equals("S")&&getPosicion_y()==9||rumbo.equals("O")&&getPosicion_x()==9){
             System.out.println("Fuera del mapa");
         }else {
             switch (rumbo){
-                case "N"->this.posicion_y-=1;
-                case "E"->this.posicion_x-=1;
-                case "S"->this.posicion_y+=1;
-                case "O"->this.posicion_x+=1;
+                case "N"->setPosicion_y(getPosicion_y()-1);
+                case "E"->setPosicion_x(getPosicion_x()-1);
+                case "S"->this.setPosicion_y(getPosicion_y()+1);
+                case "O"->this.setPosicion_x(getPosicion_x()+1);
             }
         }
     }
@@ -166,13 +209,15 @@ public class Heroe {
         this.arcoLvl=equiparMejorArco();
         this.bastonLvl=equiparMejorBaston();
         setVida(getVIDA_DEFAULT()+(getCascoLvl()*10)+(getArmaduraLvl()*10)+(getBotasLvl()*10));
+        setDefensa(getDefensa()+(getCascoLvl()*3)+(getArmaduraLvl()*3)+(getBotasLvl()*3));
         setMAX_VIDA(getVIDA_DEFAULT()+(getCascoLvl()*10)+(getArmaduraLvl()*10)+(getBotasLvl()*10));
+        setAgilidad(getAgilidad()+(getCapaLvl()*10));
     }
 
     private int equiparMejorCasco(){
         int nivelActualMejor=0;
         for (int i=0; i<getInventario().size();i++){
-            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.CASCO)){
+            if (getInventario().get(i).getTipoRecompensa()==Recompensa.TipoRecompensa.CASCO){
                 if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
                     nivelActualMejor=getInventario().get(i).getNivelRecompensa();
                 }

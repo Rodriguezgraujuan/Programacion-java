@@ -78,13 +78,50 @@ public class MundoAbierto {
                 """);
     }
 
+    public static void posiblesFinales() {
+        System.out.println("""
+                El juego tiene 2 finales.
+                1. Ganamos derrotando a un total de 5 enemigos alrededor de todo el mapa.
+                2. Somos vencidos por los enemigos.
+                Escribe cualquier letra para comenzar:""");
+    }
+
+    public static void finalJuego(Heroe heroe) {
+        if (heroe.getVida() < 0) {
+            System.out.println("Has sido derrotado");
+        } else {
+            System.out.println("Has ganado y cumplido tu mision.");
+        }
+    }
+
+    public static boolean ataquePosible(Heroe heroe) {
+        boolean condition = false;
+        if (heroe.getEspadaLvl() > 0 && heroe.getArcoLvl() > 0 || heroe.getEspadaLvl() > 0 && heroe.getBastonLvl() > 0 || heroe.getArcoLvl() > 0 && heroe.getBastonLvl() > 0) {
+            condition = true;
+            System.out.println("Elige arma: ");
+            if (heroe.getEspadaLvl() > 0) {
+                System.out.println("E-Espada");
+            }
+            if (heroe.getArcoLvl() > 0) {
+                System.out.println("A-Arco");
+            }
+            if (heroe.getBastonLvl() > 0) {
+                System.out.println("B-Baston");
+            }
+        }
+        return condition;
+    }
+
     public static void main(String[] args) {
         Casilla[][] mundo = new Casilla[10][10];
-        crearMundo(mundo);
-        printMundo(mundo);
         Heroe heroe = new Heroe();
         Scanner in = new Scanner(System.in);
-        while (heroe.getVida() > 0) {
+
+        posiblesFinales();
+        in.next();
+        crearMundo(mundo);
+        printMundo(mundo);
+        while (heroe.getVida() > 0 && heroe.getEnemigosDerrotados() < 5) {
             System.out.println();
             menu();
             int option = in.nextInt();
@@ -94,19 +131,38 @@ public class MundoAbierto {
                     System.out.println("Donde quieres moverte? N, O, S, E");
                     String direccion = in.nextLine();
                     direccion = direccion.toUpperCase();
-                    heroe.moverPersonaje(direccion);
-                    printCasilla(mundo, heroe);
-                    printMundo(mundo);
+                    if (direccion.equals("N")||direccion.equals("O")||direccion.equals("S")||direccion.equals("E")) {
+                        printMundo(mundo);
+                        heroe.moverPersonaje(direccion);
+                        printCasilla(mundo, heroe);
+                    }else {
+                        System.out.println("Letra incorrecta");
+                    }
                     break;
                 case 2:
                     if (!mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getUsada()) {
                         if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje() != null) {
                             if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().hacerAlgoHeroe(heroe).equals("Enemigo")) {
                                 while (heroe.getVida() > 0 && mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().getVida() > 0) {
-                                    mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().recibirDanyo(heroe.atacarEnemigo());
+                                    if (ataquePosible(heroe)) {
+                                        in.nextLine();
+                                        char armaAtaque = in.nextLine().charAt(0);
+                                        switch (armaAtaque) {
+                                            case 'A':
+                                                mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().recibirDanyo(heroe.atacarEnemigoDistancia(armaAtaque));
+                                            case 'B':
+                                                mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().recibirDanyo(heroe.atacarEnemigoDistancia(armaAtaque));
+                                            default:
+                                                mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().recibirDanyo(heroe.atacarEnemigoCuerpo(armaAtaque));
+                                        }
+                                    } else {
+                                        mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().recibirDanyo(heroe.atacarEnemigoCuerpo('N'));
+                                    }
                                     if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().getVida() < 0) {
                                         System.out.println("Enemigo derrotado");
                                         heroe.anyadirObjetoInventario(mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().darObjeto());
+                                        heroe.setCarisma(heroe.getCarisma() + 2);
+                                        heroe.setEnemigosDerrotados(heroe.getEnemigosDerrotados() + 1);
                                     } else {
                                         mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().hacerAlgoHeroe(heroe);
                                     }
@@ -119,7 +175,7 @@ public class MundoAbierto {
                             heroe.anyadirObjetoInventario(mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getTesoro().darObjeto());
                         }
                         mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].setUsada(true);
-                    }else {
+                    } else {
                         System.out.println("Ya has investigado el lugar");
                     }
                     break;
@@ -129,7 +185,11 @@ public class MundoAbierto {
                     break;
                 case 4:
                     System.out.println(heroe);
+                    break;
+                default:
+                    System.out.println("Numero incorrecto");
             }
         }
+        finalJuego(heroe);
     }
 }

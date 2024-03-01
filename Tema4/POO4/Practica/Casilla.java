@@ -2,8 +2,8 @@ package POO4.Practica;
 
 public class Casilla {
 
-    private int posicion_x;
-    private int posicion_y;
+    private final int posicion_x;
+    private final int posicion_y;
     private Paisaje paisaje;
     private Heroe heroe;
     private IPersonaje personaje;
@@ -20,11 +20,6 @@ public class Casilla {
     public void setTesoro(Tesoro tesoro) {
         this.tesoro = tesoro;
     }
-
-    public void setHeroe(Heroe heroe) {
-        this.heroe = heroe;
-    }
-
     public void setUsada(boolean usada) {
         this.usada = usada;
     }
@@ -36,21 +31,9 @@ public class Casilla {
         this.personaje = personaje;
     }
 
-    public Heroe getHeroe() {
-        return heroe;
-    }
-
     public IPersonaje getPersonaje() {
         return personaje;
     }
-
-    public int getPosicion_x() {
-        return posicion_x;
-    }
-    public int getPosicion_y() {
-        return posicion_y;
-    }
-
     public Paisaje getPaisaje() {
         return paisaje;
     }
