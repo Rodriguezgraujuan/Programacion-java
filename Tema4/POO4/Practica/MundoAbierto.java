@@ -8,6 +8,55 @@ public class MundoAbierto {
 
     public static Random random = new Random();
 
+    public static void asciiArtMedalla() {
+        System.out.println("""
+                 _______________
+                |@@@@|     |####|
+                |@@@@|     |####|
+                |@@@@|     |####|
+                \\@@@@|     |####/
+                 \\@@@|     |###/
+                  `@@|_____|##'
+                       (O)
+                    .-'''''-.
+                  .'  * * *  `.
+                 :  *       *  :
+                : ~           ~ :
+                : ~           ~ :
+                 :  *       *  :
+                  `.  * * *  .'
+                    `-.....-'""");
+    }
+
+    public static void asciiArtDerrota() {
+        System.out.println("""
+
+                                                 _____  _____
+                                                <     `/     |
+                                                 >          (
+                                                |   _     _  |
+                                                |  |_) | |_) |
+                                                |  | \\ | |   |
+                                                |            |
+                                 ______.______%_|            |__________  _____
+                               _/                                       \\|     |
+                              |                      Heroe                     <
+                              |_____.-._________              ____/|___________|
+                                                |            |
+                                                |        /_  |
+                                                |            |
+                                                |            |
+                                                |   _        <
+                                                |__/         |
+                                                 / `--.      |
+                                               %|            |%
+                                           |/.%%|          -< @%%%
+                                           `\\%`@|     v      |@@%@%%
+                                         .%%%@@@|%    |    % @@@%%@%%%%
+                                    _.%%%%%%@@@@@@%%_/%\\_%@@%%@@@@@@@%%%%%%\
+                """);
+    }
+
     public static Paisaje paisajeRandom() {
         Paisaje paisaje;
         int randomNum = random.nextInt(0, 14);
@@ -89,8 +138,10 @@ public class MundoAbierto {
     public static void finalJuego(Heroe heroe) {
         if (heroe.getVida() < 0) {
             System.out.println("Has sido derrotado");
+            asciiArtDerrota();
         } else {
             System.out.println("Has ganado y cumplido tu mision.");
+            asciiArtMedalla();
         }
     }
 
