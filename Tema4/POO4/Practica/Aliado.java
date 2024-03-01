@@ -50,8 +50,9 @@ public class Aliado implements IPersonaje {
         return botin;
     }
 
-    public void hacerAlgoHeroe(Heroe heroe) {
+    public String hacerAlgoHeroe(Heroe heroe) {
         System.out.println("Aliado cura al heroe");
         heroe.setVida(heroe.getVida()+10);
+        return "Aliado";
     }
 }

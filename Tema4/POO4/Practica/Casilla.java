@@ -9,6 +9,8 @@ public class Casilla {
     private IPersonaje personaje;
     private Tesoro tesoro;
 
+    private boolean usada=false;
+
     public Casilla(Paisaje paisaje, int posicion_x, int posicion_y){
         this.paisaje=paisaje;
         this.posicion_x=posicion_x;
@@ -21,6 +23,13 @@ public class Casilla {
 
     public void setHeroe(Heroe heroe) {
         this.heroe = heroe;
+    }
+
+    public void setUsada(boolean usada) {
+        this.usada = usada;
+    }
+    public boolean getUsada(){
+        return usada;
     }
 
     public void setPersonaje(IPersonaje personaje) {

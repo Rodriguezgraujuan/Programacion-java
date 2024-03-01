@@ -93,23 +93,34 @@ public class MundoAbierto {
                     in.nextLine();
                     System.out.println("Donde quieres moverte? N, O, S, E");
                     String direccion = in.nextLine();
-                    direccion=direccion.toUpperCase();
+                    direccion = direccion.toUpperCase();
                     heroe.moverPersonaje(direccion);
                     printCasilla(mundo, heroe);
                     printMundo(mundo);
                     break;
                 case 2:
-                    if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje() != null) {
-                        mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().hacerAlgoHeroe(heroe);
-                        mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().recibirDanyo(heroe.atacarEnemigo());
-                        if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().vida<0){
-                            System.out.println("Enemigo derrotado");
-                            heroe.anyadirObjetoInventario(mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().darObjeto());
+                    if (!mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getUsada()) {
+                        if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje() != null) {
+                            if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().hacerAlgoHeroe(heroe).equals("Enemigo")) {
+                                while (heroe.getVida() > 0 && mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().getVida() > 0) {
+                                    mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().recibirDanyo(heroe.atacarEnemigo());
+                                    if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().getVida() < 0) {
+                                        System.out.println("Enemigo derrotado");
+                                        heroe.anyadirObjetoInventario(mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().darObjeto());
+                                    } else {
+                                        mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getPersonaje().hacerAlgoHeroe(heroe);
+                                    }
+                                }
+                            }
+
                         }
-                    }
-                    if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getTesoro() != null) {
-                        System.out.println("Has encontrado un tesoro");
-                        heroe.anyadirObjetoInventario(mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getTesoro().darObjeto());
+                        if (mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getTesoro() != null) {
+                            System.out.println("Has encontrado un tesoro");
+                            heroe.anyadirObjetoInventario(mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].getTesoro().darObjeto());
+                        }
+                        mundo[heroe.getPosicion_y()][heroe.getPosicion_x()].setUsada(true);
+                    }else {
+                        System.out.println("Ya has investigado el lugar");
                     }
                     break;
                 case 3:

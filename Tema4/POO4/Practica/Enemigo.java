@@ -57,8 +57,8 @@ public class Enemigo implements IPersonaje {
         System.out.println("Voy a hacerme un trono con tus huesos");
     }
     @Override
-    public void hacerAlgoHeroe(Heroe heroe) {
-        System.out.println("Enemigo pega al heroe");
+    public String hacerAlgoHeroe(Heroe heroe) {
         heroe.recibirDanyo(atacarHeroe());
+        return "Enemigo";
     }
 }

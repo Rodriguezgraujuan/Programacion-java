@@ -12,6 +12,8 @@ public class Heroe {
     private final int DEFENSA_DEFAULT=5;
     private final int AGILIDAD_DEFAULT=10;
 
+    private int MAX_VIDA=100;
+
     private int vida = VIDA_DEFAULT;
     private int defensa=DEFENSA_DEFAULT;
     private int carisma;
@@ -54,6 +56,14 @@ public class Heroe {
         return posicion_y;
     }
 
+    public int getMAX_VIDA() {
+        return MAX_VIDA;
+    }
+
+    public void setMAX_VIDA(int MAX_VIDA) {
+        this.MAX_VIDA = MAX_VIDA;
+    }
+
     public void setCarisma(int carisma) {
         this.carisma = carisma;
     }
@@ -67,7 +77,9 @@ public class Heroe {
     }
 
     public void setVida(int vida) {
-        this.vida = vida;
+        if (vida>getMAX_VIDA()) {
+            this.vida = vida;
+        }
     }
 
     public void setPosicion_x(int posicion) {
@@ -117,6 +129,7 @@ public class Heroe {
 
     public void recibirDanyo(Ataque ataque){
         int danyoAtaque=ataque.getDanyoFisico()+ ataque.getDanyoMagico();
+        danyoAtaque-=getDefensa();
         if (ataque.getTipo().equals(Ataque.tipoAtaque.Distancia)){
             danyoAtaque*=2;
         }
@@ -153,6 +166,7 @@ public class Heroe {
         this.arcoLvl=equiparMejorArco();
         this.bastonLvl=equiparMejorBaston();
         setVida(getVIDA_DEFAULT()+(getCascoLvl()*10)+(getArmaduraLvl()*10)+(getBotasLvl()*10));
+        setMAX_VIDA(getVIDA_DEFAULT()+(getCascoLvl()*10)+(getArmaduraLvl()*10)+(getBotasLvl()*10));
     }
 
     private int equiparMejorCasco(){
@@ -170,7 +184,7 @@ public class Heroe {
     private int equiparMejorArmadura(){
         int nivelActualMejor=0;
         for (int i=0; i<getInventario().size();i++){
-            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.ARMADURA)){
+            if (getInventario().get(i).getTipoRecompensa()==Recompensa.TipoRecompensa.ARMADURA){
                 if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
                     nivelActualMejor=getInventario().get(i).getNivelRecompensa();
                 }
@@ -182,7 +196,7 @@ public class Heroe {
     private int equiparMejorBotas(){
         int nivelActualMejor=0;
         for (int i=0; i<getInventario().size();i++){
-            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.BOTAS)){
+            if (getInventario().get(i).getTipoRecompensa()==Recompensa.TipoRecompensa.BOTAS){
                 if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
                     nivelActualMejor=getInventario().get(i).getNivelRecompensa();
                 }
@@ -194,7 +208,7 @@ public class Heroe {
     private int equiparMejorCapa(){
         int nivelActualMejor=0;
         for (int i=0; i<getInventario().size();i++){
-            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.CAPA)){
+            if (getInventario().get(i).getTipoRecompensa()==Recompensa.TipoRecompensa.CAPA){
                 if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
                     nivelActualMejor=getInventario().get(i).getNivelRecompensa();
                 }
@@ -206,7 +220,7 @@ public class Heroe {
     private int equiparMejorEspada(){
         int nivelActualMejor=0;
         for (int i=0; i<getInventario().size();i++){
-            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.ESPADA)){
+            if (getInventario().get(i).getTipoRecompensa()==Recompensa.TipoRecompensa.ESPADA){
                 if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
                     nivelActualMejor=getInventario().get(i).getNivelRecompensa();
                 }
@@ -219,7 +233,7 @@ public class Heroe {
     private int equiparMejorArco(){
         int nivelActualMejor=0;
         for (int i=0; i<getInventario().size();i++){
-            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.ARCO)){
+            if (getInventario().get(i).getTipoRecompensa()==Recompensa.TipoRecompensa.ARCO){
                 if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
                     nivelActualMejor=getInventario().get(i).getNivelRecompensa();
                 }
@@ -232,7 +246,7 @@ public class Heroe {
     private int equiparMejorBaston(){
         int nivelActualMejor=0;
         for (int i=0; i<getInventario().size();i++){
-            if (getInventario().get(i).equals(Recompensa.TipoRecompensa.BASTONMAGO)){
+            if (getInventario().get(i).getTipoRecompensa()==Recompensa.TipoRecompensa.BASTONMAGO){
                 if (getInventario().get(i).getNivelRecompensa()>nivelActualMejor){
                     nivelActualMejor=getInventario().get(i).getNivelRecompensa();
                 }
