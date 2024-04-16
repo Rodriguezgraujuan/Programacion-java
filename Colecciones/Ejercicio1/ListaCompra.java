@@ -48,7 +48,6 @@ public class ListaCompra {
                 listaCompra.add(producto);
             }
         }
-        System.out.println(listaCompra);
 
         Set<String> carroCompra= new HashSet<>();
         boolean condition = true;
