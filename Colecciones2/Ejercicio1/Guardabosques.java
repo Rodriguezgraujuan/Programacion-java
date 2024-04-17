@@ -79,7 +79,8 @@ public class Guardabosques {
     }
 
     public static void mostrarManadas(List<Avistamiento> avistamientos){
-        List<Manada> manadas = avistamientos.stream().filter(Avistamiento->Avistamiento instanceof Manada).map(Avistamiento -> (Manada) Avistamiento).collect(Collectors.toList());
+        List<Manada> manadas = avistamientos.stream().filter(p->p instanceof Manada).map(cualquiercosa -> (Manada) cualquiercosa).collect(Collectors.toList());
+        //List<Avistamiento> m = avistamientos.stream().filter(p->p instanceof Manada).toList();
         System.out.println(manadas);
     }
 
