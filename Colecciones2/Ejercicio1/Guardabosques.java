@@ -1,10 +1,9 @@
 package Ejercicio1;
 
-import POO3EJ2.Animal;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Guardabosques {
 
@@ -80,20 +79,18 @@ public class Guardabosques {
     }
 
     public static void mostrarManadas(List<Avistamiento> avistamientos){
-        List<Manada> manadas = null;
-        for (Avistamiento avistamiento : avistamientos){
-            if (avistamientos instanceof Manada){
-                manadas.add((Manada) avistamiento);
-            }
-        }
+        List<Manada> manadas = avistamientos.stream().filter(Avistamiento->Avistamiento instanceof Manada).map(Avistamiento -> (Manada) Avistamiento).collect(Collectors.toList());
+        System.out.println(manadas);
     }
 
     public static void mostrarSerpiente(List<Avistamiento> avistamientos){
-
+        List<Serpientes> Serpientes = avistamientos.stream().filter(Avistamiento->Avistamiento instanceof Serpientes).map(Avistamiento -> (Serpientes) Avistamiento).collect(Collectors.toList());
+        System.out.println(Serpientes);
     }
 
-    public static void mostrarPájaro(List<Avistamiento> avistamientos){
-
+    public static void mostrarPajaro(List<Avistamiento> avistamientos){
+        List<Pajaros> Pajaros = avistamientos.stream().filter(Avistamiento->Avistamiento instanceof Pajaros).map(Avistamiento -> (Pajaros) Avistamiento).collect(Collectors.toList());
+        System.out.println(Pajaros);
     }
 
     public static void main(String[] args) {
@@ -114,13 +111,13 @@ public class Guardabosques {
                     mostrarAvistamientosEntre20y8(avistamientos);
                     break;
                 case 4:
-
+                    mostrarManadas(avistamientos);
                     break;
                 case 5:
-
+                    mostrarSerpiente(avistamientos);
                     break;
                 case 6:
-
+                    mostrarPajaro(avistamientos);
                     break;
                 case 7:
                     condition=false;
