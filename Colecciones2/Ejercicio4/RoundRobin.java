@@ -22,7 +22,7 @@ public class RoundRobin {
         while (!(listasProcesos.isEmpty())){
             listasProcesos.forEach(proceso->proceso.setSegundo(proceso.getSegundo()-0.2));
             try {
-                Thread.sleep(0200);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
