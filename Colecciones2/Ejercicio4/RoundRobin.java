@@ -12,6 +12,14 @@ public class RoundRobin {
         numeros.add(numeros.size());
         return new Proceso(name, random.nextInt(1, 4));
     }
+
+    public static void moverProceso(List<Proceso> listaProcesos){
+        Proceso primerProceso = listaProcesos.get(0);
+        listaProcesos.remove(0);
+        listaProcesos.add(primerProceso);
+        System.out.println("Se ha movido el proceso: " + listaProcesos.get(0).getName() + " al final. ");
+    }
+
     public static void main(String[] args) {
         List<Proceso> listasProcesos = new ArrayList<>();
         List<Integer> numeros = new ArrayList<>();
@@ -20,7 +28,8 @@ public class RoundRobin {
         int vecesPasadas=0;
         listasProcesos.add(new Proceso("p0", random.nextInt(3,4)));
         while (!(listasProcesos.isEmpty())){
-            listasProcesos.forEach(proceso->proceso.setSegundo(proceso.getSegundo()-0.2));
+            listasProcesos.get(0).setSegundo(listasProcesos.get(0).getSegundo()-0.2);
+            moverProceso(listasProcesos);
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
@@ -32,7 +41,9 @@ public class RoundRobin {
                 listasProcesos.add(generarProcesoAleatorio(numeros));
             }
             listasProcesos.removeIf(proceso -> proceso.getSegundo() < 0.2);
-            listasProcesos.forEach(System.out::println);
+            if (!(listasProcesos.isEmpty())) {
+                System.out.println(listasProcesos.get(0));
+            }
         }
     }
 }
