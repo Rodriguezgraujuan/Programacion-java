@@ -15,7 +15,7 @@ public class OperacionesPath {
                 1. Seleccionar archivo para mover a ruta niats.
                 2. Mostrar directorio niats.
                 3. Salir.
-                """);
+                  """);
     }
 
     public static void mostrarDirectorio() throws IOException {
@@ -25,6 +25,7 @@ public class OperacionesPath {
     public static void aplanarDirectorio(Path directorio) throws IOException {
         if (Files.exists(directorio)&&Files.isDirectory(directorio)){
             try (DirectoryStream<Path> directorioTree = Files.newDirectoryStream(directorio)) {
+                Path directorioBase= directorio;
                 for (Path file : directorioTree) {
                     if (Files.exists(file.toAbsolutePath().normalize())&&Files.isDirectory(file.toAbsolutePath().normalize())){
                         if (Files.list(file.toAbsolutePath().normalize()).findAny().isEmpty()) {
@@ -33,7 +34,10 @@ public class OperacionesPath {
                             aplanarDirectorio(file.toAbsolutePath().normalize());
                         }
                     } else if (Files.exists(file.toAbsolutePath().normalize())&&Files.isRegularFile(file.toAbsolutePath().normalize())){
-                        Files.move(file.toAbsolutePath().normalize(), directorio, StandardCopyOption.REPLACE_EXISTING);
+                        System.out.println(file.getFileName());
+                        System.out.println(directorio.getFileName());
+                        Path dest = Path.of(directorio.toAbsolutePath().normalize().toString() + file.getFileName());
+                        Files.move(file.toAbsolutePath().normalize(), dest.toAbsolutePath().normalize(), StandardCopyOption.REPLACE_EXISTING);
                     }
                 }
             } catch (IOException e) {
