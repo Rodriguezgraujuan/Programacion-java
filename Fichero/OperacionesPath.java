@@ -4,6 +4,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.Scanner;
 
 public class OperacionesPath {
@@ -22,27 +23,45 @@ public class OperacionesPath {
         Files.list(Path.of("/tmp/niats")).forEach(System.out::println);
     }
 
+    public static boolean hayCarpetas(Path directorio) throws IOException {
+        boolean condition=true;
+        try (DirectoryStream<Path> directorioTree = Files.newDirectoryStream(directorio)) {
+            for (Path file : directorioTree) {
+            if (Files.isDirectory(file.toAbsolutePath().normalize())){
+                condition=false;
+                break;
+            }
+        }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            return condition;
+    }
+
+
     public static void aplanarDirectorio(Path directorio) throws IOException {
         if (Files.exists(directorio)&&Files.isDirectory(directorio)){
-            try (DirectoryStream<Path> directorioTree = Files.newDirectoryStream(directorio)) {
-                Path directorioBase= directorio;
-                for (Path file : directorioTree) {
-                    if (Files.exists(file.toAbsolutePath().normalize())&&Files.isDirectory(file.toAbsolutePath().normalize())){
-                        if (Files.list(file.toAbsolutePath().normalize()).findAny().isEmpty()) {
-                            Files.delete(file.toAbsolutePath().normalize());
-                        }else {
-                            aplanarDirectorio(file.toAbsolutePath().normalize());
+                try (DirectoryStream<Path> directorioTree = Files.newDirectoryStream(directorio)) {
+                    for (Path file : directorioTree) {
+                        if (Files.exists(file.toAbsolutePath().normalize()) && Files.isDirectory(file.toAbsolutePath().normalize())) {
+                            List<Path> files = Files.list(file.toAbsolutePath().normalize()).toList();
+                            files.forEach(p -> System.out.println(p.getFileName()));
+                            if (files.stream().findAny().isEmpty()){
+                                Files.delete(file.toAbsolutePath().normalize());
+                            } else {
+                                aplanarDirectorio(file.toAbsolutePath().normalize());
+                            }
+                        } else if (Files.exists(file.toAbsolutePath().normalize()) && Files.isRegularFile(file.toAbsolutePath().normalize())) {
+                            System.out.println(file.getFileName());
+                            System.out.println(directorio.getFileName());
+                            Path dest = Path.of(directorio.toAbsolutePath().normalize().toString() + file.getFileName());
+                            Files.move(file.toAbsolutePath().normalize(), dest.toAbsolutePath().normalize(), StandardCopyOption.REPLACE_EXISTING);
                         }
-                    } else if (Files.exists(file.toAbsolutePath().normalize())&&Files.isRegularFile(file.toAbsolutePath().normalize())){
-                        System.out.println(file.getFileName());
-                        System.out.println(directorio.getFileName());
-                        Path dest = Path.of(directorio.toAbsolutePath().normalize().toString() + file.getFileName());
-                        Files.move(file.toAbsolutePath().normalize(), dest.toAbsolutePath().normalize(), StandardCopyOption.REPLACE_EXISTING);
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         }else {
             System.out.println("Ruta incorrecta");
         }
@@ -56,8 +75,8 @@ public class OperacionesPath {
             switch (option){
                 case 1:
                     in.nextLine();
-                    String directorio= in.nextLine();
-                    aplanarDirectorio(Path.of(directorio));
+                    //String directorio= in.nextLine();
+                    aplanarDirectorio(Path.of("/tmp/niats"));
                     break;
                 case 2:
                     mostrarDirectorio();
