@@ -1,6 +1,5 @@
 package Funkos1;
 
-import java.rmi.server.UID;
 import java.util.Date;
 
 public class Funko {
@@ -8,10 +7,10 @@ public class Funko {
     private String cod;
     private String nombre;
     private String modelo;
-    private String precio;
-    private String fecha;
+    private Double precio;
+    private Date fecha;
 
-    public Funko(String cod, String nombre, String modelo, String precio, String fecha){
+    public Funko(String cod, String nombre, String modelo, Double precio, Date fecha){
         this.cod=cod;
         this.nombre=nombre;
         this.modelo=modelo;
@@ -23,7 +22,7 @@ public class Funko {
         return cod;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
@@ -35,7 +34,18 @@ public class Funko {
         return nombre;
     }
 
-    public String getPrecio() {
+    public Double getPrecio() {
         return precio;
+    }
+
+    @Override
+    public String toString() {
+        return "Funko{" +
+                "cod='" + cod + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", precio='" + precio + '\'' +
+                ", fecha='" + fecha + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,8 @@
 package Funkos1;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FunkosRegistro {
@@ -20,14 +22,32 @@ public class FunkosRegistro {
                 """);
     }
 
-    public static void crearFunko(TratamientoCSV csv1){
+    public static void crearFunko(TratamientoCSV csv1) throws ParseException {
         in.nextLine();
         System.out.println("Introduce la clave, nombre, modelo, precio y fecha de lanzamiento");
-        Funko funko = new Funko(in.nextLine(),in.nextLine(),in.nextLine(),in.nextLine(),in.nextLine());
-        csv1.anadirFunko(funko);
+        String clave = in.nextLine();
+        String nombre = in.nextLine();
+        String modelo = in.nextLine();
+        Double precio = in.nextDouble();
+        in.nextLine();
+
+        String fecha = in.nextLine();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        fechaDate=sdf.parse(fecha);
+
+        Funko funko = new Funko(clave,nombre,modelo,precio,fechaDate);
+        csv1.setFunkos(funko);
     }
 
-    public static void main(String[] args) {
+    public static void eliminarFunko(TratamientoCSV csv1){
+        in.nextLine();
+        System.out.println("Introduce la clave");
+        String cod = in.nextLine();
+        csv1.eliminarFunko(cod);
+    }
+
+    public static void main(String[] args) throws ParseException {
         TratamientoCSV csv1=new TratamientoCSV();
         csv1.contenidoDelFichero();
 
@@ -40,14 +60,23 @@ public class FunkosRegistro {
                     crearFunko(csv1);
                     break;
                 case 2:
+                    eliminarFunko(csv1);
+                    break;
                 case 3:
                     csv1.mostrar();
                     break;
                 case 4:
+                    csv1.mostrarMasCaro();
+                    break;
                 case 5:
+                    csv1.mostrarMedia();
+                    break;
                 case 6:
+                    csv1.mostrarModelos();
+                    break;
                 case 7:
-
+                    csv1.mostrar2023();
+                    break;
                 case 8:
                     condition=false;
                     break;
