@@ -1,9 +1,12 @@
 package Funkos1;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.FileAttribute;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Stream;
 
 public class TratamientoCSV {
@@ -106,5 +110,27 @@ public class TratamientoCSV {
                 System.out.println(funko);
             }
         }
+    }
+
+    public void upload() throws IOException {
+        Path origen = Path.of("/home/juarodgra2/IdeaProjects/Programacion-java/Fichero/Funkos1/funkos.csv");
+        Path destino = Path.of("/home/juarodgra2/IdeaProjects/Programacion-java/Fichero/Funkos1/funkosCopy.csv");
+        Files.createFile(destino);
+        try (BufferedWriter bw = Files.newBufferedWriter(destino)){
+            bw.write(String.valueOf(encabezado));
+            bw.newLine();
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            for (Funko funko : funkos){
+                formato.applyPattern("yyyy-MM-dd");
+                String fechaTraducida= formato.format(funko.getFecha());
+                bw.write(funko.getCod()+", "+funko.getNombre()+", "+ funko.getModelo()+", "+funko.getPrecio()+", "+ fechaTraducida);
+                System.out.println(fechaTraducida);
+                bw.newLine();
+            }
+        }catch (Exception e){
+            e.printStackTrace(System.out);
+        }
+        Files.deleteIfExists(origen);
+        Files.move(destino, origen, StandardCopyOption.REPLACE_EXISTING);
     }
 }

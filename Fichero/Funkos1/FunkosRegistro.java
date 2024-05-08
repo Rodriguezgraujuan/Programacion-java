@@ -1,6 +1,7 @@
 package Funkos1;
 
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -47,12 +48,12 @@ public class FunkosRegistro {
         csv1.eliminarFunko(cod);
     }
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, IOException {
         TratamientoCSV csv1=new TratamientoCSV();
-        csv1.contenidoDelFichero();
 
         boolean condition=true;
         while (condition){
+            csv1.contenidoDelFichero();
             menu();
             int option = in.nextInt();
             switch (option){
@@ -83,6 +84,7 @@ public class FunkosRegistro {
                 default:
                     System.out.println("Valor incorrecto");
             }
+            csv1.upload();
         }
     }
 }

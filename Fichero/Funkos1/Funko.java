@@ -40,12 +40,11 @@ public class Funko {
 
     @Override
     public String toString() {
-        return "Funko{" +
+        return
                 "cod='" + cod + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", precio='" + precio + '\'' +
-                ", fecha='" + fecha + '\'' +
-                '}';
+                ", fecha='" + fecha + '\'';
     }
 }
