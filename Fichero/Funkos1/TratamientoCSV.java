@@ -101,10 +101,10 @@ public class TratamientoCSV {
     }
 
     public void mostrar2023(){
-        funkos.forEach(p-> {
-            if (Year.from(p.getFecha().toInstant()).equals(Year.of(2023))){
-                System.out.println(p);
+        for (Funko funko : funkos){
+            if (funko.getFecha().toString().contains("2023")) {
+                System.out.println(funko);
             }
-        });
+        }
     }
 }
