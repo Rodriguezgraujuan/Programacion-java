@@ -19,12 +19,6 @@ public class Encabezado {
 
     @Override
     public String toString() {
-        return "Encabezado{" +
-                "cod='" + cod + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", precio='" + precio + '\'' +
-                ", fecha='" + fecha + '\'' +
-                '}';
+        return cod + "\n"+ nombre + "\n" + modelo + "\n" + precio +"\n"+fecha;
     }
 }
