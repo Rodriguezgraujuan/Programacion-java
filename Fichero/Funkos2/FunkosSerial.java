@@ -37,4 +37,8 @@ public class FunkosSerial implements Serializable {
     public double getPrecio() {
         return precio;
     }
+
+    public String getCod() {
+        return cod;
+    }
 }

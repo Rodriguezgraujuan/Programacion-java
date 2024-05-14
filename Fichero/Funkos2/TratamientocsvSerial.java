@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TratamientocsvSerial {
-    private Path fichero = Path.of("/home/juarodgra2/IdeaProjects/Programacion-java/Fichero/Funkos2/funkos.dat");
+    private final Path fichero = Path.of("/home/juarodgra2/IdeaProjects/Programacion-java/Fichero/Funkos2/funkos.dat");
 
     public void crearFichero() throws IOException {
         if (!(Files.exists(fichero))) {
@@ -15,9 +15,8 @@ public class TratamientocsvSerial {
         }
     }
 
-    public void crearFunko(FunkosSerial funko) {
+    public List<FunkosSerial> recargarLista(){
         List<FunkosSerial> funkos = new ArrayList<>();
-
         try (FileInputStream fis = new FileInputStream(fichero.toFile());
              ObjectInputStream input = new ObjectInputStream(fis)) {
             while (fis.available() > 0) {
@@ -27,6 +26,12 @@ public class TratamientocsvSerial {
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
+        return funkos;
+    }
+
+    public void crearFunko(FunkosSerial funko) {
+
+        List<FunkosSerial> funkos=recargarLista();
         funkos.add(funko);
         try (FileOutputStream fos = new FileOutputStream(fichero.toFile());
              ObjectOutputStream output = new ObjectOutputStream(fos)) {
@@ -38,8 +43,18 @@ public class TratamientocsvSerial {
         }
     }
 
-    public void borrarFunko() {
+    public void borrarFunko(String cod) {
+        List<FunkosSerial> funkos=recargarLista();
+        funkos.removeIf(funkosSerial -> funkosSerial.getCod().equals(cod));
 
+        try (FileOutputStream fos = new FileOutputStream(fichero.toFile());
+             ObjectOutputStream output = new ObjectOutputStream(fos)) {
+            for (FunkosSerial funkosSerial : funkos) {
+                output.writeObject(funkosSerial);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
     }
 
     public void leerFunkos() {

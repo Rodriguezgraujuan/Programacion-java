@@ -55,6 +55,10 @@ public class FunkosRegistroSerial {
                     introducirDatosFunko(serial);
                     break;
                 case 2:
+                    System.out.println("Introduce el codigo");
+                    in.nextLine();
+                    serial.borrarFunko(in.nextLine());
+                    break;
                 case 3:
                     serial.leerFunkos();
                     break;
