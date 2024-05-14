@@ -9,16 +9,36 @@ public class Encabezado {
     private String precio;
     private String fecha;
 
-    public Encabezado(String cod, String nombre, String precio, String modelo, String fecha) {
+    public Encabezado(String cod, String nombre, String modelo,String precio,  String fecha) {
         this.cod = cod;
         this.nombre = nombre;
-        this.precio = precio;
         this.modelo = modelo;
+        this.precio = precio;
         this.fecha = fecha;
     }
 
     @Override
     public String toString() {
         return cod + "\n"+ nombre + "\n" + modelo + "\n" + precio +"\n"+fecha;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getPrecio() {
+        return precio;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public String getCod() {
+        return cod;
     }
 }
