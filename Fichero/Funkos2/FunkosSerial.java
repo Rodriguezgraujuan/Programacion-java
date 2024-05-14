@@ -1,8 +1,13 @@
 package Funkos2;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Funkos {
+public class FunkosSerial implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID=100L;
     private String cod;
     private String nombre;
     private String modelo;
@@ -10,7 +15,7 @@ public class Funkos {
     private Date fecha;
 
 
-    public Funkos(String cod, String nombre, String modelo, double precio, Date fecha) {
+    public FunkosSerial(String cod, String nombre, String modelo, double precio, Date fecha) {
         this.cod = cod;
         this.nombre = nombre;
         this.modelo = modelo;
@@ -27,5 +32,9 @@ public class Funkos {
                 ", precio=" + precio +
                 ", fecha=" + fecha +
                 '}';
+    }
+
+    public double getPrecio() {
+        return precio;
     }
 }
