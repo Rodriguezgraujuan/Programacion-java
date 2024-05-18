@@ -69,7 +69,11 @@ public class FunkosRegistroSerial {
                     serial.mediaFunko();
                     break;
                 case 6:
+                    serial.mostrarModelos();
+                    break;
                 case 7:
+                    serial.mostrar2023();
+                    break;
                 case 8:
                     condition = false;
                     break;

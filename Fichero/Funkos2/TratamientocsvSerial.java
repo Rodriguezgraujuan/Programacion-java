@@ -102,4 +102,44 @@ public class TratamientocsvSerial {
             e.printStackTrace(System.out);
         }
     }
+    public void mostrarModelos(){
+        List<String> modelos = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(fichero.toFile());
+             ObjectInputStream input = new ObjectInputStream(fis)) {
+
+            while (fis.available() > 0) {
+                FunkosSerial funko = (FunkosSerial) input.readObject();
+                if (!(modelos.contains(funko.getModelo()))){
+                    modelos.add(funko.getModelo());
+                }
+            }
+
+            for (String modelo : modelos){
+                System.out.println(modelo);
+                while (fis.available() > 0) {
+                    FunkosSerial funko = (FunkosSerial) input.readObject();
+                    if (modelo.equals(funko.getModelo())){
+                        System.out.println(funko);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
+
+    public void mostrar2023(){
+        try (FileInputStream fis = new FileInputStream(fichero.toFile());
+             ObjectInputStream input = new ObjectInputStream(fis)) {
+
+            while (fis.available() > 0) {
+                FunkosSerial funko = (FunkosSerial) input.readObject();
+                if (funko.getFecha().toString().contains("2023")){
+                    System.out.println(funko);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
 }

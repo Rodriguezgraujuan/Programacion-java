@@ -41,4 +41,12 @@ public class FunkosSerial implements Serializable {
     public String getCod() {
         return cod;
     }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
 }
