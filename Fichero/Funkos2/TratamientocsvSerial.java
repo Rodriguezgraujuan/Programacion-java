@@ -114,15 +114,30 @@ public class TratamientocsvSerial {
                 }
             }
 
-            for (String modelo : modelos){
-                System.out.println(modelo);
-                while (fis.available() > 0) {
-                    FunkosSerial funko = (FunkosSerial) input.readObject();
-                    if (modelo.equals(funko.getModelo())){
-                        System.out.println(funko);
-                    }
-                }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+
+        try (FileInputStream fis = new FileInputStream(fichero.toFile());
+             ObjectInputStream input = new ObjectInputStream(fis)) {
+        for (String modelo : modelos){
+            System.out.println(modelo);
+            mostrarFunkosModelo(modelo);
+        }
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }
+
+    public void mostrarFunkosModelo(String modelo){
+        try (FileInputStream fis = new FileInputStream(fichero.toFile());
+             ObjectInputStream input = new ObjectInputStream(fis)) {
+        while (fis.available() > 0) {
+            FunkosSerial funko = (FunkosSerial) input.readObject();
+            if (modelo.equals(funko.getModelo())){
+                System.out.println(funko);
             }
+        }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
