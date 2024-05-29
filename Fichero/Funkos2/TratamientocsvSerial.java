@@ -30,7 +30,6 @@ public class TratamientocsvSerial {
     }
 
     public void crearFunko(FunkosSerial funko) {
-
         List<FunkosSerial> funkos=recargarLista();
         funkos.add(funko);
         try (FileOutputStream fos = new FileOutputStream(fichero.toFile());

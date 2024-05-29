@@ -14,18 +14,20 @@ import java.util.stream.Stream;
 public class Tratamientocsv {
     private final static String COMMA_DELIMITER = ",";
 
-    private List<List<String>> libros;
-
-    public void leerArchivo() throws IOException {
-        try (Stream<String> contenidoFichero = Files.lines(Path.of("C:\\Users\\rodri\\Downloads\\artista.csv"))) {
+    public List<List<String>> leerArchivo() throws IOException {
+        List<List<String>> libros = new ArrayList<>();
+        Path ruta = Path.of("C:\\Users\\rodri\\Downloads\\artista.csv");
+        try (Stream<String> contenidoFichero = Files.lines(ruta)) {
             libros = contenidoFichero
                     .map(l -> Arrays.asList(l.split(COMMA_DELIMITER)))
-                    .collect(Collectors.toCollection(ArrayList::new)); // Cambiado aquí
+                    .collect(Collectors.toCollection(ArrayList::new));
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
+        System.out.println(libros);
+        return libros;
     }
-
+/*
     public List<List<String>> getLibros() {
         return libros;
     }
@@ -55,4 +57,6 @@ public class Tratamientocsv {
             e.printStackTrace();
         }
     }
+
+ */
 }
